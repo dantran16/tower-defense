@@ -50,6 +50,6 @@ device.onReady(() => {
         pool.register("mainPlayer", PlayerEntity);
 
         // Start the game.
-        state.change(state.PLAY);
+        state.change(state.MENU);
     });
 });
