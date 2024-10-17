@@ -6,13 +6,18 @@ class FoodieEntity extends AllyEntity {
 
     constructor(x, y, settings) {
         // call the parent constructor
-        super(x, y , settings);
+        super(x, y, settings);
 
         // set default stats of foodie unit
         this.updateAllyStats()
+        this.allyCost = 100;
+        this.allyATK = 30;
+        this.allyASPD = 1.75;
+        this.allyRange = 2;
     }
 
     getAllyStats() {
+        // Return ally statistics
         return {
             allyTier: this.tier,
             allyCost: this.allyCost,
@@ -23,13 +28,8 @@ class FoodieEntity extends AllyEntity {
     }
 
     updateAllyStats() {
-        if (this.tier == 1) {
-            this.allyCost = 100;
-            this.allyATK = 30;
-            this.allyASPD = 1.75;
-            this.allyRange = 2
-        }
-        else if (this.tier == 2) {
+        // Update ally statistics based on this.tier value
+        if (this.tier == 2) {
             this.allyCost = 150;
             this.allyATK = 50;
             this.allyASPD = 2;
@@ -44,19 +44,11 @@ class FoodieEntity extends AllyEntity {
     }
 
     upgradeTier() {
+        // Increments this.tier value up until 3
         if (this.tier < 3) {
             this.tier++
             this.updateAllyStats()
         }
-    }
-
-    onCollision(response, other) {
-        // if enemy unit enters range of ally unit
-        if (other.body.collisionType == me.collision.types.ENEMY_OBJECT) {
-            return True
-        }
-        // Something needs to be done here to decrease the hp of the enemy unit in question
-        // Also needs to account for the attack speed
     }
 };
 

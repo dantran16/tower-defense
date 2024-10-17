@@ -1,30 +1,33 @@
 import * as me from 'melonjs';
 import game from '../../game.js';
+import HitBoxEntity from './hitbox.js';
 
 class AllyEntity extends me.Entity {
 
     constructor(x, y, settings) {
         // call the parent constructor
-        super(x, y , settings);
+        super(x, y, settings);
         
         // set a "player object" type
         this.body.collisionType = me.collision.types.PLAYER_OBJECT;
+        
+        // set hitbox
+        this.hitbox = null;
 
         // set default stats of ally unit
         this.tier = 1;
-        this.allyCost;
-        this.allyATK;
-        this.allyASPD;
-        this.allyRange;
-    }
-
-    update(dt) {
-        // update ally unit per frame
-        return super.update(dt);
+        this.allyCost = 0;
+        this.allyATK = 0;
+        this.allyASPD = 0;
+        this.allyRange = 0;
     }
 
     buyAlly() {
-        game.data.currency -= this.allyCost;
+        if (game.data.currency >= this.allyCost) {
+            game.data.currency -= this.allyCost;
+            return true;
+        }
+        return false;
     }
     
     sellAlly() {

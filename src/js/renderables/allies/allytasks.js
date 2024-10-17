@@ -13,7 +13,6 @@ class SpawnAllies extends me.Entity {
         // Use this file to handle space indicators (whether ally unit position interferes with the path or goes off the map)
         // Also handle the spawning of a new ally unit when "buy" button is pressed
         // Also handle the removal of an existing ally unit when "sell" button is pressed
-        
     }
 
     update(dt) {
