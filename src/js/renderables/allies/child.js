@@ -23,25 +23,23 @@ class ChildEntity extends AllyEntity {
     }
 
     updateAllyStats() {
-        if (this.tier < 4) {
-            if (this.tier == 1) {
-                this.allyCost = 50;
-                this.allyATK = 5;
-                this.allyASPD = 2;
-                this.allyRange = 1
-            }
-            else if (this.tier == 2) {
-                this.allyCost = 100;
-                this.allyATK = 10;
-                this.allyASPD = 2.5;
-                this.allyRange = 1.1
-            }
-            else {
-                this.allyCost = 100;
-                this.allyATK = 30;
-                this.allyASPD = 3;
-                this.allyRange = 1.25
-            }
+        if (this.tier == 1) {
+            this.allyCost = 50;
+            this.allyATK = 5;
+            this.allyASPD = 2;
+            this.allyRange = 1
+        }
+        else if (this.tier == 2) {
+            this.allyCost = 100;
+            this.allyATK = 10;
+            this.allyASPD = 2.5;
+            this.allyRange = 1.1
+        }
+        else if (this.tier == 3) {
+            this.allyCost = 100;
+            this.allyATK = 30;
+            this.allyASPD = 3;
+            this.allyRange = 1.25
         }
     }
 

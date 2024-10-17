@@ -1,7 +1,8 @@
 import * as me from 'melonjs';
+import AllyEntity from 'ally.js';
 import game from '../../game.js';
 
-class FoodieEntity extends me.Entity {
+class FoodieEntity extends AllyEntity {
 
     constructor(x, y, settings) {
         // call the parent constructor
@@ -22,25 +23,23 @@ class FoodieEntity extends me.Entity {
     }
 
     updateAllyStats() {
-        if (this.tier < 4) {
-            if (this.tier == 1) {
-                this.allyCost = 100;
-                this.allyATK = 30;
-                this.allyASPD = 1.75;
-                this.allyRange = 2
-            }
-            else if (this.tier == 2) {
-                this.allyCost = 150;
-                this.allyATK = 50;
-                this.allyASPD = 2;
-                this.allyRange = 2.5
-            }
-            else {
-                this.allyCost = 200;
-                this.allyATK = 80;
-                this.allyASPD = 2.5;
-                this.allyRange = 3
-            }
+        if (this.tier == 1) {
+            this.allyCost = 100;
+            this.allyATK = 30;
+            this.allyASPD = 1.75;
+            this.allyRange = 2
+        }
+        else if (this.tier == 2) {
+            this.allyCost = 150;
+            this.allyATK = 50;
+            this.allyASPD = 2;
+            this.allyRange = 2.5
+        }
+        else if (this.tier == 3) {
+            this.allyCost = 200;
+            this.allyATK = 80;
+            this.allyASPD = 2.5;
+            this.allyRange = 3
         }
     }
 
