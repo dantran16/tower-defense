@@ -16,6 +16,7 @@ import PlayScreen from "./js/stage/play.js";
 //import PlayerEntity from "./js/renderables/player.js";
 
 import DataManifest from "./manifest.js";
+// add enemies?
 
 
 device.onReady(() => {
