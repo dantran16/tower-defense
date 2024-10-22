@@ -1,7 +1,7 @@
 import * as me from 'melonjs';
 import TowerButton from '../../buttons/TowerButton';
 import PauseButton from '../../buttons/PauseButton';
-import game from '../../game';
+import game from '../../applicationState';
 
 // a Panel type container
 class SideMenuContainer extends me.UIBaseElement {

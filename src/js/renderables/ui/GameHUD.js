@@ -1,5 +1,5 @@
 import * as me from 'melonjs';
-import game from '../../game';
+import game from '../../applicationState';
 
 // a Panel type container
 class GameHUD extends me.UIBaseElement {

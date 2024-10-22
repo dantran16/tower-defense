@@ -1,6 +1,6 @@
 import * as me from 'melonjs';
 import AllyEntity from 'ally.js';
-import game from '../../game.js';
+import applicationState from '../../applicationState.js';
 
 class FoodieEntity extends AllyEntity {
 
