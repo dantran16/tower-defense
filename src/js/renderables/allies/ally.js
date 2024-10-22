@@ -1,5 +1,5 @@
 import * as me from 'melonjs';
-import game from '../../game.js';
+import game from '../../applicationState.js';
 import HitBoxEntity from './hitbox.js';
 
 class AllyEntity extends me.Entity {
