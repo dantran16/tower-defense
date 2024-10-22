@@ -71,3 +71,5 @@ export default Enemy;
 // depending on path may need to update movement logic.
 // Will need to add enemy comes off screen and "dies"/ disappears
 // Need to ask if we have coin tracker.
+// make path for enemies
+// make class for each enemy
