@@ -1,5 +1,5 @@
 import * as me from 'melonjs';
-import game from '../../applicationState.js';
+import applicationState from '../../applicationState.js';
 import HitBoxEntity from './hitbox.js';
 
 class AllyEntity extends me.Entity {
@@ -23,15 +23,15 @@ class AllyEntity extends me.Entity {
     }
 
     buyAlly() {
-        if (game.data.currency >= this.allyCost) {
-            game.data.currency -= this.allyCost;
+        if (applicationState.data.currency >= this.allyCost) {
+            applicationState.data.currency -= this.allyCost;
             return true;
         }
         return false;
     }
     
     sellAlly() {
-        game.data.currency += Math.floor(this.allyCost/2);
+        applicationState.data.currency += Math.floor(this.allyCost/2);
     }
 };
 

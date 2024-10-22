@@ -1,7 +1,7 @@
 import * as me from 'melonjs';
 import TowerButton from '../../buttons/TowerButton';
 import PauseButton from '../../buttons/PauseButton';
-import game from '../../applicationState';
+import applicationState from '../../applicationState';
 
 // a Panel type container
 class SideMenuContainer extends me.UIBaseElement {
@@ -23,7 +23,7 @@ class SideMenuContainer extends me.UIBaseElement {
             textAlign: "left",
             textBaseline: "top",
             bold: true,
-            text: `$${game.data.currency}`
+            text: `$${applicationState.data.currency}`
         }));
 
         this.addChild(new PauseButton(this.width, this.height / 24))
