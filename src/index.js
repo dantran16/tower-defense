@@ -13,7 +13,7 @@ import "./index.css";
 
 import TitleScreen from "./js/stage/title.js";
 import PlayScreen from "./js/stage/play.js";
-import PlayerEntity from "./js/renderables/player.js";
+//import PlayerEntity from "./js/renderables/player.js";
 
 import DataManifest from "./manifest.js";
 // add enemies?
@@ -48,7 +48,7 @@ device.onReady(() => {
         state.set(state.PLAY, new PlayScreen());
 
         // add our player entity in the entity pool
-        pool.register("mainPlayer", PlayerEntity);
+        //pool.register("mainPlayer", PlayerEntity);
 
         // Start the game.
         state.change(state.MENU);
