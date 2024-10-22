@@ -1,7 +1,7 @@
 /**
  * hold all game specific data
  */
-var game = {
+var applicationState = {
 
     /**
      * object where to store game global scole
@@ -17,4 +17,4 @@ var game = {
     texture : null
 };
 
-export default game;
+export default applicationState;

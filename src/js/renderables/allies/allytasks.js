@@ -1,5 +1,5 @@
 import * as me from 'melonjs';
-import game from '../../game.js';
+import applicationState from '../../applicationState.js';
 import ChildEntity from 'child.js';
 import AdultEntity from 'adult.js';
 import FoodieEntity from 'foodie.js';

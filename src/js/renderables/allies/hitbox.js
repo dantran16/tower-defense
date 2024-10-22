@@ -1,5 +1,5 @@
 import * as me from 'melonjs';
-import game from '../../game.js';
+import applicationState from '../../applicationState.js';
 
 class HitBoxEntity extends me.Renderable {
 
