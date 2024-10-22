@@ -1,6 +1,7 @@
 import * as me from 'melonjs';
 import TowerButton from '../../buttons/TowerButton';
 import PauseButton from '../../buttons/PauseButton';
+import game from '../../game';
 
 // a Panel type container
 class SideMenuContainer extends me.UIBaseElement {
@@ -15,22 +16,22 @@ class SideMenuContainer extends me.UIBaseElement {
         // give a name
         this.name = "SideMenu";
 
-        this.addChild(new me.Text(this.width / 6, 16, {
+        this.addChild(new me.Text(this.width / 6, this.height / 24, {
             font: "PressStart2P",
             size: 20,
             fillStyle: "white",
             textAlign: "left",
             textBaseline: "top",
             bold: true,
-            text: "$0"
+            text: `$${game.data.currency}`
         }));
 
-        this.addChild(new PauseButton(this.width / 2, 16))
+        this.addChild(new PauseButton(this.width, this.height / 24))
 
-        this.addChild(new TowerButton(this.width / 6, 48, "Tower1"))
-        this.addChild(new TowerButton(this.width / 2, 48, "Tower2"))
-        this.addChild(new TowerButton(this.width / 6, 80, "Tower3"))
-        this.addChild(new TowerButton(this.width / 2, 80, "Tower3"))
+        this.addChild(new TowerButton(this.width / 6, this.height / 8, "Tower1"))
+        this.addChild(new TowerButton(this.width / 2, this.height / 8, "Tower2"))
+        this.addChild(new TowerButton(this.width / 6, this.height / 5, "Tower3"))
+        this.addChild(new TowerButton(this.width / 2, this.height / 5, "Tower3"))
 
         
 
