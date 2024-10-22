@@ -9,6 +9,8 @@ var game = {
     data : {
         playerHealth: 100,
         currency: 100,
+        wave: 1,
+        enemies: 25
     },
 
     // a reference to the texture atlas

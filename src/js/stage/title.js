@@ -18,7 +18,7 @@ class TitleScreen extends Stage {
             text : "Hello World !"
         }));
 
-        game.world.addChild(new PlayButton(game.viewport.width / 2 - params.buttonBorderSize, game.viewport.height / 2));
+        game.world.addChild(new PlayButton(game.viewport.width / 2 - params.playButton.borderSize, game.viewport.height / 2));
     }
 
     /**
