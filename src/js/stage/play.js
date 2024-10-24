@@ -1,6 +1,9 @@
+import * as me from 'melonjs';
 import { Stage, game, ColorLayer, BitmapText  } from "melonjs";
 import SideMenuContainer from "../renderables/ui/SideMenuContainer";
 import GameHUD from "../renderables/ui/GameHUD";
+import DataManifest from '../../manifest';
+//import { ImageLayer } from '../../../node_modules/melonjs/dist/types/index';
 
 
 class PlayScreen extends Stage {
@@ -12,9 +15,23 @@ class PlayScreen extends Stage {
 
         var panel = new SideMenuContainer(game.viewport.width * 5/6, 0, game.viewport.width / 6, game.viewport.height);
         var gameHud = new GameHUD(0, 0, game.viewport.width * 5 / 6, game.viewport.height);
+        
+        game.world.addChild(panel);
+        game.world.addChild(gameHud);
 
-        game.world.addChild(panel)
-        game.world.addChild(gameHud)
+        // temp code that serves as a map placeholder
+        game.world.addChild(new BitmapText(game.viewport.width / 2.5, game.viewport.height / 1.8,  {
+            font : "PressStart2P",
+            size : 2.8,
+            textBaseline : "middle",
+            textAlign : "center",
+            text : "Map Placeholder"
+        }));
+
+        // level.preload(DataManifest, ()=> {
+        //     document.getElementById('map');
+        // });
+
     }
 };
 
