@@ -5,7 +5,6 @@ import applicationState from '../../applicationState';
 
 // a Panel type container
 class SideMenuContainer extends me.UIBaseElement {
-
     constructor(x, y, width, height) {
         // call the constructor
         super(x, y, width, height);
@@ -16,7 +15,7 @@ class SideMenuContainer extends me.UIBaseElement {
         // give a name
         this.name = "SideMenu";
 
-        this.addChild(new me.Text(this.width / 6, this.height / 24, {
+        const currencyText = new me.Text(this.width / 6, this.height / 24, {
             font: "PressStart2P",
             size: 20,
             fillStyle: "white",
@@ -24,17 +23,17 @@ class SideMenuContainer extends me.UIBaseElement {
             textBaseline: "top",
             bold: true,
             text: `$${applicationState.data.currency}`
-        }));
-
-        this.addChild(new PauseButton(this.width, this.height / 24))
-
-        this.addChild(new TowerButton(this.width / 6, this.height / 8, "Tower1"))
-        this.addChild(new TowerButton(this.width / 2, this.height / 8, "Tower2"))
-        this.addChild(new TowerButton(this.width / 6, this.height / 5, "Tower3"))
-        this.addChild(new TowerButton(this.width / 2, this.height / 5, "Tower3"))
-
+        })
+        this.addChild(currencyText);
+        this.updateCurrency = () => currencyText.setText(`$${applicationState.data.currency}`);
         
 
+        this.addChild(new PauseButton(this.width / 2, this.height / 24))
+        this.addChild(new TowerButton(this.width * 3 / 10, this.height / 8, "Tower 1", {width: 50, height: 25}))
+        this.addChild(new TowerButton(this.width * 7 / 10, this.height / 8, "Tower 2", {width: 50, height: 25}))
+        this.addChild(new TowerButton(this.width * 3 / 10, this.height / 4, "Tower 3", {width: 50, height: 25}))
+        this.addChild(new TowerButton(this.width * 7 / 10, this.height / 4, "Tower 4", {width: 50, height: 25}))
     }
+
 };
 export default SideMenuContainer;
