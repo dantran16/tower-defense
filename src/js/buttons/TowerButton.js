@@ -67,7 +67,7 @@ class TowerButton extends me.Draggable {
 
         // TODO - Incorporate valid tower dropping check - still destroy entity
             // TODO - Decrease game money if there's currency
-        applicationState.data.currency =  applicationState.data.currency - 10
+        applicationState.data.currency -= 10
         this.ancestor.updateCurrency();
         this.ancestor.removeChild(this)
     }
