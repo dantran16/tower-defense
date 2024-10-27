@@ -1,4 +1,5 @@
 import * as me from 'melonjs';
+import applicationState from '../../applicationState';
 
 class Enemy extends me.Entity {
     constructor(x, y, settings, health, speed, element, reward) {
@@ -25,18 +26,36 @@ class Enemy extends me.Entity {
 
         // Make the enemy collidable 
         this.isCollidable = true;
+        
+        // Collision Type
+        this.body.collisionType = me.collision.types.ENEMY_OBJECT;
+
     }
 
     // Method to update the enemy's movement each frame
     update(dt) {
-        // Move the enemy along the x-axis based on its speed and delta time (dt)
-        this.pos.x += this.speed * dt / 1000;
+        if (this.currentWaypoint < this.waypoints.length) {
+            this.moveToWaypoint(dt);
+        } else {
+            this.reachEnd();  // If no more waypoints, consider the path complete
+        }
 
-        // Update the enemy's body movement and handle collisions
         this.body.update(dt);
-
-        // Return true to signal that the object needs to be re-drawn
         return true;
+    }
+
+    moveToWaypoint(dt) {
+        const target = this.waypoints[this.currentWaypoint];
+        const dx = target.x - this.pos.x;
+        const dy = target.y - this.pos.y;
+        const distance = Math.sqrt(dx * dx + dy * dy);
+
+        if (distance > 1) {
+            this.pos.x += (dx / distance) * this._speed * dt / 1000;
+            this.pos.y += (dy / distance) * this._speed * dt / 1000;
+        } else {
+            this.currentWaypoint++;
+        }
     }
 
     // Method to reduce the enemy's health when it takes damage
@@ -51,25 +70,49 @@ class Enemy extends me.Entity {
 
     // Method to handle enemy death
     die() {
-        console.log(`${this.element} enemy has been defeated!`);
+        if(this.health <= 0) {
 
         // Remove the enemy from the game world when it dies
-        me.game.world.removeChild(this);
+            this.onDestroy()
 
-        this.rewardPlayer();
+            this.rewardPlayer();
+
+            console.log(`${this.element} enemy has been defeated!`);
+        }
     }
 
+    // Method to reward player on enemy death
     rewardPlayer(){
-        me.game.world.getChildbyName('player')[0].coins += this.reward;
+        applicationState.data.currency += this.reward;
+        this.updateCurrency();
 
-        console.log(`Player rewarded with ${this.reward} coins.`)
+        console.log(`Player rewarded with ${this.reward} coins.`);
     }
+
+    
+     // Method to handle the collision with the Trash Can at end of path
+     onCollideWithTrashCan() {
+        console.log(`${this._type} collided with the Trash Can and will be removed.`);
+
+        // Deduct a life from the player
+        applicationState.data.lives -= 1;
+        this.updateLives();
+
+        // Check if lives reach zero to trigger game over
+        if (applicationState.data.lives <= 0) {
+            this.gameOver();
+        }
+
+        // Remove the enemy from the game world
+        this.onDestroy();
+    }
+
+    
+    onDestroy() {
+        console.log(`${this._type} is being removed from the game world.`);
+        me.game.world.removeChild(this);
+    }
+
 }
 
 export default Enemy;
-
-// depending on path may need to update movement logic.
-// Will need to add enemy comes off screen and "dies"/ disappears
-// Need to ask if we have coin tracker.
-// make path for enemies
-// make class for each enemy
