@@ -30,6 +30,9 @@ class Enemy extends me.Entity {
         // Collision Type
         this.body.collisionType = me.collision.types.ENEMY_OBJECT;
 
+        this.hitbox = new HitBoxEntity(this.pos.x, this.pos.y, 1.5); 
+        me.game.world.addChild(this.hitbox);
+
     }
 
     // Method to update the enemy's movement each frame
@@ -41,7 +44,10 @@ class Enemy extends me.Entity {
         }
 
         this.body.update(dt);
+        this.syncHitBox();
         return true;
+
+
     }
 
     moveToWaypoint(dt) {
@@ -56,6 +62,11 @@ class Enemy extends me.Entity {
         } else {
             this.currentWaypoint++;
         }
+    }
+
+    syncHitBox() {
+        this.hitbox.pos.x = this.pos.x;
+        this.hitbox.pos.y = this.pos.y;
     }
 
     // Method to reduce the enemy's health when it takes damage
@@ -111,6 +122,7 @@ class Enemy extends me.Entity {
     onDestroy() {
         console.log(`${this._type} is being removed from the game world.`);
         me.game.world.removeChild(this);
+        me.game.world.removeChild(this.hitbox);
     }
 
 }
