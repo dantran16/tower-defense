@@ -11,6 +11,7 @@ var applicationState = {
         currency: 100,
         wave: 1,
         enemies: 25
+        // lives: 10?
     },
 
     // a reference to the texture atlas
