@@ -2,7 +2,7 @@ import * as me from 'melonjs';
 import applicationState from '../../applicationState';
 
 class Enemy extends me.Entity {
-    constructor(x, y, settings, health, speed, element, reward) {
+    constructor(x, y, settings, health, speed, element, reward, mapData) {
         // Call parent constructor to initialize the position and settings
         super(x, y, settings);
 
@@ -33,6 +33,33 @@ class Enemy extends me.Entity {
         this.hitbox = new HitBoxEntity(this.pos.x, this.pos.y, 1.5); 
         me.game.world.addChild(this.hitbox);
 
+        //Generates waypoint paths
+        this.pathWaypoints = this.generatePathWaypoints(mapData);
+        this.currentWaypoint = 0;
+
+    }
+
+     // Method to extract path waypoints from JSON map data
+     generatePathWaypoints(mapData) {
+        const pathWaypoints = [];
+        const tileWidth = mapData.tilewidth;
+        const tileHeight = mapData.tileheight;
+
+        // Find the "path" layer
+        const pathLayer = mapData.layers.find(layer => layer.name === "path");
+
+        if (pathLayer) {
+            // Loop through each tile in the path layer
+            pathLayer.data.forEach((tile, index) => {
+                if (tile === 475) { // Check for the blue path tile ID 475
+                    const x = (index % mapData.width) * tileWidth;
+                    const y = Math.floor(index / mapData.width) * tileHeight;
+                    pathWaypoints.push({ x, y });
+                }
+            });
+        }
+
+        return pathWaypoints;
     }
 
     // Method to update the enemy's movement each frame
