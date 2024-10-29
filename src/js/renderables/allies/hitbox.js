@@ -21,7 +21,7 @@ class HitBoxEntity extends me.Renderable {
     draw(renderer) {
         // Set the fill style color
         renderer.setColor(`rgba(255, 0, 0, 0.3)`);
-        // Draw the rectangle
+        // Draw the hitbox area
         renderer.fillEllipse(this.pos.x, this.pos.y, this.width * this.range, this.height * this.range);
     }
 

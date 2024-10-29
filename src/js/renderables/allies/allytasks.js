@@ -3,9 +3,14 @@ import ChildEntity from './child.js';
 import AdultEntity from './adult.js';
 import FoodieEntity from './foodie.js';
 
+// temporary test
+import EnemyTasks from '../enemies/EnemyTasks.js';
+import Enemy from '../enemies/enemy.js';
+
 class AllyTasks {
 
     createAlly(name, x, y) {
+        // Create new ally unit based on the name of the tower
         let temp = null;
         if (name == "Child") {
             temp = new ChildEntity(x, y, {image: "white-dot", width: 25, height: 25})
@@ -18,6 +23,11 @@ class AllyTasks {
         }
 
         me.game.world.addChild(temp);
+
+        // temporary test
+        const enemy = new EnemyTasks();
+        console.log(enemy)
+        enemy.sendWave();
     }
     
     destroyAlly() {

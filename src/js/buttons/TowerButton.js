@@ -17,6 +17,8 @@ class TowerButton extends me.Draggable {
         this.font.bold();
         // set the text
         this.text = name;
+        this.initialX = x;
+        this.initialY = y;
         this.isDraggable = true;
         this.settings = settings
         this.tasks = new AllyTasks();
@@ -43,7 +45,7 @@ class TowerButton extends me.Draggable {
         if(!this.isDraggable){
             return
         }
-        const towerDrag = new TowerButton(this.pos.x, this.pos.y, this.text, this.settings)
+        const towerDrag = new TowerButton(this.initialX, this.initialY, this.text, this.settings)
         this.ancestor.addChild(towerDrag)
         this.isDraggable = false;
         // call the super function
@@ -66,13 +68,13 @@ class TowerButton extends me.Draggable {
         // call the super function
         super.dragEnd(e);
         // TODO - Incorporate valid tower dropping check - still destroy entity
-        this.ancestor.removeChild(this)
+        
         if (this.color == 'white' && applicationState.data.currency >= 10) {
             applicationState.data.currency -= 10
             this.ancestor.updateCurrency();
             this.tasks.createAlly(this.text, (me.game.viewport.width * 5 / 6) + this.pos.x, this.pos.y)
         }
-        
+        this.ancestor.removeChild(this)
     }
 
 };
