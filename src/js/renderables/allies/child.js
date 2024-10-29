@@ -11,7 +11,6 @@ class ChildEntity extends AllyEntity {
         // set default stats of child unit
         this.updateAllyStats()
         this.hitbox = new HitBoxEntity(x, y, this.allyRange);
-        console.log(this.hitbox)
         me.game.world.addChild(this.hitbox);
     }
 
@@ -45,7 +44,7 @@ class ChildEntity extends AllyEntity {
             this.allyCost = 100;
             this.allyATK = 30;
             this.allyASPD = 3;
-            this.allyRange = 1.25
+            this.allyRange = 1.2
         }
     }
 

@@ -14,8 +14,15 @@ class HitBoxEntity extends me.Renderable {
     }
 
     updateHitBox(response) {
-        this.range = response;
+        this.range = response * 50;
         this.body.addShape(new me.Ellipse(this.Xpos, this.Ypos, this.width * this.range, this.height * this.range));
+    }
+
+    draw(renderer) {
+        // Set the fill style color
+        renderer.setColor(`rgba(255, 0, 0, 0.3)`);
+        // Draw the rectangle
+        renderer.fillEllipse(this.pos.x, this.pos.y, this.width * this.range, this.height * this.range);
     }
 
     onCollision(response, other) {
