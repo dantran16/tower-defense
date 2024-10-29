@@ -13,7 +13,7 @@ class Enemy extends me.Entity {
         this.reward = reward;         // Reward for kill enemy
 
         // Set the velocity for movement
-        this.body.setVelocity(this.speed, this.speed); // Movement speed in x and y directions
+        //this.body.setVelocity(this.speed, this.speed); // Movement speed in x and y directions
 
         // Disable gravity for the enemy
         this.body.gravity = 0;
@@ -30,8 +30,8 @@ class Enemy extends me.Entity {
         // Collision Type
         this.body.collisionType = me.collision.types.ENEMY_OBJECT;
 
-        this.hitbox = new HitBoxEntity(this.pos.x, this.pos.y, 1.5); 
-        me.game.world.addChild(this.hitbox);
+        // this.hitbox = new HitBoxEntity(this.pos.x, this.pos.y, 1.5); 
+        // me.game.world.addChild(this.hitbox);
 
         //Generates waypoint paths
         this.pathWaypoints = this.generatePathWaypoints(mapData);
@@ -128,8 +128,8 @@ class Enemy extends me.Entity {
     }
 
     
-     // Method to handle the collision with the Trash Can at end of path
-     onCollideWithTrashCan() {
+    // Method to handle the collision with the Trash Can at end of path
+    onCollideWithTrashCan() {
         console.log(`${this._type} collided with the Trash Can and will be removed.`);
 
         // Deduct a life from the player

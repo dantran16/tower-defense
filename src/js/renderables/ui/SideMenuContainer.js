@@ -29,10 +29,9 @@ class SideMenuContainer extends me.UIBaseElement {
         
 
         this.addChild(new PauseButton(this.width / 2, this.height / 24))
-        this.addChild(new TowerButton(this.width * 3 / 10, this.height / 8, "Tower 1", {width: 50, height: 25}))
-        this.addChild(new TowerButton(this.width * 7 / 10, this.height / 8, "Tower 2", {width: 50, height: 25}))
-        this.addChild(new TowerButton(this.width * 3 / 10, this.height / 4, "Tower 3", {width: 50, height: 25}))
-        this.addChild(new TowerButton(this.width * 7 / 10, this.height / 4, "Tower 4", {width: 50, height: 25}))
+        this.addChild(new TowerButton(this.width * 3 / 10, this.height / 8, "Child", {width: 50, height: 25}))
+        this.addChild(new TowerButton(this.width * 7 / 10, this.height / 8, "Adult", {width: 50, height: 25}))
+        this.addChild(new TowerButton(this.width * 3 / 10, this.height / 4, "Foodie", {width: 50, height: 25}))
     }
 
 };
