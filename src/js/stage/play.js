@@ -16,11 +16,14 @@ class PlayScreen extends Stage {
         var panel = new SideMenuContainer(game.viewport.width * 5/6, 0, game.viewport.width / 6, game.viewport.height);
         var gameHud = new GameHUD(0, 0, game.viewport.width * 5 / 6, game.viewport.height);
 
-        var game_map = new me.Sprite(450,350, 
+        const width = game.viewport.width;
+        const height = game.viewport.height;
+
+        var game_map = new me.Sprite(width / 2.5, height / 1.75, 
             {   
                 image: me.loader.getImage("map"), 
-                spritewidth: 64, 
-                spriteheight: 64
+                spritewidth: 32, 
+                spriteheight: 32
             });
 
         me.game.world.addChild(game_map);

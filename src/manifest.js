@@ -22,7 +22,7 @@ const DataManifest = [
     {
         name: "map",
         type: "image",
-        src: "./src/data/map/map.png"
+        src: "./data/map/map.png"
     },
 
     // {
@@ -34,13 +34,13 @@ const DataManifest = [
     // {
     //     name: "map_assets",
     //     type: "tsx",
-    //     src: "./data/map/12_Kitchen_32x32.tsx",
+    //     src: "./src/data/map/12_Kitchen_32x32.png",
     // },
 
     // {
     //     name: "map_floor",
     //     type: "tsx",
-    //     src: "./data/map/Room_Builder_Floors_32x32.tsx"
+    //     src: "./src/data/map/Room_Builder_Floors_32x32.png"
     // }
 ];
 
