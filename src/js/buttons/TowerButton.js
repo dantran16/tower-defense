@@ -1,6 +1,8 @@
 import * as me from "melonjs";
 import { params } from "../params";
 import applicationState from "../applicationState";
+import AllyTasks from "../renderables/allies/AllyTasks.js";
+import ChildEntity from "../renderables/allies/child.js";
 
 
 class TowerButton extends me.Draggable {
@@ -16,9 +18,8 @@ class TowerButton extends me.Draggable {
         // set the text
         this.text = name;
         this.isDraggable = true;
-        this.initialX = x;
-        this.initialY = y;
         this.settings = settings
+        this.tasks = new AllyTasks();
     }
     /**
      * update function
@@ -42,7 +43,7 @@ class TowerButton extends me.Draggable {
         if(!this.isDraggable){
             return
         }
-        const towerDrag = new TowerButton(this.initialX, this.initialY, this.text, this.settings)
+        const towerDrag = new TowerButton(this.pos.x, this.pos.y, this.text, this.settings)
         this.ancestor.addChild(towerDrag)
         this.isDraggable = false;
         // call the super function
@@ -64,12 +65,14 @@ class TowerButton extends me.Draggable {
     dragEnd(e) {
         // call the super function
         super.dragEnd(e);
-
         // TODO - Incorporate valid tower dropping check - still destroy entity
-            // TODO - Decrease game money if there's currency
-        applicationState.data.currency -= 10
-        this.ancestor.updateCurrency();
         this.ancestor.removeChild(this)
+        if (this.color == 'white' && applicationState.data.currency >= 10) {
+            applicationState.data.currency -= 10
+            this.ancestor.updateCurrency();
+            this.tasks.createAlly(this.text, (me.game.viewport.width * 5 / 6) + this.pos.x, this.pos.y)
+        }
+        
     }
 
 };

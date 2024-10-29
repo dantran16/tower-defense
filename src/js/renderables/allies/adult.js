@@ -1,6 +1,5 @@
-import * as me from 'melonjs';
-import AllyEntity from 'ally.js';
-import applicationState from '../../applicationState.js';
+import AllyEntity from './ally.js';
+import HitBoxEntity from './hitbox.js';
 
 class AdultEntity extends AllyEntity {
 
@@ -10,10 +9,7 @@ class AdultEntity extends AllyEntity {
 
         // set default stats of adult unit
         this.updateAllyStats()
-        this.allyCost = 200;
-        this.allyATK = 40;
-        this.allyASPD = 2;
-        this.allyRange = 1.25;
+        this.hitbox = new HitBoxEntity(x, y, this.allyRange);
     }
 
     getAllyStats() {
@@ -29,7 +25,13 @@ class AdultEntity extends AllyEntity {
 
     updateAllyStats() {
         // Update ally statistics based on this.tier value
-        if (this.tier == 2) {
+        if (this.tier == 1) {
+            this.allyCost = 200;
+            this.allyATK = 40;
+            this.allyASPD = 2;
+            this.allyRange = 1.25;
+        }
+        else if (this.tier == 2) {
             this.allyCost = 300;
             this.allyATK = 80;
             this.allyASPD = 2.5;
@@ -48,6 +50,7 @@ class AdultEntity extends AllyEntity {
         if (this.tier < 3) {
             this.tier++
             this.updateAllyStats()
+            this.hitbox.updateHitbox(this.allyRange)
         }
     }
 };
