@@ -10,6 +10,7 @@ class AllyEntity extends me.Entity {
         
         // set a "player object" type
         this.body.collisionType = me.collision.types.PLAYER_OBJECT;
+        this.body.ignoreGravity = true;
         
         // set hitbox
         this.hitbox = null;
@@ -20,18 +21,6 @@ class AllyEntity extends me.Entity {
         this.allyATK = 0;
         this.allyASPD = 0;
         this.allyRange = 0;
-    }
-
-    buyAlly() {
-        if (applicationState.data.currency >= this.allyCost) {
-            applicationState.data.currency -= this.allyCost;
-            return true;
-        }
-        return false;
-    }
-    
-    sellAlly() {
-        applicationState.data.currency += Math.floor(this.allyCost/2);
     }
 };
 
