@@ -1,6 +1,6 @@
 import * as me from 'melonjs';
 import applicationState from '../../applicationState';
-import HitBoxEntity from '../allies/hitbox';
+import HitBoxEntity from '../allies/HitBoxEntity';
 import mapData from 'c:/Users/kszir/tower-defense/src/data/map/map.json';
 
 class Enemy extends me.Entity {
@@ -32,8 +32,8 @@ class Enemy extends me.Entity {
         // Collision Type
         this.body.collisionType = me.collision.types.ENEMY_OBJECT;
 
-        // this.hitbox = new HitBoxEntity(this.pos.x, this.pos.y, 1.5); 
-        // me.game.world.addChild(this.hitbox);
+         this.hitbox = new HitBoxEntity(this.pos.x, this.pos.y, 1.5); 
+        me.game.world.addChild(this.hitbox);
 
         //Generates waypoint paths
         this.direction = {x: 0, y: 1};
@@ -74,7 +74,7 @@ class Enemy extends me.Entity {
         }
 
         this.body.update(dt);
-        //this.syncHitBox();
+        this.syncHitBox();
         return true;
 
 
@@ -94,10 +94,10 @@ class Enemy extends me.Entity {
         }
     }
 
-    // syncHitBox() {
-    //     this.hitbox.pos.x = this.pos.x;
-    //     this.hitbox.pos.y = this.pos.y;
-    // }
+    syncHitBox() {
+        this.hitbox.pos.x = this.pos.x;
+        this.hitbox.pos.y = this.pos.y;
+    }
 
     // Method to reduce the enemy's health when it takes damage
     takeDamage(damage) {
