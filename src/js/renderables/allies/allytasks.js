@@ -26,7 +26,6 @@ class AllyTasks {
 
         // temporary test
         const enemy = new EnemyTasks();
-        console.log(enemy)
         enemy.sendWave();
     }
     

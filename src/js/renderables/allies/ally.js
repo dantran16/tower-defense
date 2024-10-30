@@ -8,6 +8,7 @@ class AllyEntity extends me.Entity {
         
         // set a "player object" type
         this.body.collisionType = me.collision.types.PLAYER_OBJECT;
+        this.body.setCollisionMask(me.collision.types.WORLD_SHAPE);
         this.body.ignoreGravity = true;
         
         // set hitbox
