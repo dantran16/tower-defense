@@ -21,6 +21,17 @@ class AllyEntity extends me.Entity {
         this.allyASPD = 0;
         this.allyRange = 0;
     }
+
+    getAllyStats() {
+        // Return ally statistics
+        return {
+            allyTier: this.tier,
+            allyCost: this.allyCost,
+            allyATK: this.allyATK,
+            allyASPD: this.allyASPD,
+            allyRange: this.allyRange
+        }
+    }
 };
 
 export default AllyEntity;

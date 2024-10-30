@@ -14,17 +14,6 @@ class ChildEntity extends AllyEntity {
         me.game.world.addChild(this.hitbox);
     }
 
-    getAllyStats() {
-        // Return ally statistics
-        return {
-            allyTier: this.tier,
-            allyCost: this.allyCost,
-            allyATK: this.allyATK,
-            allyASPD: this.allyASPD,
-            allyRange: this.allyRange
-        }
-    }
-
     updateAllyStats() {
         // Update ally statistics based on this.tier value
         if (this.tier == 1) {
