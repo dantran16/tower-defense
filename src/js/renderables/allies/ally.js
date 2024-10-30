@@ -1,6 +1,4 @@
 import * as me from 'melonjs';
-import applicationState from '../../applicationState.js';
-//import HitBoxEntity from './hitbox.js';
 
 class AllyEntity extends me.Entity {
 
