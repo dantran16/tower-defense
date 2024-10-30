@@ -11,7 +11,7 @@ class FoodieEntity extends AllyEntity {
         // set default stats of foodie unit
         this.updateAllyStats()
         //this.hitbox = new HitBoxEntity(x, y, this.allyRange);
-        me.game.world.addChild(this.hitbox);
+        //me.game.world.addChild(this.hitbox);
     }
 
     getAllyStats() {
