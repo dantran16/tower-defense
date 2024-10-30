@@ -1,8 +1,13 @@
 import * as me from "melonjs";
 import { params } from "../params";
 import applicationState from "../applicationState";
+<<<<<<< HEAD
 import AllyTasks from "../renderables/allies/AllyTasks.js";
 import ChildEntity from "../renderables/allies/child.js";
+=======
+import AllyTasks from "../renderables/allies/AllyTasks";
+//import ChildEntity from "../renderables/allies/child";
+>>>>>>> 353d7dabbdd64eeb98511180a44a63cf04c4cda4
 
 
 class TowerButton extends me.Draggable {

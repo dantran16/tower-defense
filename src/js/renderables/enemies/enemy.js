@@ -1,8 +1,10 @@
 import * as me from 'melonjs';
 import applicationState from '../../applicationState';
+import HitBoxEntity from '../allies/hitbox';
+import mapData from 'c:/Users/kszir/tower-defense/src/data/map/map.json';
 
 class Enemy extends me.Entity {
-    constructor(x, y, settings, health, speed, element, reward, mapData) {
+    constructor(x, y, settings, health, speed, element, reward) {
         // Call parent constructor to initialize the position and settings
         super(x, y, settings);
 
@@ -13,7 +15,7 @@ class Enemy extends me.Entity {
         this.reward = reward;         // Reward for kill enemy
 
         // Set the velocity for movement
-        //this.body.setVelocity(this.speed, this.speed); // Movement speed in x and y directions
+        this.body.setMaxVelocity(this.speed, this.speed); // Movement speed in x and y directions
 
         // Disable gravity for the enemy
         this.body.gravity = 0;
@@ -34,6 +36,7 @@ class Enemy extends me.Entity {
         // me.game.world.addChild(this.hitbox);
 
         //Generates waypoint paths
+        this.direction = {x: 100, y: 0};
         this.pathWaypoints = this.generatePathWaypoints(mapData);
         this.currentWaypoint = 0;
 
@@ -47,7 +50,7 @@ class Enemy extends me.Entity {
 
         // Find the "path" layer
         const pathLayer = mapData.layers.find(layer => layer.name === "path");
-
+        
         if (pathLayer) {
             // Loop through each tile in the path layer
             pathLayer.data.forEach((tile, index) => {
@@ -62,12 +65,12 @@ class Enemy extends me.Entity {
         return pathWaypoints;
     }
 
-    // Method to update the enemy's movement each frame
+    //Method to update the enemy's movement each frame
     update(dt) {
-        if (this.currentWaypoint < this.waypoints.length) {
+        if (this.waypoints && this.currentWaypoint < this.waypoints.length) {
             this.moveToWaypoint(dt);
         } else {
-            this.reachEnd();  // If no more waypoints, consider the path complete
+            this.onCollideWithTrashCan();  // If no more waypoints, consider the path complete
         }
 
         this.body.update(dt);
@@ -134,7 +137,7 @@ class Enemy extends me.Entity {
 
         // Deduct a life from the player
         applicationState.data.lives -= 1;
-        this.updateLives();
+       // this.updateLives();
 
         // Check if lives reach zero to trigger game over
         if (applicationState.data.lives <= 0) {
@@ -147,10 +150,18 @@ class Enemy extends me.Entity {
 
     
     onDestroy() {
-        console.log(`${this._type} is being removed from the game world.`);
-        me.game.world.removeChild(this);
-        me.game.world.removeChild(this.hitbox);
+        // Check if the enemy is still in the game world before trying to remove it
+        if (me.game.world.hasChild(this)) {
+            console.log(`${this.element} enemy is being removed from the game world.`);
+            me.game.world.removeChild(this); // Remove the enemy
+        }
+    
+        // Check if the hitbox is still in the game world before trying to remove it
+        if (me.game.world.hasChild(this.hitbox)) {
+            me.game.world.removeChild(this.hitbox); // Remove the hitbox
+        }
     }
+    
 
 }
 

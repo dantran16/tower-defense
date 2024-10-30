@@ -1,5 +1,6 @@
 import * as me from 'melonjs';
 import applicationState from '../../applicationState';
+import Enemy from './enemy';
 import Coffee from "./coffee.js";
 import RedVelvet from './redvelvet.js';
 import Sushi from './sushi.js';
@@ -9,7 +10,9 @@ class EnemyTasks {
         // var level = applicationState.data.level;
         // var wave = applicationState.data.wave;
 
-        var temp = new Coffee(100, 100, {image: "red-dot", width: 25, height: 25})
+       const mapData = 'src\data\map\map.json'
+
+        var temp = new Coffee(100, 100, {image: "red-dot", width: 25, height: 25},)
         console.log(temp)
         me.game.world.addChild(temp)
     }
