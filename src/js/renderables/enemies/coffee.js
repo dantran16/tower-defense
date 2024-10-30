@@ -8,7 +8,7 @@ class Coffee extends Enemy{
         // Properties for Coffee
         const settings = { width: 32, height: 32, image: 'red-dot' };
         const health = 100;
-        const speed = 6;
+        const speed = 5;
         const reward = 100;
         super (x, y, settings, health, speed, reward);
     }
