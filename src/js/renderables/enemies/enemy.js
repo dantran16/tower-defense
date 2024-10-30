@@ -21,7 +21,7 @@ class Enemy extends me.Entity {
         this.body.gravity = 0;
 
         // Define the hitbox 
-        this.body.addShape(new me.Rect(0, 0, this.width, this.height));
+        //this.body.addShape(new me.Rect(0, 0, this.width, this.height));
 
         // Ensure the enemy is always updated, even when off-screen
         this.alwaysUpdate = true;
@@ -36,7 +36,7 @@ class Enemy extends me.Entity {
         // me.game.world.addChild(this.hitbox);
 
         //Generates waypoint paths
-        this.direction = {x: 100, y: 0};
+        this.direction = {x: 0, y: 1};
         this.pathWaypoints = this.generatePathWaypoints(mapData);
         this.currentWaypoint = 0;
 
@@ -74,7 +74,7 @@ class Enemy extends me.Entity {
         }
 
         this.body.update(dt);
-        this.syncHitBox();
+        //this.syncHitBox();
         return true;
 
 
@@ -94,10 +94,10 @@ class Enemy extends me.Entity {
         }
     }
 
-    syncHitBox() {
-        this.hitbox.pos.x = this.pos.x;
-        this.hitbox.pos.y = this.pos.y;
-    }
+    // syncHitBox() {
+    //     this.hitbox.pos.x = this.pos.x;
+    //     this.hitbox.pos.y = this.pos.y;
+    // }
 
     // Method to reduce the enemy's health when it takes damage
     takeDamage(damage) {
@@ -150,16 +150,18 @@ class Enemy extends me.Entity {
 
     
     onDestroy() {
-        // Check if the enemy is still in the game world before trying to remove it
-        if (me.game.world.hasChild(this)) {
-            console.log(`${this.element} enemy is being removed from the game world.`);
-            me.game.world.removeChild(this); // Remove the enemy
+        if (this.isDestroyed) return; // Prevent multiple removals
+        this.isDestroyed = true;
+
+        console.log(`${this.element} enemy is being removed from the game world.`);
+        
+        // Safely remove the enemy from the game world if it exists
+        if (this.inWorld) {
+            me.game.world.removeChild(this);
         }
-    
-        // Check if the hitbox is still in the game world before trying to remove it
-        if (me.game.world.hasChild(this.hitbox)) {
-            me.game.world.removeChild(this.hitbox); // Remove the hitbox
-        }
+
+      
+        
     }
     
 

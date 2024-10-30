@@ -10,9 +10,8 @@ class EnemyTasks {
         // var level = applicationState.data.level;
         // var wave = applicationState.data.wave;
 
-       const mapData = 'src\data\map\map.json'
 
-        var temp = new Coffee(100, 100, {image: "red-dot", width: 25, height: 25},)
+        var temp = new Coffee(740, 145, {image: "blue-dot", width: 25, height: 25},)
         console.log(temp)
         me.game.world.addChild(temp)
     }
