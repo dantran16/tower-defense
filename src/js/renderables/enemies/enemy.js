@@ -8,16 +8,15 @@ class Enemy extends me.Entity {
         super(x, y, settings);
 
         // Initialize properties for enemy unit
-        this.health = 0;         // Health of the enemy
-        this.speed = 0;           // Movement speed of the enemy
-        this.reward = 0;         // Reward for kill enemy
+        this.health = 0;    // Health of the enemy
+        this.speed = 0;     // Movement speed of the enemy
+        this.reward = 0;    // Reward for kill enemy
         
-        this.isDestroyed = false; // Object exists
-        this.body.gravity = 0; // Remove gravity
-        this.alwaysUpdate = true; // Always update even off-screen
-        this.body.collisionType = me.collision.types.ENEMY_OBJECT;
-        this.body.setCollisionMask(me.collision.types.PLAYER_OBJECT);
-        this.body.addShape(new me.Ellipse(0, 0, 25, 25));
+        this.body.grravity = 0;     // Remove gravity
+        this.alwaysUpdate = true;   // Always update even off-screen
+        this.body.collisionType = me.collision.types.ENEMY_OBJECT;      // Acts as enemy object
+        this.body.setCollisionMask(me.collision.types.PLAYER_OBJECT);   // Can only collide with player objects
+        this.body.addShape(new me.Ellipse(0, 0, 25, 25));               // Hitbox assumes the shape of a circle
 
         // Generates waypoint paths
         this.direction = {x: 0, y: 1};
@@ -32,6 +31,19 @@ class Enemy extends me.Entity {
             speed: this.speed,
             reward: this.reward
         }
+    }
+
+    // Update the enemy's movement each frame
+    update(dt) {
+        if (this.waypoints && this.currentWaypoint < this.waypoints.length) {
+            this.moveToWaypoint(dt);
+        }
+        //  else {
+        //     this.onCollideWithTrashCan();  // If no more waypoints, consider the path complete
+        // }
+
+        this.body.update(dt);
+        return true;
     }
 
     // Method to extract path waypoints from JSON map data
@@ -57,18 +69,7 @@ class Enemy extends me.Entity {
         return pathWaypoints;
     }
 
-    // Update the enemy's movement each frame
-    update(dt) {
-        if (this.waypoints && this.currentWaypoint < this.waypoints.length) {
-            this.moveToWaypoint(dt);
-        }//  else {
-        //     this.onCollideWithTrashCan();  // If no more waypoints, consider the path complete
-        // }
-
-        this.body.update(dt);
-        return true;
-    }
-
+    // 
     moveToWaypoint(dt) {
         const target = this.waypoints[this.currentWaypoint];
         const dx = target.x - this.pos.x;
@@ -93,51 +94,45 @@ class Enemy extends me.Entity {
 
     // Method to handle enemy death
     die() {
-        if(this.health <= 0) {
-            this.onDestroy()
+        if(this.alive) {
             this.rewardPlayer();
-            console.log(`${this.element} enemy has been defeated!`);
+            // console.log(`${this} enemy has been defeated!`);
+            this.onDestroy()
         }
     }
 
     // Method to reward player on enemy death
     rewardPlayer(){
         applicationState.data.currency += this.reward;
-        //this.updateCurrency();
-
         console.log(`Player rewarded with ${this.reward} coins.`);
     }
 
+    // Remove the enemy from the world when it dies
+    onDestroy() {
+        if (this.alive) {
+            console.log(`${this} enemy is being removed from the game world.`);
+            me.game.world.removeChild(this); 
+        }
+        this.alive = false;
+    }
     
     // Method to handle the collision with the Trash Can at end of path
     onCollideWithTrashCan() {
         console.log(`${this._type} collided with the Trash Can and will be removed.`);
 
-        // Deduct a life from the player
+        // Deduct a life from the player and destroy enemy unit
         applicationState.data.lives -= 1;
-        // this.updateLives();
+        this.onDestroy();
 
         // Check if lives reach zero to trigger game over
         if (applicationState.data.lives <= 0) {
             this.gameOver();
         }
-
-        // Remove the enemy from the game world
-        this.onDestroy();
     }
 
-    
-    onDestroy() {
-        // Remove the enemy from the game world when it dies
-        if (this.isDestroyed) return; // Prevent multiple removals
-        this.isDestroyed = true;
-
-        console.log(`${this.element} enemy is being removed from the game world.`);
-        
-        // Safely remove the enemy from the game world if it exists
-        // if (this.inWorld) {
-            me.game.world.removeChild(this);
-        // }  
+    // Triggers game over process
+    gameOver() {
+        return true
     }
 
 }

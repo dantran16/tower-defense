@@ -26,6 +26,7 @@ class HitBoxEntity extends me.Entity {
 
     onCollision(response, other) {
         if (other.body.collisionType === me.collision.types.ENEMY_OBJECT) {
+            console.log(other.health)
             other.takeDamage(this.parent.allyATK);
         }
         return false;
