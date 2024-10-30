@@ -21,7 +21,7 @@ class Enemy extends me.Entity {
         this.body.gravity = 0;
 
         // Define the hitbox 
-        //this.body.addShape(new me.Rect(0, 0, this.width, this.height));
+        //TODO this.body.addShape(new me.Rect(0, 0, this.width, this.height));
 
         // Ensure the enemy is always updated, even when off-screen
         this.alwaysUpdate = true;
