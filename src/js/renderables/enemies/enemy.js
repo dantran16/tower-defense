@@ -1,7 +1,7 @@
 import * as me from 'melonjs';
-import applicationState from '../../applicationState';
-import HitBoxEntity from '../allies/HitBoxEntity';
-import mapData from '../src/data/map/map.json';
+import applicationState from '/../applicationState';
+import HitBoxEntity from '/allies/HitBoxEntity';
+import mapData from '/src/data/map/map.json';
 
 class Enemy extends me.Entity {
     constructor(x, y, settings, health, speed, element, reward) {
