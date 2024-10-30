@@ -6,7 +6,7 @@ class AdultEntity extends AllyEntity {
 
     constructor(x, y, settings) {
         // call the parent constructor
-        super(x, y, settings);
+        super(x, y, {image: "gray-dot", width: 25, height: 25});
 
         // set default stats of adult unit
         this.updateAllyStats()

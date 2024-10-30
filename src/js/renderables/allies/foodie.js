@@ -6,7 +6,7 @@ class FoodieEntity extends AllyEntity {
 
     constructor(x, y, settings) {
         // call the parent constructor
-        super(x, y, settings);
+        super(x, y, {image: "black-dot", width: 25, height: 25});
 
         // set default stats of foodie unit
         this.updateAllyStats()
