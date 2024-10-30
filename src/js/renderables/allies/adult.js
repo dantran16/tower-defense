@@ -4,7 +4,7 @@ import HitBoxEntity from './HitBoxEntity.js';
 
 class AdultEntity extends AllyEntity {
 
-    constructor(x, y, settings) {
+    constructor(x, y) {
         // call the parent constructor
         super(x, y, {image: "gray-dot", width: 25, height: 25});
 
