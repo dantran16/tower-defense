@@ -25,7 +25,6 @@ class AllyEntity extends me.Entity {
         this.allyASPD = 0;
         this.allyRange = 0;
         this.sold = false;
-        this.hitbox = null;
         me.input.registerPointerEvent("pointerdown", this, this.onClick.bind(this));
     }
 
