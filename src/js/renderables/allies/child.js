@@ -7,7 +7,7 @@ class ChildEntity extends AllyEntity {
     constructor(x, y) {
         // call the parent constructor
         super(x, y, {image: "white-dot", width: 25, height: 25});
-
+        this.className = 'Child'
         // set default stats of child unit
         this.updateAllyStats()
         this.hitbox = new HitBoxEntity(x, y, {width: this.allyRange, height: this.allyRange}, this);
