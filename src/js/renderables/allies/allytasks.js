@@ -13,20 +13,19 @@ class AllyTasks {
         // Create new ally unit based on the name of the tower
         let temp = null;
         if (name == "Child") {
-            temp = new ChildEntity(x, y, {image: "white-dot", width: 25, height: 25})
+            temp = new ChildEntity(x, y)
         }
         else if (name == "Adult") {
-            temp = new AdultEntity(x, y, {image: "gray-dot", width: 25, height: 25})
+            temp = new AdultEntity(x, y)
         }
         else if (name == "Foodie") {
-            temp = new FoodieEntity(x, y, {image: "black-dot", width: 25, height: 25})
+            temp = new FoodieEntity(x, y)
         }
 
         me.game.world.addChild(temp);
 
         // temporary test
         const enemy = new EnemyTasks();
-        console.log(enemy)
         enemy.sendWave();
     }
     

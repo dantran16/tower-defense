@@ -15,23 +15,35 @@ class SideMenuContainer extends me.UIBaseElement {
         // give a name
         this.name = "SideMenu";
 
-        const currencyText = new me.Text(this.width / 6, this.height / 24, {
+        // Initialize currency score and always update
+        this.score = applicationState.data.currency;
+
+        this.currencyText = new me.Text(this.width / 6, this.height / 24, {
             font: "PressStart2P",
             size: 20,
             fillStyle: "white",
             textAlign: "left",
             textBaseline: "top",
             bold: true,
-            text: `$${applicationState.data.currency}`
+            text: `$${this.score}`
         })
-        this.addChild(currencyText);
-        this.updateCurrency = () => currencyText.setText(`$${applicationState.data.currency}`);
         
-
+        this.addChild(this.currencyText);
         this.addChild(new PauseButton(this.width / 2, this.height / 24))
         this.addChild(new TowerButton(this.width * 3 / 10, this.height / 8, "Child", {width: 50, height: 25}))
         this.addChild(new TowerButton(this.width * 7 / 10, this.height / 8, "Adult", {width: 50, height: 25}))
         this.addChild(new TowerButton(this.width * 3 / 10, this.height / 4, "Foodie", {width: 50, height: 25}))
+    }
+
+    update(dt) {
+        if (this.score !== applicationState.data.currency) {
+            this.score = applicationState.data.currency;
+            this.currencyText.setText(`$${applicationState.data.currency}`);
+            this.isDirty = true;
+        } else {
+            this.isDirty = false;
+        }
+        return super.update(dt);
     }
 
 };

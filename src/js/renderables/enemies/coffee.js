@@ -6,20 +6,12 @@ import applicationState from '../../applicationState';
 class Coffee extends Enemy{
     constructor(x, y){
         // Properties for Coffee
-        const settings = { width: 32, height: 32, image: 'red-dot' };
-        const health = 100;
-        const speed = 5;
-        const reward = 100;
-        super (x, y, settings, health, speed, reward);
-    }
-    // Get method for Coffee stats
-    getEnemyStats() {
-        return{
-            health: this.health,
-            speed: this.speed,
-            reward: this.reward,
-
-        }
+        super(x, y, {image: "red-dot", width: 25, height: 25});
+        this.health = 100;
+        this.speed = 3;
+        this.reward = 100;
+        // Set the velocity for movement
+        this.body.setMaxVelocity(this.speed, this.speed); // Movement speed in x and y directions
     }
 }
 

@@ -9,10 +9,7 @@ class EnemyTasks {
     sendWave() {
         // var level = applicationState.data.level;
         // var wave = applicationState.data.wave;
-
-
-        var temp = new Coffee(740, 145, {image: "blue-dot", width: 25, height: 25},)
-        console.log(temp)
+        var temp = new Coffee(760, 145)
         me.game.world.addChild(temp)
     }
 }
