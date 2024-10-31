@@ -1,7 +1,9 @@
-import { UITextButton } from "melonjs";
+import * as me from "melonjs";
 import { params } from "../params";
+import applicationState from "../applicationState";
+import ResumeButton from "./ResumeButton";
 
-class PauseButton extends UITextButton {
+class PauseButton extends me.UITextButton {
     constructor(x,y) {
         super(x,y, {
             font: 'PressStart2P',
@@ -16,7 +18,9 @@ class PauseButton extends UITextButton {
     }
 
     onClick(){
-        
+        applicationState.isPaused = true
+        this.ancestor.addChild(new ResumeButton(this.pos.x, this.pos.y))
+        this.ancestor.removeChild(this)
     }
 }
 

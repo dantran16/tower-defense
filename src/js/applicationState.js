@@ -14,7 +14,7 @@ var applicationState = {
         enemies: 25
         // lives: 10?
     },
-
+    isPaused: false,
     // a reference to the texture atlas
     texture : null
 };
