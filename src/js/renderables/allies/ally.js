@@ -20,6 +20,7 @@ class AllyEntity extends me.Entity {
         this.allyATK = 0;
         this.allyASPD = 0;
         this.allyRange = 0;
+        me.input.registerPointerEvent("pointerdown", this, this.onClick.bind(this));
     }
 
     getAllyStats() {
@@ -31,6 +32,13 @@ class AllyEntity extends me.Entity {
             allyASPD: this.allyASPD,
             allyRange: this.allyRange
         }
+    }
+
+    onClick(){
+    }
+
+    onDestroyEvent() {
+        me.input.releasePointerEvent("pointerdown", this);
     }
 };
 
