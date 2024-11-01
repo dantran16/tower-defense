@@ -66,9 +66,5 @@ class TowerMenuContainer extends me.UIBaseElement {
         return super.update(dt);
     }
 
-    sell(){
-        this.destroy
-    }
-
 };
 export default TowerMenuContainer;
