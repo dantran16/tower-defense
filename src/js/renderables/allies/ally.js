@@ -47,12 +47,18 @@ class AllyEntity extends me.Entity {
         applicationState.data.currency += Math.round(this.allyCost / 2)
     }
 
-    onClick(){
+    onClick(e){
         if(!applicationState.isTowerMenu){
             applicationState.isTowerMenu = true
             const towerMenu = new TowerMenuContainer(me.game.viewport.width * 5/6, 0, me.game.viewport.width / 6, me.game.viewport.height, this);
             me.game.world.addChild(towerMenu, 100)
-        } else{
+        } else if(applicationState.isTowerMenu){
+            if(me.game.world.getChildByName('TowerMenu')[0].tower !== this){
+                me.game.world.removeChild(me.game.world.getChildByName('TowerMenu')[0])
+                const towerMenu = new TowerMenuContainer(me.game.viewport.width * 5/6, 0, me.game.viewport.width / 6, me.game.viewport.height, this);
+                me.game.world.addChild(towerMenu, 100)
+                return
+            }
             applicationState.isTowerMenu = false
             const panel = new SideMenuContainer(me.game.viewport.width * 5/6, 0, me.game.viewport.width / 6, me.game.viewport.height);
             me.game.world.addChild(panel, 100)
