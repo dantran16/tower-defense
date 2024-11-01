@@ -1,45 +1,38 @@
 import * as me from 'melonjs';
-import AllyEntity from 'ally.js';
-import applicationState from '../../applicationState.js';
+import AllyEntity from './ally.js';
+import HitBoxEntity from './HitBoxEntity.js';
 
 class AdultEntity extends AllyEntity {
 
-    constructor(x, y, settings) {
+    constructor(x, y) {
         // call the parent constructor
-        super(x, y, settings);
+        super(x, y, {image: "gray-dot", width: 25, height: 25});
 
         // set default stats of adult unit
         this.updateAllyStats()
-        this.allyCost = 200;
-        this.allyATK = 40;
-        this.allyASPD = 2;
-        this.allyRange = 1.25;
-    }
-
-    getAllyStats() {
-        // Return ally statistics
-        return {
-            allyTier: this.tier,
-            allyCost: this.allyCost,
-            allyATK: this.allyATK,
-            allyASPD: this.allyASPD,
-            allyRange: this.allyRange
-        }
+        this.hitbox = new HitBoxEntity(x, y, {width: this.allyRange, height: this.allyRange}, this);
+        me.game.world.addChild(this.hitbox);
     }
 
     updateAllyStats() {
         // Update ally statistics based on this.tier value
-        if (this.tier == 2) {
+        if (this.tier == 1) {
+            this.allyCost = 200;
+            this.allyATK = 40;
+            this.allyASPD = 2;
+            this.allyRange = 1.1;
+        }
+        else if (this.tier == 2) {
             this.allyCost = 300;
             this.allyATK = 80;
             this.allyASPD = 2.5;
-            this.allyRange = 1.5
+            this.allyRange = 1.2
         }
         else if (this.tier == 3) {
             this.allyCost = 400;
             this.allyATK = 100;
             this.allyASPD = 3;
-            this.allyRange = 1.75
+            this.allyRange = 1.3
         }
     }
 
@@ -48,6 +41,7 @@ class AdultEntity extends AllyEntity {
         if (this.tier < 3) {
             this.tier++
             this.updateAllyStats()
+            this.hitbox.updateHitbox(this.allyRange)
         }
     }
 };

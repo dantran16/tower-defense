@@ -6,20 +6,12 @@ import applicationState from '../../applicationState';
 class RedVelvet extends Enemy{
     constructor(x, y){
         // Properties for Red Velevet
-        const settings = { width: 32, height: 32, image: 'redvelvet' };
-        const health = 75;
-        const speed = 50;
-        const reward = 50;
-        super (x, y, settings, health, speed, reward);
-    }
-    // Get method for Red Velvet stats
-    getEnemyStats() {
-        return{
-            health: this.health,
-            speed: this.speed,
-            reward: this.reward,
-
-        }
+        super(x, y, {image: "red-dot", width: 25, height: 25});
+        this.health = 50;
+        this.speed = 3;
+        this.reward = 50;
+        // Set the velocity for movement
+        this.body.setMaxVelocity(this.speed, this.speed); // Movement speed in x and y directions
     }
 }
 

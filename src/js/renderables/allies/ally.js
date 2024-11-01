@@ -1,6 +1,4 @@
 import * as me from 'melonjs';
-import applicationState from '../../applicationState.js';
-import HitBoxEntity from './hitbox.js';
 
 class AllyEntity extends me.Entity {
 
@@ -10,6 +8,8 @@ class AllyEntity extends me.Entity {
         
         // set a "player object" type
         this.body.collisionType = me.collision.types.PLAYER_OBJECT;
+        this.body.setCollisionMask(me.collision.types.WORLD_SHAPE);
+        this.body.ignoreGravity = true;
         
         // set hitbox
         this.hitbox = null;
@@ -22,16 +22,15 @@ class AllyEntity extends me.Entity {
         this.allyRange = 0;
     }
 
-    buyAlly() {
-        if (applicationState.data.currency >= this.allyCost) {
-            applicationState.data.currency -= this.allyCost;
-            return true;
+    getAllyStats() {
+        // Return ally statistics
+        return {
+            allyTier: this.tier,
+            allyCost: this.allyCost,
+            allyATK: this.allyATK,
+            allyASPD: this.allyASPD,
+            allyRange: this.allyRange
         }
-        return false;
-    }
-    
-    sellAlly() {
-        applicationState.data.currency += Math.floor(this.allyCost/2);
     }
 };
 

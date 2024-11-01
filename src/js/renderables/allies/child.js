@@ -1,46 +1,38 @@
 import * as me from 'melonjs';
-import AllyEntity from 'ally.js';
-import applicationState from '../../applicationState.js';
+import AllyEntity from './ally.js';
+import HitBoxEntity from './HitBoxEntity.js';
 
 class ChildEntity extends AllyEntity {
 
-    constructor(x, y, settings) {
+    constructor(x, y) {
         // call the parent constructor
-        super(x, y, settings);
+        super(x, y, {image: "white-dot", width: 25, height: 25});
 
         // set default stats of child unit
-        this.allyCost = 50;
-        this.allyATK = 5;
-        this.allyASPD = 2;
-        this.allyRange = 1;
-        this.hitbox = new HitBoxEntity(x, y, this.allyRange);
-    }
-
-    getAllyStats() {
-        // Return ally statistics
-        return {
-            allyTier: this.tier,
-            allyCost: this.allyCost,
-            allyATK: this.allyATK,
-            allyASPD: this.allyASPD,
-            allyRange: this.allyRange
-        }
+        this.updateAllyStats()
+        this.hitbox = new HitBoxEntity(x, y, {width: this.allyRange, height: this.allyRange}, this);
+        me.game.world.addChild(this.hitbox);
     }
 
     updateAllyStats() {
         // Update ally statistics based on this.tier value
-        if (this.tier == 2) {
+        if (this.tier == 1) {
+            this.allyCost = 50;
+            this.allyATK = 5;
+            this.allyASPD = 2;
+            this.allyRange = 1;
+        }
+        else if (this.tier == 2) {
             this.allyCost = 100;
             this.allyATK = 10;
             this.allyASPD = 2.5;
             this.allyRange = 1.1;
-            this.hitbox.updateHitBox()
         }
         else if (this.tier == 3) {
             this.allyCost = 100;
             this.allyATK = 30;
             this.allyASPD = 3;
-            this.allyRange = 1.25
+            this.allyRange = 1.2
         }
     }
 
@@ -49,6 +41,7 @@ class ChildEntity extends AllyEntity {
         if (this.tier < 3) {
             this.tier++
             this.updateAllyStats()
+            this.hitbox.updateHitbox(this.allyRange)
         }
     }
 };

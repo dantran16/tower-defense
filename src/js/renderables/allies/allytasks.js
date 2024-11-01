@@ -1,30 +1,32 @@
 import * as me from 'melonjs';
-import applicationState from '../../applicationState.js';
-import ChildEntity from 'child.js';
-import AdultEntity from 'adult.js';
-import FoodieEntity from 'foodie.js';
+import ChildEntity from './child.js';
+import AdultEntity from './adult.js';
+import FoodieEntity from './foodie.js';
 
-class SpawnAllies extends me.Entity {
+// temporary test
+import EnemyTasks from '../enemies/EnemyTasks.js';
+import Enemy from '../enemies/enemy.js';
 
-    constructor(x, y, settings) {
-        // call the parent constructor
-        super(x, y , settings);
+class AllyTasks {
 
-        // Use this file to handle space indicators (whether ally unit position interferes with the path or goes off the map)
-        // Also handle the spawning of a new ally unit when "buy" button is pressed
-        // Also handle the removal of an existing ally unit when "sell" button is pressed
-    }
+    createAlly(name, x, y) {
+        // Create new ally unit based on the name of the tower
+        let temp = null;
+        if (name == "Child") {
+            temp = new ChildEntity(x, y)
+        }
+        else if (name == "Adult") {
+            temp = new AdultEntity(x, y)
+        }
+        else if (name == "Foodie") {
+            temp = new FoodieEntity(x, y)
+        }
 
-    update(dt) {
-        // update ally unit per frame
-        return super.update(dt);
-    }
+        me.game.world.addChild(temp);
 
-    createAlly() {
-        // me.game.world.addChild(mainObject);
-        // make sure currency decreases using ally class methods
-        // make sure player has enough currency to buy desired unit
-        return True
+        // temporary test
+        const enemy = new EnemyTasks();
+        enemy.sendWave();
     }
     
     destroyAlly() {
@@ -33,11 +35,6 @@ class SpawnAllies extends me.Entity {
         return True
     }
 
-    onCollision(response, other) {
-        // if ally unit interferes with path or goes off the screen
-        return True
-};
-
 }
 
-export default SpawnAllies;
+export default AllyTasks;

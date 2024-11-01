@@ -22,8 +22,8 @@ class PlayScreen extends Stage {
         var game_map = new me.Sprite(width / 2.5, height / 1.75, 
             {   
                 image: me.loader.getImage("map"), 
-                spritewidth: 32, 
-                spriteheight: 32
+                spritewidth: 64, 
+                spriteheight: 64
             });
 
         me.game.world.addChild(game_map);

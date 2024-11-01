@@ -13,23 +13,35 @@ const DataManifest = [
         src: "./data/fnt/PressStart2P.fnt"
     },
 
-    // {
-    //     name: "map",
-    //     type: "json",
-    //     src: "./src/data/map/map.json"
-    // },
-
     {
         name: "map",
         type: "image",
         src: "./data/map/map.png"
     },
 
-    // {
-    //     name: "map",
-    //     type: "tmx",
-    //     src: "./data/map/untitled.tmx"
-    // },
+    {
+        name: "white-dot",
+        type: "image",
+        src: "./data/img/white.png"
+    },
+
+    {
+        name: "gray-dot",
+        type: "image",
+        src: "./data/img/gray.png"
+    },
+
+    {
+        name: "black-dot",
+        type: "image",
+        src: "./data/img/black.png"
+    },
+
+    {
+        name: "red-dot",
+        type: "image",
+        src: "./data/img/red.png"
+    },
 
     // {
     //     name: "map_assets",
