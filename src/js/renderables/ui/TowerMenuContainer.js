@@ -2,7 +2,6 @@ import * as me from 'melonjs';
 import applicationState from '../../applicationState';
 import PauseButton from '../../buttons/PauseButton';
 import SellButton from '../../buttons/SellButton';
-import ResumeButton from '../../buttons/ResumeButton';
 
 // a Panel type container
 class TowerMenuContainer extends me.UIBaseElement {
@@ -46,11 +45,8 @@ class TowerMenuContainer extends me.UIBaseElement {
         this.sellButton = new SellButton(this.width / 6, this.height / 6, tower)
         
         this.addChild(this.currencyText);
-        if(!applicationState.isPaused){
-            this.addChild(new PauseButton(this.width / 2, this.height / 24))
-        }else{
-            this.addChild(new ResumeButton(this.width / 2, this.height / 24))
-        }
+        this.addChild(new PauseButton(this.width / 2, this.height / 24))
+
         this.addChild(this.towerText)
         this.addChild(this.sellButton)
 
