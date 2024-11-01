@@ -43,6 +43,24 @@ const DataManifest = [
         src: "./data/img/red.png"
     },
 
+    {
+        name: "yellow-chair",
+        type: "image",
+        src: "./data/img/yellow-chair.png"
+    },
+
+    {
+        name: "beige-chair",
+        type: "image",
+        src: "./data/img/beige-chair.png"
+    },
+
+    {
+        name: "brown-chair",
+        type: "image",
+        src: "./data/img/brown-chair.png"
+    },
+
     // {
     //     name: "map_assets",
     //     type: "tsx",
