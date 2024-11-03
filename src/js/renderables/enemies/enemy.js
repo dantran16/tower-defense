@@ -68,9 +68,7 @@ class Enemy extends me.Entity {
         }
 
         return pathWaypoints;
-        
     }
-    
 
     // 
     moveToWaypoint(dt) {
@@ -85,8 +83,6 @@ class Enemy extends me.Entity {
         } else {
             this.currentWaypoint++;
         }
-        console.log(`Moving towards waypoint ${this.currentWaypoint}:`, target);
-
     }
 
     // Method to reduce the enemy's health when it takes damage
