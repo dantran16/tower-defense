@@ -6,20 +6,12 @@ import applicationState from '../../applicationState';
 class Sushi extends Enemy{
     constructor(x, y){
         // Properties for Sushi
-        const settings = { width: 32, height: 32, image: 'sushi' };
-        const health = 10;
-        const speed = 4;
-        const reward = 10;
-        super (x, y, settings, health, speed, reward);
-    }
-    // Get method for Sushi stats
-    getEnemyStats() {
-        return{
-            health: this.health,
-            speed: this.speed,
-            reward: this.reward,
-
-        }
+        super(x, y, {image: "red-dot", width: 25, height: 25});
+        this.health = 10;
+        this.speed = 3;
+        this.reward = 10;
+        // Set the velocity for movement
+        this.body.setMaxVelocity(this.speed, this.speed); // Movement speed in x and y directions
     }
 }
 

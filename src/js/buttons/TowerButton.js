@@ -1,7 +1,7 @@
 import * as me from "melonjs";
 import { params } from "../params";
 import applicationState from "../applicationState";
-import AllyTasks from "../renderables/allies/allytasks";
+import AllyTasks from "../renderables/allies/AllyTasks";
 class TowerButton extends me.Draggable {
 
     constructor(x, y, name, settings) {
@@ -68,7 +68,6 @@ class TowerButton extends me.Draggable {
         
         if (this.color == 'white' && applicationState.data.currency >= 10) {
             applicationState.data.currency -= 10
-            this.ancestor.updateCurrency();
             this.tasks.createAlly(this.text, (me.game.viewport.width * 5 / 6) + this.pos.x, this.pos.y)
         }
         this.ancestor.removeChild(this)

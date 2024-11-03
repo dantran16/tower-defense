@@ -8,6 +8,7 @@ class AllyEntity extends me.Entity {
         
         // set a "player object" type
         this.body.collisionType = me.collision.types.PLAYER_OBJECT;
+        this.body.setCollisionMask(me.collision.types.WORLD_SHAPE);
         this.body.ignoreGravity = true;
         
         // set hitbox
@@ -19,6 +20,17 @@ class AllyEntity extends me.Entity {
         this.allyATK = 0;
         this.allyASPD = 0;
         this.allyRange = 0;
+    }
+
+    getAllyStats() {
+        // Return ally statistics
+        return {
+            allyTier: this.tier,
+            allyCost: this.allyCost,
+            allyATK: this.allyATK,
+            allyASPD: this.allyASPD,
+            allyRange: this.allyRange
+        }
     }
 };
 

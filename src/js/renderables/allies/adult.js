@@ -4,25 +4,14 @@ import HitBoxEntity from './HitBoxEntity.js';
 
 class AdultEntity extends AllyEntity {
 
-    constructor(x, y, settings) {
+    constructor(x, y) {
         // call the parent constructor
-        super(x, y, settings);
+        super(x, y, {image: "gray-dot", width: 25, height: 25});
 
         // set default stats of adult unit
         this.updateAllyStats()
-        this.hitbox = new HitBoxEntity(x, y, this.allyRange);
+        this.hitbox = new HitBoxEntity(x, y, {width: this.allyRange, height: this.allyRange}, this);
         me.game.world.addChild(this.hitbox);
-    }
-
-    getAllyStats() {
-        // Return ally statistics
-        return {
-            allyTier: this.tier,
-            allyCost: this.allyCost,
-            allyATK: this.allyATK,
-            allyASPD: this.allyASPD,
-            allyRange: this.allyRange
-        }
     }
 
     updateAllyStats() {
