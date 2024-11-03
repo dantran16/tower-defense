@@ -36,9 +36,11 @@ class Enemy extends me.Entity {
         me.game.world.addChild(this.hitbox);
 
         //Generates waypoint paths
-        this.direction = {x: 0, y: 1};
         this.pathWaypoints = this.generatePathWaypoints(mapData);
+        console.log("Moving to", this.pathWaypoints)
         this.currentWaypoint = 0;
+        
+        
 
     }
 
@@ -63,7 +65,9 @@ class Enemy extends me.Entity {
         }
 
         return pathWaypoints;
+        
     }
+    
 
     //Method to update the enemy's movement each frame
     update(dt) {
@@ -81,17 +85,19 @@ class Enemy extends me.Entity {
     }
 
     moveToWaypoint(dt) {
-        const target = this.waypoints[this.currentWaypoint];
+        const target = this.pathWaypoints[this.currentWaypoint];
         const dx = target.x - this.pos.x;
         const dy = target.y - this.pos.y;
         const distance = Math.sqrt(dx * dx + dy * dy);
 
         if (distance > 1) {
-            this.pos.x += (dx / distance) * this._speed * dt / 1000;
-            this.pos.y += (dy / distance) * this._speed * dt / 1000;
+            this.pos.x += (dx / distance) * this.speed * dt / 1000;
+            this.pos.y += (dy / distance) * this.speed * dt / 1000;
         } else {
             this.currentWaypoint++;
         }
+        console.log(`Moving towards waypoint ${this.currentWaypoint}:`, target);
+
     }
 
     syncHitBox() {
