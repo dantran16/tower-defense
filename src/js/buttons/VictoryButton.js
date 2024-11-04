@@ -1,11 +1,11 @@
 import { UITextButton, state } from "melonjs";
 import { params } from "../params";
 
-class PauseButton extends UITextButton {
+class VictoryButton extends UITextButton {
     constructor(x,y) {
         super(x,y, {
             font: 'PressStart2P',
-            text: "||",
+            text: "life",
             backgroundColor: '#00aa0080',
             hoverColor: '#00ff00ff',
             textAlign: 'center',
@@ -16,8 +16,8 @@ class PauseButton extends UITextButton {
     }
 
     onClick(){
-        state.change(state)
+        state.change(state.GAME_END);
     }
 }
 
-export default PauseButton;
+export default VictoryButton;

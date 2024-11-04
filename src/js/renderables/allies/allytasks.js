@@ -1,32 +1,20 @@
 import * as me from 'melonjs';
-import ChildEntity from './child.js';
-import AdultEntity from './adult.js';
-import FoodieEntity from './foodie.js';
-
-// temporary test
-import EnemyTasks from '../enemies/EnemyTasks.js';
-import Enemy from '../enemies/enemy.js';
+import ChairIcon from "./ChairIcon";
+import applicationState from '../../applicationState';
 
 class AllyTasks {
 
-    createAlly(name, x, y) {
-        // Create new ally unit based on the name of the tower
-        let temp = null;
-        if (name == "Child") {
-            temp = new ChildEntity(x, y)
+    // Creates an ally unit if there is enough currency
+    createChair(x, y, name) {
+        if (applicationState.data.currency >= 10) {
+            applicationState.data.currency -= 10;
+            let seat = new ChairIcon(x, y, name);
+            me.game.world.addChild(seat);
+            return true;
         }
-        else if (name == "Adult") {
-            temp = new AdultEntity(x, y)
+        else {
+            return false;
         }
-        else if (name == "Foodie") {
-            temp = new FoodieEntity(x, y)
-        }
-
-        me.game.world.addChild(temp);
-
-        // // temporary test
-        const enemy = new EnemyTasks();
-        enemy.startWave();
     }
     
     destroyAlly() {
