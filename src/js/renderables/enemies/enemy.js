@@ -12,7 +12,7 @@ class Enemy extends me.Entity {
         this.speed = 0;     // Movement speed of the enemy
         this.reward = 0;    // Reward for kill enemy
         
-        this.body.grravity = 0;     // Remove gravity
+        this.body.gravity = 0;     // Remove gravity
         this.alwaysUpdate = true;   // Always update even off-screen
         this.body.collisionType = me.collision.types.ENEMY_OBJECT;      // Acts as enemy object
         this.body.setCollisionMask(me.collision.types.PLAYER_OBJECT);   // Can only collide with player objects
