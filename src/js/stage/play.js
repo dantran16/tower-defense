@@ -13,6 +13,11 @@ class PlayScreen extends Stage {
     onResetEvent() {
         const width = game.viewport.width;
         const height = game.viewport.height;
+        
+        game.world.addChild(new ColorLayer("background", "#202020"));
+
+        var panel = new SideMenuContainer(width * 5/6, 0, width / 6, height);
+        var gameHud = new GameHUD(0, 0, width * 5 / 6, height);
 
         game.world.addChild(new ColorLayer("background", "#202020"));
         
