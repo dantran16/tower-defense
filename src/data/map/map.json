@@ -3,6 +3,53 @@
  "infinite":false,
  "layers":[
         {
+         "draworder":"topdown",
+         "id":14,
+         "name":"path",
+         "objects":[
+                {
+                 "height":0,
+                 "id":3,
+                 "name":"path",
+                 "polyline":[
+                        {
+                         "x":0,
+                         "y":0
+                        }, 
+                        {
+                         "x":1.29984712819385,
+                         "y":415.084516269928
+                        }, 
+                        {
+                         "x":-288.999344835117,
+                         "y":414.651233893863
+                        }, 
+                        {
+                         "x":-290.299191963311,
+                         "y":28.1633544442018
+                        }, 
+                        {
+                         "x":-616.127538763922,
+                         "y":29.8964839484604
+                        }, 
+                        {
+                         "x":-610.928150251147,
+                         "y":477.910460799301
+                        }],
+                 "rotation":0,
+                 "type":"path",
+                 "visible":true,
+                 "width":0,
+                 "x":784.674383053068,
+                 "y":48.9609084953047
+                }],
+         "opacity":1,
+         "type":"objectgroup",
+         "visible":true,
+         "x":0,
+         "y":0
+        }, 
+        {
          "data":[377, 377, 377, 377, 377, 377, 377, 377, 377, 377, 377, 377, 377, 377, 377, 377, 377, 377, 377, 377, 377, 377, 377, 377, 377, 377, 377, 377, 377, 377, 377,
             377, 377, 377, 377, 377, 377, 377, 377, 377, 377, 377, 377, 377, 377, 377, 377, 377, 377, 377, 377, 377, 377, 377, 377, 377, 377, 377, 377, 377, 377, 377,
             377, 377, 377, 377, 377, 377, 377, 377, 377, 377, 377, 377, 377, 377, 377, 377, 377, 377, 377, 377, 377, 377, 377, 377, 377, 377, 377, 377, 377, 377, 377,
@@ -176,8 +223,8 @@
          "x":0,
          "y":0
         }],
- "nextlayerid":12,
- "nextobjectid":1,
+ "nextlayerid":15,
+ "nextobjectid":4,
  "orientation":"orthogonal",
  "renderorder":"right-down",
  "tiledversion":"1.11.0",
@@ -185,11 +232,11 @@
  "tilesets":[
         {
          "firstgid":1,
-         "source":"Room_Builder_Floors_32x32.tsx"
+         "source":"..\/..\/tower-defense\/public\/data\/map\/Room_Builder_Floors_32x32.tsx"
         }, 
         {
-         "firstgid":601,
-         "source":"12_Kitchen_32x32.png"
+         "firstgid":1346,
+         "source":"..\/..\/tower-defense\/public\/data\/map\/12_Kitchen_32x32.png"
         }],
  "tilewidth":32,
  "type":"map",

@@ -1,6 +1,6 @@
 import * as me from 'melonjs';
 import applicationState from '../../applicationState';
-import mapData from '/src/data/map/map.json';;
+import mapData from '/src/data/map/map.json';
 
 class Enemy extends me.Entity {
     constructor(x, y, settings) {
@@ -12,17 +12,27 @@ class Enemy extends me.Entity {
         this.speed = 0;     // Movement speed of the enemy
         this.reward = 0;    // Reward for kill enemy
         
-        this.body.grravity = 0;     // Remove gravity
+        this.body.gravity = 0;     // Remove gravity
         this.alwaysUpdate = true;   // Always update even off-screen
         this.body.collisionType = me.collision.types.ENEMY_OBJECT;      // Acts as enemy object
         this.body.setCollisionMask(me.collision.types.PLAYER_OBJECT);   // Can only collide with player objects
         this.body.addShape(new me.Ellipse(0, 0, 25, 25));               // Hitbox assumes the shape of a circle
 
-        // Generates waypoint paths
-        this.direction = {x: 0, y: 1};
         this.pathWaypoints = this.generatePathWaypoints(mapData);
-        console.log("Moving to", this.pathWaypoints)
-        this.currentWaypoint = 0;
+        this.waypointIndex = 0;
+
+        if (this.pathWaypoints.length > 0) {
+            this.pos.set(this.pathWaypoints[0].x, this.pathWaypoints[0].y);
+        }
+
+        this.startMovement()
+
+    }
+
+    startMovement() {
+        this.moveInternal = setInterval(() => {
+            this.moveToWaypoint();
+        }, 16);
     }
 
     // Return enemy stats
@@ -34,57 +44,81 @@ class Enemy extends me.Entity {
         }
     }
 
-    // Update the enemy's movement each frame
-    update(dt) {
-        if (this.waypoints && this.currentWaypoint < this.waypoints.length) {
+    //Update the enemy's movement each frame
+    update(dt) { 
+        if (this.pathWaypoints && this.waypointIndex < this.pathWaypoints.length) {
             this.moveToWaypoint(dt);
+        } else {
+            this.onCollideWithTrashCan()
+            console.log("Enemy reached the end of its path or no waypoints available.");
         }
-        //  else {
-        //     this.onCollideWithTrashCan();  // If no more waypoints, consider the path complete
-        // }
 
+        // Collision and physics update
         this.body.update(dt);
-        return true;
-    }
 
-    // Method to extract path waypoints from JSON map data
+        return true; // Indicates that rendering is needed
+    }
+    
     generatePathWaypoints(mapData) {
         const pathWaypoints = [];
-        const tileWidth = mapData.tilewidth;
-        const tileHeight = mapData.tileheight;
+        const objectLayer = mapData.layers.find(layer => layer.type === "objectgroup" && layer.name === "path");
 
-        // Find the "path" layer
-        const pathLayer = mapData.layers.find(layer => layer.name === "path");
-        
-        if (pathLayer) {
-            // Loop through each tile in the path layer
-            pathLayer.data.forEach((tile, index) => {
-                if (tile === 475) { // Check for the blue path tile ID 475
-                    const x = (index % mapData.width) * tileWidth;
-                    const y = Math.floor(index / mapData.width) * tileHeight;
-                    pathWaypoints.push({ x, y });
-                }
-            });
+        if (objectLayer) {
+            const pathObject = objectLayer.objects.find(obj => obj.type === "path");
+            if (pathObject && pathObject.polyline) {
+                const offsetX = pathObject.x || 0;
+                const offsetY = pathObject.y || 0;
+
+                pathObject.polyline.forEach((point) => {
+                    const x = offsetX + point.x;
+                    const y = offsetY + point.y;
+
+                    if (!isNaN(x) && !isNaN(y)) {
+                        pathWaypoints.push({ x, y });
+                    }
+                });
+            }
         }
 
         return pathWaypoints;
     }
 
-    // 
-    moveToWaypoint(dt) {
-        const target = this.pathWaypoints[this.currentWaypoint];
-        const dx = target.x - this.pos.x;
-        const dy = target.y - this.pos.y;
-        const distance = Math.sqrt(dx * dx + dy * dy);
+    moveToWaypoint() {
+    if (!this.pathWaypoints || this.waypointIndex >= this.pathWaypoints.length) return;
 
-        if (distance > 1) {
-            this.pos.x += (dx / distance) * this.speed * dt / 1000;
-            this.pos.y += (dy / distance) * this.speed * dt / 1000;
-        } else {
-            this.currentWaypoint++;
+    const target = this.pathWaypoints[this.waypointIndex];
+    const dx = target.x - this.pos.x;
+    const dy = target.y - this.pos.y;
+    const distance = Math.sqrt(dx * dx + dy * dy);
+
+    if (distance < this.speed) {
+        // Snap directly to the waypoint and move to the next one
+        this.pos.set(target.x, target.y);
+        this.waypointIndex++;
+
+        if (this.waypointIndex >= this.pathWaypoints.length) {
+            console.log("Reached the final waypoint.");
+            return;
         }
-    }
+    } else {
+        // Normalize the direction vector
+        const directionX = dx / distance;
+        const directionY = dy / distance;
 
+        // Move towards the target with constant speed
+        this.pos.x += directionX * this.speed;
+        this.pos.y += directionY * this.speed;
+
+        // Log movement details
+        console.log(`Moving towards waypoint ${this.waypointIndex} with constant speed. Position: (${this.pos.x.toFixed(2)}, ${this.pos.y.toFixed(2)}), Distance to target: ${distance.toFixed(2)}`);
+    }
+}
+
+    
+    
+    
+    
+    
     // Method to reduce the enemy's health when it takes damage
     takeDamage(damage) {
         this.health -= damage;

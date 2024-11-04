@@ -24,9 +24,9 @@ class AllyTasks {
 
         me.game.world.addChild(temp);
 
-        // temporary test
+        // // temporary test
         const enemy = new EnemyTasks();
-        enemy.sendWave();
+        enemy.startWave();
     }
     
     destroyAlly() {
