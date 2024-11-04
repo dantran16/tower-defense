@@ -11,13 +11,13 @@ class PlayScreen extends Stage {
      *  action to perform on state change
      */
     onResetEvent() {
-        game.world.addChild(new ColorLayer("background", "#202020"));
-
-        var panel = new SideMenuContainer(game.viewport.width * 5/6, 0, game.viewport.width / 6, game.viewport.height);
-        var gameHud = new GameHUD(0, 0, game.viewport.width * 5 / 6, game.viewport.height);
-
         const width = game.viewport.width;
         const height = game.viewport.height;
+
+        game.world.addChild(new ColorLayer("background", "#202020"));
+        
+        var panel = new SideMenuContainer(width * 5/6, 0, width / 6, height);
+        var gameHud = new GameHUD(0, 0, width * 5 / 6, height);
 
         var game_map = new me.Sprite(width / 2.5, height / 1.75, 
             {   
