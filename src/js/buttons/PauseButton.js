@@ -1,4 +1,4 @@
-import { UITextButton } from "melonjs";
+import { UITextButton, state } from "melonjs";
 import { params } from "../params";
 
 class PauseButton extends UITextButton {
@@ -16,7 +16,7 @@ class PauseButton extends UITextButton {
     }
 
     onClick(){
-        
+        state.change(state)
     }
 }
 
