@@ -1,8 +1,6 @@
 import * as me from 'melonjs';
 import TowerButton from '../../buttons/TowerButton';
 import PauseButton from '../../buttons/PauseButton';
-// import DefeatButton from '../../buttons/DefeatButton';
-// import VictoryButton from '../../buttons/VictoryButton';
 import applicationState from '../../applicationState';
 
 // a Panel type container
@@ -36,8 +34,6 @@ class SideMenuContainer extends me.UIBaseElement {
         this.addChild(new TowerButton(this.width * 7 / 10, this.height / 8, "Adult", {width: 50, height: 25}))
         this.addChild(new TowerButton(this.width * 3 / 10, this.height / 4, "Foodie", {width: 50, height: 25}))
 
-        // this.addChild(new DefeatButton(this.width * 3/10, this.height / 1.15, 'Defeat', {width: 50, height: 25}))
-        // this.addChild(new VictoryButton(this.width * 3/10, this.height / 1.2, 'Defeat', {width: 50, height: 25}))
     }
 
     update(dt) {
