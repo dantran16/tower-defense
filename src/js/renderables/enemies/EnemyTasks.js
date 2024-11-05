@@ -4,7 +4,7 @@ import Sushi from './sushi.js';
 
 class EnemyTasks {
     constructor() {
-        this.enemiesPerWave = 1; // Number of enemies per wave
+        this.enemiesPerWave = 10; // Number of enemies per wave
         this.spawnInterval = 500; // Milliseconds between spawns
         this.activeEnemies = [];
         
