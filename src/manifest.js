@@ -16,7 +16,7 @@ const DataManifest = [
     {
         name: "map",
         type: "image",
-        src: "./src/data/map/map.png"
+        src: "./data/map/map.png"
     },
 
     {
@@ -43,16 +43,34 @@ const DataManifest = [
         src: "./data/img/red.png"
     },
 
+    {
+        name: "yellow-chair",
+        type: "image",
+        src: "./data/img/yellow-chair.png"
+    },
+
+    {
+        name: "beige-chair",
+        type: "image",
+        src: "./data/img/beige-chair.png"
+    },
+
+    {
+        name: "brown-chair",
+        type: "image",
+        src: "./data/img/brown-chair.png"
+    },
+
     // {
     //     name: "map_assets",
     //     type: "tsx",
-    //     src: "./data/map/12_Kitchen_32x32.tsx",
+    //     src: "./src/data/map/12_Kitchen_32x32.png",
     // },
 
     // {
     //     name: "map_floor",
     //     type: "tsx",
-    //     src: "./data/map/Room_Builder_Floors_32x32.tsx"
+    //     src: "./src/data/map/Room_Builder_Floors_32x32.png"
     // }
 ];
 
