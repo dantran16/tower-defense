@@ -1,11 +1,12 @@
-import { UITextButton, state } from "melonjs";
+import * as me from "melonjs";
 import { params } from "../params";
+import applicationState from "../applicationState";
 
-class PauseButton extends UITextButton {
+class PauseButton extends me.UITextButton {
     constructor(x,y) {
         super(x,y, {
             font: 'PressStart2P',
-            text: "||",
+            text: `${!applicationState.isPaused ? '||' : '|>'}`,
             backgroundColor: '#00aa0080',
             hoverColor: '#00ff00ff',
             textAlign: 'center',
@@ -16,7 +17,9 @@ class PauseButton extends UITextButton {
     }
 
     onClick(){
-        state.change(state)
+        applicationState.isPaused = !applicationState.isPaused
+        this.ancestor.addChild(new PauseButton(this.pos.x, this.pos.y))
+        this.ancestor.removeChild(this)
     }
 }
 

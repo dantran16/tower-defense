@@ -7,7 +7,7 @@ class FoodieEntity extends AllyEntity {
     constructor(x, y) {
         // call the parent constructor
         super(x, y, {image: "black-dot", width: 25, height: 25});
-
+        this.className = 'Foodie'
         // set default stats of foodie unit
         this.updateAllyStats()
         this.hitbox = new HitBoxEntity(x, y, {width: this.allyRange, height: this.allyRange}, this);
