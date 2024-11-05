@@ -61,6 +61,12 @@ const DataManifest = [
         src: "./data/img/brown-chair.png"
     },
 
+    {
+        name: "gold-coin",
+        type: "image",
+        src: "./data/img/gold_coin.png"
+    },
+
     // {
     //     name: "map_assets",
     //     type: "tsx",
