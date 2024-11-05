@@ -9,5 +9,9 @@ export const params = {
     pauseButton: {
         borderSize: 20,
         size: 1/2
+    },
+    resumeButton: {
+        borderSize: 20,
+        size: 1/2
     }
 }

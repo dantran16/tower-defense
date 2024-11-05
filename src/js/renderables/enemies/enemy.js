@@ -13,7 +13,7 @@ class Enemy extends me.Entity {
         this.reward = 0;    // Reward for kill enemy
         
         this.body.gravity = 0;     // Remove gravity
-        this.alwaysUpdate = true;   // Always update even off-screen
+        this.alwaysUpdate = false;   // Always update even off-screen
         this.body.collisionType = me.collision.types.ENEMY_OBJECT;      // Acts as enemy object
         this.body.setCollisionMask(me.collision.types.PLAYER_OBJECT);   // Can only collide with player objects
         this.body.addShape(new me.Ellipse(0, 0, 25, 25));               // Hitbox assumes the shape of a circle
@@ -35,6 +35,11 @@ class Enemy extends me.Entity {
 
     // Update the enemy's movement each frame
     update(dt) {
+        if(applicationState.isPaused){
+            this.body.setMaxVelocity(0, 0); // Movement speed in x and y directions
+            return true
+        } 
+        this.body.setMaxVelocity(this.speed, this.speed)
         if (this.waypoints && this.currentWaypoint < this.waypoints.length) {
             this.moveToWaypoint(dt);
         }
@@ -86,7 +91,9 @@ class Enemy extends me.Entity {
 
     // Method to reduce the enemy's health when it takes damage
     takeDamage(damage) {
-        this.health -= damage;
+        if(!applicationState.isPaused){
+            this.health -= damage;
+        }
         if (this.health <= 0) {
             this.die();
         }

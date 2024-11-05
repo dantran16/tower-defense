@@ -1,4 +1,8 @@
 import * as me from 'melonjs';
+import TowerMenuContainer from '../ui/TowerMenuContainer';
+import SideMenuContainer from '../ui/SideMenuContainer';
+import HitBoxEntity from './HitBoxEntity';
+import applicationState from '../../applicationState';
 
 class AllyEntity extends me.Entity {
 
@@ -20,6 +24,8 @@ class AllyEntity extends me.Entity {
         this.allyATK = 0;
         this.allyASPD = 0;
         this.allyRange = 0;
+        this.sold = false;
+        me.input.registerPointerEvent("pointerdown", this, this.onClick.bind(this));
     }
 
     getAllyStats() {
@@ -31,6 +37,36 @@ class AllyEntity extends me.Entity {
             allyASPD: this.allyASPD,
             allyRange: this.allyRange
         }
+    }
+
+    sell(){
+        if(this.hitbox != null){
+            me.game.world.removeChild(this.hitbox)
+        }
+        me.game.world.removeChild(this);
+        applicationState.data.currency += Math.round(this.allyCost / 2)
+    }
+
+    onClick(e){
+        if(!applicationState.isTowerMenu){
+            applicationState.isTowerMenu = true
+            const towerMenu = new TowerMenuContainer(me.game.viewport.width * 5/6, 0, me.game.viewport.width / 6, me.game.viewport.height, this);
+            me.game.world.addChild(towerMenu, 100)
+        } else if(applicationState.isTowerMenu){
+            if(me.game.world.getChildByName('TowerMenu')[0].tower !== this){
+                me.game.world.removeChild(me.game.world.getChildByName('TowerMenu')[0])
+                const towerMenu = new TowerMenuContainer(me.game.viewport.width * 5/6, 0, me.game.viewport.width / 6, me.game.viewport.height, this);
+                me.game.world.addChild(towerMenu, 100)
+                return
+            }
+            applicationState.isTowerMenu = false
+            const panel = new SideMenuContainer(me.game.viewport.width * 5/6, 0, me.game.viewport.width / 6, me.game.viewport.height);
+            me.game.world.addChild(panel, 100)
+        }
+    }
+
+    onDestroyEvent() {
+        me.input.releasePointerEvent("pointerdown", this);
     }
 };
 
