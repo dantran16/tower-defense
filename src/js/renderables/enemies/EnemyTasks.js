@@ -36,6 +36,6 @@ class EnemyTasks {
         const enemy = new Sushi(); // Instantiate one enemy type per spawn
         me.game.world.addChild(enemy);
         this.activeEnemies.push(enemy);
-}AV
+    }
 }
 export default EnemyTasks;

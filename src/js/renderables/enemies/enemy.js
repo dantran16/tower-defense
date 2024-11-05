@@ -45,12 +45,7 @@ class Enemy extends me.Entity {
 
     //Update the enemy's movement each frame
     update(dt) {
-        if(applicationState.isPaused){
-            this.body.setMaxVelocity(0, 0); // Movement speed in x and y directions
-            return true
-        } 
-        this.body.setMaxVelocity(this.speed, this.speed)
-        if (this.waypoints && this.currentWaypoint < this.waypoints.length) {
+        if (this.pathWaypoints && this.waypointIndex < this.pathWaypoints.length) {
             this.moveToWaypoint(dt);
         } else {
             this.onCollideWithTrashCan();
@@ -58,43 +53,49 @@ class Enemy extends me.Entity {
         }
         
         this.body.update(dt);
+
     }
-    
 
-
-    moveToWaypoint(dt = 16) {
+    moveToWaypoint(dt = 16) { // Default dt for setInterval update
+        // Check if current waypoint index is valid
         if (this.waypointIndex >= this.pathWaypoints.length) {
             console.error(`Invalid waypoint index: ${this.waypointIndex}. Waypoint index is out of bounds.`);
-            this.onCollideWithTrashCan();
+            this.onCollideWithTrashCan(); // Assume the end of the path
             return;
         }
 
+        // Get the current waypoint to move towards
         const waypoint = this.pathWaypoints[this.waypointIndex];
         
+        // Ensure the waypoint exists (guard against undefined)
         if (!waypoint) {
             console.error(`Waypoint at index ${this.waypointIndex} is undefined.`);
             return;
         }
 
+        // Calculate the distance between the enemy and the waypoint
         const yDistance = waypoint.y - (this.pos.y + this.height / 2);
         const xDistance = waypoint.x - (this.pos.x + this.width / 2);
+        // Calculate the angle to determine direction
         const angle = Math.atan2(yDistance, xDistance);
-        const speed = 100;
-
+        // Define movement speed (pixels per second)
+        const speed = 100; // Adjust the speed value if needed for a smooth experience
+        // Update velocity based on the calculated angle
         this.velocity = {
-            x: Math.cos(angle) * speed * (dt / 1000),
+            x: Math.cos(angle) * speed * (dt / 1000), // Factor in delta time for smooth movement
             y: Math.sin(angle) * speed * (dt / 1000)
         };
-
+        // Update the position based on velocity
         this.pos.x += this.velocity.x;
         this.pos.y += this.velocity.y;
-
+        // Update center position
         this.center = {
             x: this.pos.x + this.width / 2,
             y: this.pos.y + this.height / 2
         };
-
+        // Log the movement information for debugging
         console.log(`Current position: (${this.center.x.toFixed(2)}, ${this.center.y.toFixed(2)}), Target: (${waypoint.x}, ${waypoint.y}), Distance: ${Math.hypot(xDistance, yDistance).toFixed(2)}, Waypoint Index: ${this.waypointIndex}`);
+        // Check if the enemy is close enough to the current waypoint to consider it "reached"
         if (
             Math.abs(Math.round(this.center.x) - Math.round(waypoint.x)) < Math.abs(this.velocity.x) &&
             Math.abs(Math.round(this.center.y) - Math.round(waypoint.y)) < Math.abs(this.velocity.y)
@@ -107,7 +108,6 @@ class Enemy extends me.Entity {
             }
         }
     }
-
     
     
     // Method to reduce the enemy's health when it takes damage
