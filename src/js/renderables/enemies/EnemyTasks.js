@@ -4,8 +4,8 @@ import Sushi from './sushi.js';
 
 class EnemyTasks {
     constructor() {
-        this.enemiesPerWave = 10; // Number of enemies per wave
-        this.spawnInterval = 500; // Milliseconds between spawns
+        this.enemiesPerWave = 1; // Number of enemies per wave
+        this.spawnInterval = 1000; // Milliseconds between spawns
         this.activeEnemies = [];
         
     }
@@ -16,7 +16,6 @@ class EnemyTasks {
         this.waveInterval = setInterval(() => {
             if (spawnedEnemies < this.enemiesPerWave) {
                 this.spawnEnemy();
-                this.spawnEnemy2()
                 spawnedEnemies++;
             } else {
                 clearInterval(this.waveInterval);
@@ -28,6 +27,7 @@ class EnemyTasks {
         const enemy = new Coffee(); // Instantiate one enemy type per spawn
         me.game.world.addChild(enemy);
         this.activeEnemies.push(enemy);
+        
 
         console.log(`Spawned Coffee enemy at position (${enemy.pos.x}, ${enemy.pos.y})`);
     }
@@ -36,6 +36,6 @@ class EnemyTasks {
         const enemy = new Sushi(); // Instantiate one enemy type per spawn
         me.game.world.addChild(enemy);
         this.activeEnemies.push(enemy);
-}
+}AV
 }
 export default EnemyTasks;
