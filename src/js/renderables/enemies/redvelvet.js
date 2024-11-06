@@ -8,10 +8,12 @@ class RedVelvet extends Enemy{
         // Properties for Red Velevet
         super(x, y, {image: "red-dot", width: 25, height: 25});
         this.health = 50;
-        this.speed = 3;
+        this.speed = 4.5;
         this.reward = 50;
         // Set the velocity for movement
-        this.body.setMaxVelocity(this.speed, this.speed); // Movement speed in x and y directions
+        this.body.setMaxVelocity(0, 0); // Movement speed in x and y directions
+        this.changeX = -this.speed * 2
+        this.changeY = -this.speed * 2
     }
 }
 
