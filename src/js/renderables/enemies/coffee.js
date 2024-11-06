@@ -12,6 +12,8 @@ class Coffee extends Enemy{
         this.reward = 100;
         // Set the velocity for movement
         this.body.setMaxVelocity(0, 0); // Movement speed in x and y directions
+        this.changeX = -this.speed * 2
+        this.changeY = -this.speed * 2
        
     }
 }

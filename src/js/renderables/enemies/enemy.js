@@ -41,15 +41,16 @@ class Enemy extends me.Entity {
     //Update the enemy's movement each frame
     update(dt) {
         if (this.waypointIndex < this.pathWaypoints.length) {
-            this.moveToWaypoint(dt);
+            if (!applicationState.isPaused && this.alive) {
+                this.moveToWaypoint();
+            }
         } else {
             this.onCollideWithTrashCan();
             console.log("Enemy reached the end of its path or no waypoints available.");
         }
-
     }
 
-    moveToWaypoint(dt) { // Default dt for setInterval update
+    moveToWaypoint() { // Default dt for setInterval update
         // Check if current waypoint index is valid
         if (this.waypointIndex >= this.pathWaypoints.length) {
             console.error(`Invalid waypoint index: ${this.waypointIndex}. Waypoint index is out of bounds.`);
@@ -59,18 +60,30 @@ class Enemy extends me.Entity {
 
         // Get the current waypoint to move towards
         let waypoint = this.pathWaypoints[this.waypointIndex];
-        
+
         // Ensure the waypoint exists (guard against undefined)
         if (!waypoint) {
             console.error(`Waypoint at index ${this.waypointIndex} is undefined.`);
             return;
         }
 
+        waypoint = this.pathWaypoints[this.waypointIndex]
+        // determine the changeX/changeY
+        if (this.pos.x - waypoint.x > 0) {
+            this.changeX = -this.speed * 2
+        }
+        else if (this.pos.x - waypoint.x < 0) {
+            this.changeX = this.speed * 2
+        }
+        else if (this.pos.y - waypoint.y > 0) {
+            this.changeY = -this.speed * 2
+        }
+        else { //(this.pos.y - waypoint.y < 0)
+            this.changeY = this.speed * 2
+        }
+
         let xDistance = Math.abs(this.pos.x - waypoint.x)
         let yDistance = Math.abs(this.pos.y - waypoint.y)
-        console.log("position", this.pos)
-        console.log("waypoint", waypoint)
-        console.log(this.changeX, this.changeY)
 
         if (xDistance >= 4) {
             this.pos.x += this.changeX
@@ -79,33 +92,13 @@ class Enemy extends me.Entity {
             this.pos.y += this.changeY
         }
         else {
-            this.changeX = 0
-            this.changeY = 0
+            // reset the change in x/y
             this.pos.x = waypoint.x
             this.pos.y = waypoint.y
+            // increment to next waypoint
             this.waypointIndex += 1
-            waypoint = this.pathWaypoints[this.waypointIndex]
-            if (this.pos.x - waypoint.x > 0) {
-                this.changeX = -this.speed * 2
-            }
-            else if (this.pos.x - waypoint.x < 0) {
-                this.changeX = this.speed * 2
-            }
-            else if (this.pos.y - waypoint.y > 0) {
-                this.changeY = -this.speed * 2
-            }
-            else if (this.pos.y - waypoint.y < 0) {
-                this.changeY = this.speed * 2
-            }
-            else {
-                console.log("NOT ACCOUNTED FOR")
-            }
-            console.log("NEW WAYPOINT")
         }
-        
-        
     }
-    
     
     // Method to reduce the enemy's health when it takes damage
     takeDamage(damage) {
@@ -113,6 +106,8 @@ class Enemy extends me.Entity {
             this.health -= damage;
         }
         if (this.health <= 0) {
+            // console.log(`${this} enemy has been defeated!`);
+            this.rewardPlayer();
             this.die();
         }
     }
@@ -120,10 +115,10 @@ class Enemy extends me.Entity {
     // Method to handle enemy death
     die() {
         if(this.alive) {
-            this.rewardPlayer();
-            // console.log(`${this} enemy has been defeated!`);
-            this.onDestroy()
+            console.log(`${this} enemy is being removed from the game world.`);
+            me.game.world.removeChild(this);
         }
+        this.alive = false
     }
 
     // Method to reward player on enemy death
@@ -131,26 +126,17 @@ class Enemy extends me.Entity {
         applicationState.data.currency += this.reward;
         console.log(`Player rewarded with ${this.reward} coins.`);
     }
-
-    // Remove the enemy from the world when it dies
-    onDestroy() {
-        if (this.alive) {
-            console.log(`${this} enemy is being removed from the game world.`);
-            me.game.world.removeChild(this); 
-        }
-        this.alive = false;
-    }
     
     // Method to handle the collision with the Trash Can at end of path
     onCollideWithTrashCan() {
         console.log(`${this._type} collided with the Trash Can and will be removed.`);
 
         // Deduct a life from the player and destroy enemy unit
-        applicationState.data.lives -= 1;
-        this.onDestroy();
+        applicationState.data.playerHealth -= 1;
+        this.die();
 
         // Check if lives reach zero to trigger game over
-        if (applicationState.data.lives <= 0) {
+        if (applicationState.data.playerHealth <= 0) {
             this.gameOver();
         }
     }
