@@ -18,20 +18,15 @@ class Enemy extends me.Entity {
         this.body.setCollisionMask(me.collision.types.PLAYER_OBJECT);   // Can only collide with player objects
         this.body.addShape(new me.Ellipse(0, 0, 25, 25));               // Hitbox assumes the shape of a circle
 
+        this.isKinematic = false;
         this.pathWaypoints = waypoints;
         this.waypointIndex = 0;
+        this.changeX = 0
+        this.changeY = 0
 
         if (this.pathWaypoints.length > 0) {
             this.pos.set(this.pathWaypoints[0].x, this.pathWaypoints[0].y);
         }
-
-        this.startMovement();
-    }
-
-    startMovement() {
-        this.moveInternal = setInterval(() => {
-            this.moveToWaypoint();
-        }, 16);
     }
 
     // Return enemy stats
@@ -45,18 +40,16 @@ class Enemy extends me.Entity {
 
     //Update the enemy's movement each frame
     update(dt) {
-        if (this.pathWaypoints && this.waypointIndex < this.pathWaypoints.length) {
+        if (this.waypointIndex < this.pathWaypoints.length) {
             this.moveToWaypoint(dt);
         } else {
             this.onCollideWithTrashCan();
             console.log("Enemy reached the end of its path or no waypoints available.");
         }
-        
-        this.body.update(dt);
 
     }
 
-    moveToWaypoint(dt = 16) { // Default dt for setInterval update
+    moveToWaypoint(dt) { // Default dt for setInterval update
         // Check if current waypoint index is valid
         if (this.waypointIndex >= this.pathWaypoints.length) {
             console.error(`Invalid waypoint index: ${this.waypointIndex}. Waypoint index is out of bounds.`);
@@ -65,7 +58,7 @@ class Enemy extends me.Entity {
         }
 
         // Get the current waypoint to move towards
-        const waypoint = this.pathWaypoints[this.waypointIndex];
+        let waypoint = this.pathWaypoints[this.waypointIndex];
         
         // Ensure the waypoint exists (guard against undefined)
         if (!waypoint) {
@@ -73,40 +66,44 @@ class Enemy extends me.Entity {
             return;
         }
 
-        // Calculate the distance between the enemy and the waypoint
-        const yDistance = waypoint.y - (this.pos.y + this.height / 2);
-        const xDistance = waypoint.x - (this.pos.x + this.width / 2);
-        // Calculate the angle to determine direction
-        const angle = Math.atan2(yDistance, xDistance);
-        // Define movement speed (pixels per second)
-        const speed = 100; // Adjust the speed value if needed for a smooth experience
-        // Update velocity based on the calculated angle
-        this.velocity = {
-            x: Math.cos(angle) * speed * (dt / 1000), // Factor in delta time for smooth movement
-            y: Math.sin(angle) * speed * (dt / 1000)
-        };
-        // Update the position based on velocity
-        this.pos.x += this.velocity.x;
-        this.pos.y += this.velocity.y;
-        // Update center position
-        this.center = {
-            x: this.pos.x + this.width / 2,
-            y: this.pos.y + this.height / 2
-        };
-        // Log the movement information for debugging
-        console.log(`Current position: (${this.center.x.toFixed(2)}, ${this.center.y.toFixed(2)}), Target: (${waypoint.x}, ${waypoint.y}), Distance: ${Math.hypot(xDistance, yDistance).toFixed(2)}, Waypoint Index: ${this.waypointIndex}`);
-        // Check if the enemy is close enough to the current waypoint to consider it "reached"
-        if (
-            Math.abs(Math.round(this.center.x) - Math.round(waypoint.x)) < Math.abs(this.velocity.x) &&
-            Math.abs(Math.round(this.center.y) - Math.round(waypoint.y)) < Math.abs(this.velocity.y)
-        ) {
-            // Move to the next waypoint if available, otherwise end path
-            if (this.waypointIndex < waypoints.length - 1) {
-                this.waypointIndex++;
-            } else {
-                this.onCollideWithTrashCan();
-            }
+        let xDistance = Math.abs(this.pos.x - waypoint.x)
+        let yDistance = Math.abs(this.pos.y - waypoint.y)
+        console.log("position", this.pos)
+        console.log("waypoint", waypoint)
+        console.log(this.changeX, this.changeY)
+
+        if (xDistance >= 4) {
+            this.pos.x += this.changeX
         }
+        else if (yDistance >= 4) {
+            this.pos.y += this.changeY
+        }
+        else {
+            this.changeX = 0
+            this.changeY = 0
+            this.pos.x = waypoint.x
+            this.pos.y = waypoint.y
+            this.waypointIndex += 1
+            waypoint = this.pathWaypoints[this.waypointIndex]
+            if (this.pos.x - waypoint.x > 0) {
+                this.changeX = -this.speed * 2
+            }
+            else if (this.pos.x - waypoint.x < 0) {
+                this.changeX = this.speed * 2
+            }
+            else if (this.pos.y - waypoint.y > 0) {
+                this.changeY = -this.speed * 2
+            }
+            else if (this.pos.y - waypoint.y < 0) {
+                this.changeY = this.speed * 2
+            }
+            else {
+                console.log("NOT ACCOUNTED FOR")
+            }
+            console.log("NEW WAYPOINT")
+        }
+        
+        
     }
     
     

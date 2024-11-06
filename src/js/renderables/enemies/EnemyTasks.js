@@ -27,9 +27,6 @@ class EnemyTasks {
         const enemy = new Coffee(); // Instantiate one enemy type per spawn
         me.game.world.addChild(enemy);
         this.activeEnemies.push(enemy);
-        
-
-        console.log(`Spawned Coffee enemy at position (${enemy.pos.x}, ${enemy.pos.y})`);
     }
 
     spawnEnemy2() {
