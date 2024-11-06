@@ -1,6 +1,6 @@
 import * as me from 'melonjs';
 import applicationState from '../../applicationState';
-import mapData from '/src/data/map/map.json';;
+import waypoints from './waypoint.js';
 
 class Enemy extends me.Entity {
     constructor(x, y, settings) {
@@ -18,10 +18,15 @@ class Enemy extends me.Entity {
         this.body.setCollisionMask(me.collision.types.PLAYER_OBJECT);   // Can only collide with player objects
         this.body.addShape(new me.Ellipse(0, 0, 25, 25));               // Hitbox assumes the shape of a circle
 
-        // Generates waypoint paths
-        this.direction = {x: 0, y: 1};
-        this.pathWaypoints = this.generatePathWaypoints(mapData);
-        this.currentWaypoint = 0;
+        this.isKinematic = false;
+        this.pathWaypoints = waypoints;
+        this.waypointIndex = 0;
+        this.changeX = 0
+        this.changeY = 0
+
+        if (this.pathWaypoints.length > 0) {
+            this.pos.set(this.pathWaypoints[0].x, this.pathWaypoints[0].y);
+        }
     }
 
     // Return enemy stats
@@ -33,62 +38,75 @@ class Enemy extends me.Entity {
         }
     }
 
-    // Update the enemy's movement each frame
+    //Update the enemy's movement each frame
     update(dt) {
-        if(applicationState.isPaused){
-            this.body.setMaxVelocity(0, 0); // Movement speed in x and y directions
-            return true
-        } 
-        this.body.setMaxVelocity(this.speed, this.speed)
-        if (this.waypoints && this.currentWaypoint < this.waypoints.length) {
+        if (this.waypointIndex < this.pathWaypoints.length) {
             this.moveToWaypoint(dt);
-        }
-        //  else {
-        //     this.onCollideWithTrashCan();  // If no more waypoints, consider the path complete
-        // }
-
-        this.body.update(dt);
-        return true;
-    }
-
-    // Method to extract path waypoints from JSON map data
-    generatePathWaypoints(mapData) {
-        const pathWaypoints = [];
-        const tileWidth = mapData.tilewidth;
-        const tileHeight = mapData.tileheight;
-
-        // Find the "path" layer
-        const pathLayer = mapData.layers.find(layer => layer.name === "path");
-        
-        if (pathLayer) {
-            // Loop through each tile in the path layer
-            pathLayer.data.forEach((tile, index) => {
-                if (tile === 475) { // Check for the blue path tile ID 475
-                    const x = (index % mapData.width) * tileWidth;
-                    const y = Math.floor(index / mapData.width) * tileHeight;
-                    pathWaypoints.push({ x, y });
-                }
-            });
-        }
-
-        return pathWaypoints;
-    }
-
-    // 
-    moveToWaypoint(dt) {
-        const target = this.waypoints[this.currentWaypoint];
-        const dx = target.x - this.pos.x;
-        const dy = target.y - this.pos.y;
-        const distance = Math.sqrt(dx * dx + dy * dy);
-
-        if (distance > 1) {
-            this.pos.x += (dx / distance) * this._speed * dt / 1000;
-            this.pos.y += (dy / distance) * this._speed * dt / 1000;
         } else {
-            this.currentWaypoint++;
+            this.onCollideWithTrashCan();
+            console.log("Enemy reached the end of its path or no waypoints available.");
         }
+
     }
 
+    moveToWaypoint(dt) { // Default dt for setInterval update
+        // Check if current waypoint index is valid
+        if (this.waypointIndex >= this.pathWaypoints.length) {
+            console.error(`Invalid waypoint index: ${this.waypointIndex}. Waypoint index is out of bounds.`);
+            this.onCollideWithTrashCan(); // Assume the end of the path
+            return;
+        }
+
+        // Get the current waypoint to move towards
+        let waypoint = this.pathWaypoints[this.waypointIndex];
+        
+        // Ensure the waypoint exists (guard against undefined)
+        if (!waypoint) {
+            console.error(`Waypoint at index ${this.waypointIndex} is undefined.`);
+            return;
+        }
+
+        let xDistance = Math.abs(this.pos.x - waypoint.x)
+        let yDistance = Math.abs(this.pos.y - waypoint.y)
+        console.log("position", this.pos)
+        console.log("waypoint", waypoint)
+        console.log(this.changeX, this.changeY)
+
+        if (xDistance >= 4) {
+            this.pos.x += this.changeX
+        }
+        else if (yDistance >= 4) {
+            this.pos.y += this.changeY
+        }
+        else {
+            this.changeX = 0
+            this.changeY = 0
+            this.pos.x = waypoint.x
+            this.pos.y = waypoint.y
+            this.waypointIndex += 1
+            waypoint = this.pathWaypoints[this.waypointIndex]
+            if (this.pos.x - waypoint.x > 0) {
+                this.changeX = -this.speed * 2
+            }
+            else if (this.pos.x - waypoint.x < 0) {
+                this.changeX = this.speed * 2
+            }
+            else if (this.pos.y - waypoint.y > 0) {
+                this.changeY = -this.speed * 2
+            }
+            else if (this.pos.y - waypoint.y < 0) {
+                this.changeY = this.speed * 2
+            }
+            else {
+                console.log("NOT ACCOUNTED FOR")
+            }
+            console.log("NEW WAYPOINT")
+        }
+        
+        
+    }
+    
+    
     // Method to reduce the enemy's health when it takes damage
     takeDamage(damage) {
         if(!applicationState.isPaused){

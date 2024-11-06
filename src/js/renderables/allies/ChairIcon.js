@@ -88,7 +88,7 @@ class ChairIcon extends me.Sprite {
 
         // temporary test
         const enemy = new EnemyTasks();
-        enemy.sendWave();
+        enemy.startWave();
     }
 };
 
