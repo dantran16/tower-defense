@@ -15,7 +15,7 @@ class TitleScreen extends Stage {
             size : 4.0,
             textBaseline : "middle",
             textAlign : "center",
-            text : "Hello World !"
+            text : "Nom Nom Nom"
         }));
 
         game.world.addChild(new PlayButton(game.viewport.width / 2 - params.playButton.borderSize, game.viewport.height / 2));

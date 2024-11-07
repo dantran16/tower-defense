@@ -67,6 +67,24 @@ const DataManifest = [
         src: "./data/img/gold_coin.png"
     },
 
+    {
+        name: "red-velvet",
+        type: "image",
+        src: "./data/img/enemies/enemy_redvelvet.png"
+    },
+
+    {
+        name: "coffee",
+        type: "image",
+        src: "./data/img/enemies/enemy_coffee.png"
+    },
+
+    {
+        name: "sushi",
+        type: "image",
+        src: "./data/img/enemies/enemy_sushi.png"        
+    }
+
     // {
     //     name: "map_assets",
     //     type: "tsx",
