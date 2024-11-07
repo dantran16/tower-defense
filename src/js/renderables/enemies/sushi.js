@@ -6,7 +6,7 @@ import applicationState from '../../applicationState';
 class Sushi extends Enemy{
     constructor(x, y){
         // Properties for Sushi
-        super(x, y, {image: "white-dot", width: 25, height: 25});
+        super(x, y, {image: "sushi", width: 25, height: 25});
         this.health = 10;
         this.speed = 1;
         this.reward = 10;

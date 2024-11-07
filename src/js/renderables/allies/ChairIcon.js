@@ -87,8 +87,8 @@ class ChairIcon extends me.Sprite {
         me.game.world.addChild(this.ally);
 
         // temporary test
-        const enemy = new EnemyTasks();
-        enemy.startWave();
+        // const enemy = new EnemyTasks();
+        // enemy.startWave();
     }
 };
 

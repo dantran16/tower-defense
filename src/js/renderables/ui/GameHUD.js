@@ -61,12 +61,12 @@ class GameHUD extends me.UIBaseElement {
         }
         if (this.wave !== applicationState.data.wave) {
             this.wave = applicationState.data.wave;
-            this.waves.setText(`Lives: ${applicationState.data.wave}`);
+            this.waves.setText(`Wave: ${applicationState.data.wave}`);
             this.isDirty = true;
         }
         if (this.enemy !== applicationState.data.enemies) {
             this.enemy = applicationState.data.enemies;
-            this.enemies.setText(`Lives: ${applicationState.data.enemies}`);
+            this.enemies.setText(`Enemies Left: ${applicationState.data.enemies}`);
             this.isDirty = true;
         }
         return super.update(dt);

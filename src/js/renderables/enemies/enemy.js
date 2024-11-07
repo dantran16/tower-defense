@@ -1,4 +1,5 @@
 import * as me from 'melonjs';
+import { state } from "melonjs";
 import applicationState from '../../applicationState';
 import waypoints from './waypoint.js';
 
@@ -131,13 +132,14 @@ class Enemy extends me.Entity {
     onCollideWithTrashCan() {
         console.log(`${this._type} collided with the Trash Can and will be removed.`);
 
-        // Deduct a life from the player and destroy enemy unit
+        // Deduct a life from the player, destroy enemy unit, and reduce number of enemies by 1
         applicationState.data.playerHealth -= 1;
+        applicationState.data.enemies -= 1;
         this.die();
 
-        // Check if lives reach zero to trigger game over
+        // Display game over screen if player health reaches 0
         if (applicationState.data.playerHealth <= 0) {
-            this.gameOver();
+            state.change(state.GAMEOVER);
         }
     }
 

@@ -7,11 +7,11 @@ var applicationState = {
      * object where to store game global scole
      */
     data : {
-        playerHealth: 100,
+        playerHealth: 10,
         currency: 100,
         level: 1,
         wave: 1,
-        enemies: 25
+        enemies: 10
         // lives: 10?
     },
     isPaused: false,

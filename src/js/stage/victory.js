@@ -15,7 +15,7 @@ class VictoryScreen extends Stage {
             size : 5.0,
             textBaseline : "middle",
             textAlign : "center",
-            text : "5 Stars"
+            text : "5 Stars!"
         }));
 
 
