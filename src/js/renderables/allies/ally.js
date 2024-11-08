@@ -1,7 +1,6 @@
 import * as me from 'melonjs';
 import TowerMenuContainer from '../ui/TowerMenuContainer';
 import SideMenuContainer from '../ui/SideMenuContainer';
-import HitBoxEntity from './HitBoxEntity';
 import applicationState from '../../applicationState';
 
 class AllyEntity extends me.Entity {
