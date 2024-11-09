@@ -26,7 +26,7 @@ class SideMenuContainer extends me.UIBaseElement {
             textAlign: "left",
             textBaseline: "top",
             bold: true,
-            text: `$${this.score}`
+            text: `${this.score}`
         })
         
         this.addChild(this.currencyText);
@@ -43,7 +43,7 @@ class SideMenuContainer extends me.UIBaseElement {
     update(dt) {
         if (this.score !== applicationState.data.currency) {
             this.score = applicationState.data.currency;
-            this.currencyText.setText(`$${applicationState.data.currency}`);
+            this.currencyText.setText(`${applicationState.data.currency}`);
             this.isDirty = true;
         } else {
             this.isDirty = false;

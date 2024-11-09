@@ -2,6 +2,7 @@ import * as me from 'melonjs';
 import applicationState from '../../applicationState';
 import PauseButton from '../../buttons/PauseButton';
 import SellButton from '../../buttons/SellButton';
+import UpgradeButton from '../../buttons/UpgradeButton';
 
 // a Panel type container
 class TowerMenuContainer extends me.UIBaseElement {
@@ -30,7 +31,7 @@ class TowerMenuContainer extends me.UIBaseElement {
             textAlign: "left",
             textBaseline: "top",
             bold: true,
-            text: `$${this.score}`
+            text: `${this.score}`
         })
         this.towerText = new me.Text(this.width / 6, this.height / 12, {
             font: "PressStart2P",
@@ -43,19 +44,20 @@ class TowerMenuContainer extends me.UIBaseElement {
         })
 
         this.sellButton = new SellButton(this.width / 6, this.height / 6, tower)
-        
+        this.upgradeButton = new UpgradeButton(this.width / 6, this.height / 3, tower)
         this.addChild(this.currencyText);
         this.addChild(new PauseButton(this.width / 2, this.height / 24))
 
         this.addChild(this.towerText)
         this.addChild(this.sellButton)
+        this.addChild(this.upgradeButton)
 
     }
 
     update(dt) {
         if (this.score !== applicationState.data.currency) {
             this.score = applicationState.data.currency;
-            this.currencyText.setText(`$${applicationState.data.currency}`);
+            this.currencyText.setText(`${applicationState.data.currency}`);
             this.isDirty = true;
         } else {
             this.isDirty = false;
