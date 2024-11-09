@@ -32,7 +32,7 @@ class HitBoxEntity extends me.Entity {
             // enemies subtracted is 0.25 because it subtracts 4 at a time. not sure why yet
             // TODO: figure it out :)
             applicationState.data.enemies -= 0.25
-            if (applicationState.data.enemies == 0) {
+            if (applicationState.data.wave == 10) {
                 state.change(state.GAME_END)
             }
         }
