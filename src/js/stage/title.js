@@ -12,10 +12,10 @@ class TitleScreen extends Stage {
         // add a font text display object
         game.world.addChild(new BitmapText(game.viewport.width / 2, game.viewport.height / 4,  {
             font : "PressStart2P",
-            size : 4.0,
+            size : 3.0,
             textBaseline : "middle",
             textAlign : "center",
-            text : "Nom Nom Nom"
+            text : "BeltchTD"
         }));
 
         game.world.addChild(new PlayButton(game.viewport.width / 2 - params.playButton.borderSize, game.viewport.height / 2));

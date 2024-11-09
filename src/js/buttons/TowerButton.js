@@ -1,6 +1,5 @@
 import * as me from "melonjs";
 import AllyTasks from "../renderables/allies/AllyTasks";
-import applicationState from "../applicationState";
 
 class TowerButton extends me.UIBaseElement {
 

@@ -1,8 +1,5 @@
 import * as me from 'melonjs';
 
-import applicationState from '../../applicationState';
-import { state } from "melonjs";
-
 class HitBoxEntity extends me.Entity {
 
     constructor(x, y, settings, parent) {
@@ -31,12 +28,6 @@ class HitBoxEntity extends me.Entity {
         if (other.body.collisionType === me.collision.types.ENEMY_OBJECT) {
             console.log(other.health)
             other.takeDamage(this.parent.allyATK);
-            // enemies subtracted is 0.25 because it subtracts 4 at a time. not sure why yet
-            // TODO: figure it out :)
-            applicationState.data.enemies -= 0.25
-            if (applicationState.data.enemies == 0) {
-                state.change(state.GAME_END)
-            }
         }
         return false;
     }

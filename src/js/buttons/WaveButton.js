@@ -7,13 +7,13 @@ class WaveButton extends UITextButton {
     constructor(x,y) {
         super(x,y, {
             font: 'PressStart2P',
-            text: "Begin Wave",
+            text: "START",
             backgroundColor: '#00aa0080',
             hoverColor: '#00ff00ff',
             textAlign: 'center',
-            size: params.pauseButton.size,
-            borderHeight: params.pauseButton.borderSize,
-            borderWidth: params.pauseButton.borderSize * 2
+            size: params.waveButton.size,
+            borderHeight: params.waveButton.borderSize / 2,
+            borderWidth: params.waveButton.borderSize * 2
         });
     }
 

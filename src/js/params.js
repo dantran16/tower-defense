@@ -13,5 +13,9 @@ export const params = {
     resumeButton: {
         borderSize: 20,
         size: 1/2
+    },
+    waveButton: {
+        borderSize: 40,
+        size: 1/2
     }
 }
