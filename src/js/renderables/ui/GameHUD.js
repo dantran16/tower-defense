@@ -1,5 +1,7 @@
 import * as me from 'melonjs';
+import GoldCoin from '../misc/GoldCoin';
 import applicationState from '../../applicationState';
+import { state } from "melonjs";
 
 // a Panel type container
 class GameHUD extends me.UIBaseElement {
@@ -17,18 +19,30 @@ class GameHUD extends me.UIBaseElement {
         this.life = applicationState.data.playerHealth
         this.wave = applicationState.data.wave
         this.enemy = applicationState.data.enemies
+        this.coin = new GoldCoin(this.width * 21 / 24 + 7, this.height / 12 + 9);
+        this.currencyText = applicationState.data.currency    
 
-        this.lives = new me.Text(this.width / 24, this.height / 24, {
+        this.lives = new me.Text(this.width * 22 / 24, this.height / 24, {
             font: "PressStart2P",
             size: 20,
             fillStyle: "white",
-            textAlign: "left",
+            textAlign: "right",
             textBaseline: "top",
             bold: true,
             text: `Lives: ${applicationState.data.playerHealth}`
         })
 
-        this.waves = new me.Text(this.width * 22 / 24, this.height / 24, {
+        this.currency = new me.Text(this.width * 22 / 24, this.height / 12, {
+            font: "PressStart2P",
+            size: 20,
+            fillStyle: "white",
+            textAlign: "right",
+            textBaseline: "top",
+            bold: true,
+            text: `${applicationState.data.currency}`
+        })
+
+        this.waves = new me.Text(this.width / 24, this.height / 24, {
             font: "PressStart2P",
             size: 20,
             fillStyle: "white",
@@ -38,7 +52,7 @@ class GameHUD extends me.UIBaseElement {
             text: `Wave: ${applicationState.data.wave}`
         })
 
-        this.enemies = new me.Text(this.width * 27/32, this.height / 12, {
+        this.enemies = new me.Text(this.width / 24, this.height / 12, {
             font: "PressStart2P",
             size: 20,
             fillStyle: "white",
@@ -50,6 +64,8 @@ class GameHUD extends me.UIBaseElement {
         this.addChild(this.lives);
         this.addChild(this.waves);
         this.addChild(this.enemies);
+        this.addChild(this.coin);
+        this.addChild(this.currency);
     }
 
     update(dt) {
@@ -57,6 +73,15 @@ class GameHUD extends me.UIBaseElement {
         if (this.life !== applicationState.data.playerHealth) {
             this.life = applicationState.data.playerHealth;
             this.lives.setText(`Lives: ${applicationState.data.playerHealth}`);
+            this.isDirty = true;
+            // Display game over screen if player health reaches 0
+            if (applicationState.data.playerHealth <= 0) {
+                state.change(state.GAMEOVER);
+            }
+        }
+        if (this.currencyText !== applicationState.data.currency) {
+            this.currencyText = applicationState.data.currency;
+            this.currency.setText(`${applicationState.data.currency}`);
             this.isDirty = true;
         }
         if (this.wave !== applicationState.data.wave) {
@@ -68,6 +93,10 @@ class GameHUD extends me.UIBaseElement {
             this.enemy = applicationState.data.enemies;
             this.enemies.setText(`Enemies Left: ${applicationState.data.enemies}`);
             this.isDirty = true;
+            // Display winning screen if enemy count reaches 0
+            if (applicationState.data.enemies == 0 && applicationState.data.playerHealth > 0) {
+                state.change(state.GAME_END)
+            }
         }
         return super.update(dt);
     }

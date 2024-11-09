@@ -1,28 +1,31 @@
+const size = 16;
+
 const waypoints = [
 
     {
-        "x":824,
-        "y":204
+        "x":799+size,
+        "y":204+size
        }, 
        {
-        "x":824,
-        "y":600
+        "x":799+size,
+        "y":554+size
        }, 
        {
-        "x":560,
-        "y":600
+        "x":543+size,
+        "y":554+size
        }, 
        {
-        "x":560,
-        "y":230
+        "x":543+size,
+        "y":202+size
        }, 
        {
-        "x":220,
-        "y":230
+        "x":190+size,
+        "y":202+size
        }, 
        {
-        "x":220,
-        "y":700
-       }]
+        "x":190+size,
+        "y":651+size
+       }
+    ]
     
-       export default waypoints;
+    export default waypoints;

@@ -14,6 +14,10 @@ export const params = {
         borderSize: 20,
         size: 1/2
     },
+    waveButton: {
+        borderSize: 40,
+        size: 1/2
+    },
     towerCost: {
         child: 50,
         adult: 200,

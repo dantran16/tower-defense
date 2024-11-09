@@ -21,18 +21,6 @@ class TowerMenuContainer extends me.UIBaseElement {
         // give a name
         this.name = "TowerMenu";
 
-        // Initialize currency score and always update
-        this.score = applicationState.data.currency;
-
-        this.currencyText = new me.Text(this.width / 6, this.height / 24, {
-            font: "PressStart2P",
-            size: 20,
-            fillStyle: "white",
-            textAlign: "left",
-            textBaseline: "top",
-            bold: true,
-            text: `${this.score}`
-        })
         this.towerText = new me.Text(this.width / 6, this.height / 12, {
             font: "PressStart2P",
             size: 20,
@@ -45,9 +33,7 @@ class TowerMenuContainer extends me.UIBaseElement {
 
         this.sellButton = new SellButton(this.width / 6, this.height / 6, tower)
         this.upgradeButton = new UpgradeButton(this.width / 6, this.height / 3, tower)
-        this.addChild(this.currencyText);
         this.addChild(new PauseButton(this.width / 2, this.height / 24))
-
         this.addChild(this.towerText)
         this.addChild(this.sellButton)
         this.addChild(this.upgradeButton)
@@ -55,13 +41,6 @@ class TowerMenuContainer extends me.UIBaseElement {
     }
 
     update(dt) {
-        if (this.score !== applicationState.data.currency) {
-            this.score = applicationState.data.currency;
-            this.currencyText.setText(`${applicationState.data.currency}`);
-            this.isDirty = true;
-        } else {
-            this.isDirty = false;
-        }
         if(!applicationState.isTowerMenu){
             this.ancestor.removeChild(this)
         }

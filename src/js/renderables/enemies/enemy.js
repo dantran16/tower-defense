@@ -1,5 +1,4 @@
 import * as me from 'melonjs';
-import { state } from "melonjs";
 import applicationState from '../../applicationState';
 import waypoints from './waypoint.js';
 
@@ -17,7 +16,7 @@ class Enemy extends me.Entity {
         this.alwaysUpdate = false;   // Always update even off-screen
         this.body.collisionType = me.collision.types.ENEMY_OBJECT;      // Acts as enemy object
         this.body.setCollisionMask(me.collision.types.PLAYER_OBJECT);   // Can only collide with player objects
-        this.body.addShape(new me.Ellipse(0, 0, 25, 25));               // Hitbox assumes the shape of a circle
+        this.body.addShape(new me.Ellipse(0, 0, 16, 16));               // hitbox assumes the shape of a circle
 
         this.isKinematic = false;
         this.pathWaypoints = waypoints;
@@ -117,6 +116,7 @@ class Enemy extends me.Entity {
     die() {
         if(this.alive) {
             console.log(`${this} enemy is being removed from the game world.`);
+            applicationState.data.enemies -= 1;
             me.game.world.removeChild(this);
         }
         this.alive = false
@@ -134,20 +134,8 @@ class Enemy extends me.Entity {
 
         // Deduct a life from the player, destroy enemy unit, and reduce number of enemies by 1
         applicationState.data.playerHealth -= 1;
-        applicationState.data.enemies -= 1;
         this.die();
-
-        // Display game over screen if player health reaches 0
-        if (applicationState.data.playerHealth <= 0) {
-            state.change(state.GAMEOVER);
-        }
     }
-
-    // Triggers game over process
-    gameOver() {
-        return true
-    }
-
 }
 
 export default Enemy;

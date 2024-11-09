@@ -3,9 +3,6 @@ import ChildEntity from './child.js';
 import AdultEntity from './adult.js';
 import FoodieEntity from './foodie.js';
 
-// temporary test
-import EnemyTasks from '../enemies/EnemyTasks.js';
-
 class ChairIcon extends me.Sprite {
 
     constructor(x, y, name) {
@@ -85,10 +82,6 @@ class ChairIcon extends me.Sprite {
         }
         this.ally.chair = this;
         me.game.world.addChild(this.ally);
-
-        // temporary test
-        // const enemy = new EnemyTasks();
-        // enemy.startWave();
     }
 };
 

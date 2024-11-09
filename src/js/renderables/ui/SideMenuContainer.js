@@ -15,39 +15,16 @@ class SideMenuContainer extends me.UIBaseElement {
 
         // give a name
         this.name = "SideMenu";
-
-        // Initialize currency score and always update
-        this.score = applicationState.data.currency;
-
-        this.currencyText = new me.Text(this.width / 6, this.height / 24, {
-            font: "PressStart2P",
-            size: 20,
-            fillStyle: "white",
-            textAlign: "left",
-            textBaseline: "top",
-            bold: true,
-            text: `${this.score}`
-        })
         
-        this.addChild(this.currencyText);
-        this.addChild(new PauseButton(this.width / 2, this.height / 12))
+        this.addChild(new WaveButton(this.width / 5, this.height / 15))
+        this.addChild(new PauseButton(this.width / 5 * 3, this.height / 15))
 
-        this.addChild(new TowerButton(this.width * 3 / 10, this.height / 8, "Child", {width: 50, height: 25}))
-        this.addChild(new TowerButton(this.width * 7 / 10, this.height / 8, "Adult", {width: 50, height: 25}))
-        this.addChild(new TowerButton(this.width * 3 / 10, this.height / 4, "Foodie", {width: 50, height: 25}))
-        
-        this.addChild(new WaveButton(this.width / 2, this.height / 24))
-
+        this.addChild(new TowerButton(this.width / 5, this.height / 20 * 4, "Child", {width: 100, height: 25}))
+        this.addChild(new TowerButton(this.width / 5, this.height / 20 * 5, "Adult", {width: 100, height: 25}))
+        this.addChild(new TowerButton(this.width / 5, this.height / 20 * 6, "Foodie", {width: 100, height: 25}))
     }
 
     update(dt) {
-        if (this.score !== applicationState.data.currency) {
-            this.score = applicationState.data.currency;
-            this.currencyText.setText(`${applicationState.data.currency}`);
-            this.isDirty = true;
-        } else {
-            this.isDirty = false;
-        }
         if(applicationState.isTowerMenu){
             this.ancestor.removeChild(this)
         }

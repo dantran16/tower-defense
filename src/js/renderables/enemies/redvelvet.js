@@ -1,12 +1,9 @@
-import * as me from 'melonjs';
 import Enemy from "./enemy";
-import applicationState from '../../applicationState';
-
 
 class RedVelvet extends Enemy{
     constructor(x, y){
         // Properties for Red Velevet
-        super(x, y, {image: "red-velvet", width: 25, height: 25});
+        super(x, y, {image: "red-velvet", width: 16, height: 16});
         this.health = 50;
         this.speed = 4.5;
         this.reward = 50;
