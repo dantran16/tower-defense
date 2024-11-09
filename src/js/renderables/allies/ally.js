@@ -26,6 +26,7 @@ class AllyEntity extends me.Entity {
         this.allyASPD = 0;
         this.allyRange = 0;
         this.sold = false;
+        this.value = 0
         me.input.registerPointerEvent("pointerdown", this, this.onClick.bind(this));
     }
 
@@ -65,6 +66,22 @@ class AllyEntity extends me.Entity {
             const panel = new SideMenuContainer(me.game.viewport.width * 5/6, 0, me.game.viewport.width / 6, me.game.viewport.height);
             me.game.world.addChild(panel, 100)
         }
+    }
+
+    upgradeTier() {
+        if (this.tier < 3 && applicationState.data.currency >= this.upgradeCost) {
+            this.value += this.upgradeCost
+            applicationState.data.currency -= this.upgradeCost
+            this.tier++
+            this.updateAllyStats()
+            this.updateHitbox()
+        }
+    }
+
+    updateHitbox(){
+        this.ancestor.removeChild(this.hitbox);
+        this.hitbox = new HitBoxEntity(this.pos.x, this.pos.y, {width: this.allyRange, height: this.allyRange}, this);
+        me.game.world.addChild(this.hitbox);
     }
 
     onDestroyEvent() {
