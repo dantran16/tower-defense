@@ -83,7 +83,7 @@ class ChairIcon extends me.Sprite {
                 this.ally = new FoodieEntity(this.pos.x, this.pos.y)
                 break;
         }
-
+        this.ally.chair = this;
         me.game.world.addChild(this.ally);
 
         // temporary test

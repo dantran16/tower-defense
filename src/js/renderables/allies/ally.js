@@ -17,6 +17,7 @@ class AllyEntity extends me.Entity {
         
         // set hitbox
         this.hitbox = null;
+        this.chair = null;
 
         // set default stats of ally unit
         this.tier = 1;
@@ -43,6 +44,7 @@ class AllyEntity extends me.Entity {
         if(this.hitbox != null){
             me.game.world.removeChild(this.hitbox)
         }
+        me.game.world.removeChild(this.chair);
         me.game.world.removeChild(this);
         applicationState.data.currency += Math.round(this.allyCost / 2)
     }
