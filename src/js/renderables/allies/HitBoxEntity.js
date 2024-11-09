@@ -13,8 +13,6 @@ class HitBoxEntity extends me.Entity {
         this.parent = parent;
     }
 
-
-
     draw(renderer) {
         // Set the fill style color
         renderer.setColor(`rgba(255, 0, 0, 0.3)`);

@@ -2,6 +2,7 @@ import * as me from 'melonjs';
 import TowerMenuContainer from '../ui/TowerMenuContainer';
 import SideMenuContainer from '../ui/SideMenuContainer';
 import applicationState from '../../applicationState';
+import HitBoxEntity from './HitBoxEntity';
 
 class AllyEntity extends me.Entity {
 
