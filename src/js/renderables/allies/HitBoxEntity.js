@@ -9,12 +9,8 @@ class HitBoxEntity extends me.Entity {
         this.range = settings.width * 50;
         this.body.collisionType = me.collision.types.PLAYER_OBJECT;
         this.body.setCollisionMask(me.collision.types.ENEMY_OBJECT);
-        this.updateHitBox();
-        this.parent = parent;
-    }
-
-    updateHitBox(response) {
         this.body.addShape(new me.Ellipse(this.range/2, this.range/2, this.range, this.range));
+        this.parent = parent;
     }
 
     draw(renderer) {
