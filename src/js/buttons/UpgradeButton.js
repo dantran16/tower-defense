@@ -3,11 +3,11 @@ import { params } from "../params";
 import applicationState from "../applicationState";
 import SideMenuContainer from "../renderables/ui/SideMenuContainer";
 
-class SellButton extends me.UITextButton {
+class UpgradeButton extends me.UITextButton {
     constructor(x,y, tower) {
         super(x,y, {
             font: 'PressStart2P',
-            text: `Sell for $${tower.value / 2}`,
+            text: `Upgrade for $${tower.upgradeCost}`,
             backgroundColor: '#00aa0080',
             hoverColor: '#00ff00ff',
             textAlign: 'center',
@@ -19,11 +19,8 @@ class SellButton extends me.UITextButton {
     }
 
     onClick(){
-        this.tower.sell()
-        applicationState.isTowerMenu = false
-        const panel = new SideMenuContainer(me.game.viewport.width * 5/6, 0, me.game.viewport.width / 6, me.game.viewport.height);
-        me.game.world.addChild(panel, 100)
+        this.tower.upgradeTier()
     }
 }
 
-export default SellButton;
+export default UpgradeButton;

@@ -23,6 +23,7 @@ class FoodieEntity extends AllyEntity {
         this.className = 'Foodie'
         // set default stats of foodie unit
         this.updateAllyStats()
+        this.value = this.allyCost;
         this.hitbox = new HitBoxEntity(x, y, {width: this.allyRange, height: this.allyRange}, this);
         me.game.world.addChild(this.hitbox);
     }
@@ -31,30 +32,24 @@ class FoodieEntity extends AllyEntity {
         // Update ally statistics based on this.tier value
         if (this.tier == 1) {
             this.allyCost = 100;
+            this.upgradeCost = 150;
             this.allyATK = 30;
             this.allyASPD = 1.75;
             this.allyRange = 1.3;
         }
         else if (this.tier == 2) {
             this.allyCost = 150;
+            this.upgradeCost = 200;
             this.allyATK = 50;
             this.allyASPD = 2;
             this.allyRange = 1.4
         }
         else if (this.tier == 3) {
             this.allyCost = 200;
+            this.upgradeCost = 0
             this.allyATK = 80;
             this.allyASPD = 2.5;
             this.allyRange = 1.5
-        }
-    }
-
-    upgradeTier() {
-        // Increments this.tier value up until 3
-        if (this.tier < 3) {
-            this.tier++
-            this.updateAllyStats()
-            this.hitbox.updateHitbox(this.allyRange)
         }
     }
 };
