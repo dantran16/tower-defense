@@ -19,6 +19,7 @@ class GameHUD extends me.UIBaseElement {
         this.life = applicationState.data.playerHealth
         this.wave = applicationState.data.wave
         this.enemy = applicationState.data.enemies
+        this.level = applicationState.data.level
         this.coin = new GoldCoin(this.width * 21 / 24 + 7, this.height / 12 + 9);
         this.currencyText = applicationState.data.currency    
 
@@ -61,11 +62,22 @@ class GameHUD extends me.UIBaseElement {
             bold: true,
             text: `Enemies Left: ${applicationState.data.enemies}`
         })
+
+        this.levels = new me.Text(this.width / 24, this.height / 8, {
+            font: "PressStart2P",
+            size: 20,
+            fillStyle: "white",
+            textAlign: "left",
+            textBaseline: "top",
+            bold: true,
+            text: `Level: ${applicationState.data.level}`
+        })
         this.addChild(this.lives);
         this.addChild(this.waves);
         this.addChild(this.enemies);
         this.addChild(this.coin);
         this.addChild(this.currency);
+        this.addChild(this.levels);
     }
 
     update(dt) {
@@ -89,15 +101,24 @@ class GameHUD extends me.UIBaseElement {
             this.waves.setText(`Wave: ${applicationState.data.wave}`);
             this.isDirty = true;
         }
+
         if (this.enemy !== applicationState.data.enemies) {
             this.enemy = applicationState.data.enemies;
             this.enemies.setText(`Enemies Left: ${applicationState.data.enemies}`);
             this.isDirty = true;
             // Display winning screen if enemy count reaches 0
-            if (applicationState.data.enemies == 0 && applicationState.data.playerHealth > 0) {
+            if (applicationState.data.enemies == 0 && applicationState.data.playerHealth > 0 && applicationState.data.level >= 3 && applicationState.data.wave >= 30) {
                 state.change(state.GAME_END)
             }
         }
+
+        if (this.level !== applicationState.data.level) {
+            this.level = applicationState.data.level;
+            this.levels.setText(`Level: ${applicationState.data.level}`);
+            this.isDirty = true;
+        }
+
+        
         return super.update(dt);
     }
 };
