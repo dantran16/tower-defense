@@ -11,7 +11,8 @@ class ChildEntity extends AllyEntity {
             width: 32, 
             height: 64
         });
-
+        
+        // right idle animation
         this.renderable.addAnimation("right_sit", [24,25,26,27,28,29]);
         this.renderable.setCurrentAnimation("right_sit");
         

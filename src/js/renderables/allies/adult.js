@@ -7,7 +7,15 @@ class AdultEntity extends AllyEntity {
 
     constructor(x, y) {
         // call the parent constructor
-        super(x, y, {image: "gray-dot", width: 25, height: 25});
+        super(x, y, {
+            image: "adult", 
+            width: 32, 
+            height: 64});
+
+        // right idle animation
+        this.renderable.addAnimation("right_sit", [0,1,2,3,4,5]);
+        this.renderable.setCurrentAnimation("right_sit");
+
         this.className = 'Adult'
         // set default stats of adult unit
         this.updateAllyStats()

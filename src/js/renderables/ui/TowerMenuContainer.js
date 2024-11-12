@@ -33,7 +33,7 @@ class TowerMenuContainer extends me.UIBaseElement {
 
         this.sellButton = new SellButton(this.width / 6, this.height / 6, tower)
         this.upgradeButton = new UpgradeButton(this.width / 6, this.height / 3, tower)
-        this.addChild(new PauseButton(this.width / 2, this.height / 24))
+        
         this.addChild(this.towerText)
         this.addChild(this.sellButton)
         this.addChild(this.upgradeButton)
