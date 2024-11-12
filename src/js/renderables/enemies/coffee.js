@@ -5,7 +5,7 @@ class Coffee extends Enemy{
         // Properties for Coffee
         super(x, y, {image: "coffee", width: 16, height: 16});
         this.health = 100;
-        this.speed = 3;
+        this.speed = 4;
         this.reward = 100;
         // Set the velocity for movement
         this.body.setMaxVelocity(0, 0); // Movement speed in x and y directions
