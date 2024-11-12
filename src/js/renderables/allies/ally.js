@@ -47,20 +47,24 @@ class AllyEntity extends me.Entity {
     }
 
     onClick(e){
+        var world = me.game.world;
+        var width = me.game.viewport.width;
+        var height = me.game.viewport.height;
+        
         if(!applicationState.isTowerMenu){
             applicationState.isTowerMenu = true
-            const towerMenu = new TowerMenuContainer(me.game.viewport.width * 5/6, 0, me.game.viewport.width / 6, me.game.viewport.height, this);
-            me.game.world.addChild(towerMenu, 100)
-        } else if(applicationState.isTowerMenu){
-            if(me.game.world.getChildByName('TowerMenu')[0].tower !== this){
-                me.game.world.removeChild(me.game.world.getChildByName('TowerMenu')[0])
-                const towerMenu = new TowerMenuContainer(me.game.viewport.width * 5/6, 0, me.game.viewport.width / 6, me.game.viewport.height, this);
-                me.game.world.addChild(towerMenu, 100)
+            const towerMenu = new TowerMenuContainer(width * 5/6, 0, width / 6, height, this);
+            world.addChild(towerMenu, 100)
+        } else {
+            if(world.getChildByName('TowerMenu')[0].tower !== this){
+                world.removeChild(world.getChildByName('TowerMenu')[0])
+                const towerMenu = new TowerMenuContainer(width * 5/6, 0, width / 6, height, this);
+                world.addChild(towerMenu, 100)
                 return
             }
             applicationState.isTowerMenu = false
-            const panel = new SideMenuContainer(me.game.viewport.width * 5/6, 0, me.game.viewport.width / 6, me.game.viewport.height);
-            me.game.world.addChild(panel, 100)
+            const panel = new SideMenuContainer(width * 5/6, 0, width / 6, height);
+            world.addChild(panel, 100)
         }
     }
 

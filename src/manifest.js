@@ -83,6 +83,12 @@ const DataManifest = [
         name: "sushi",
         type: "image",
         src: "./data/img/enemies/enemy_sushi.png"        
+    },
+
+    {
+        name: "foodie",
+        type: "image",
+        src: "./data/img/allies/foodie-0.png"
     }
 
     // {
