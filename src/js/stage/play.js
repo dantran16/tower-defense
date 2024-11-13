@@ -22,6 +22,7 @@ class PlayScreen extends me.Stage {
         applicationState.data.enemies = '';
         applicationState.isPaused = false;
         applicationState.isTowerMenu = false;
+        applicationState.waveInProgress = false;
         applicationState.texture = null;
 
         const game_map = new Map(width / 2.5, height / 1.75);
