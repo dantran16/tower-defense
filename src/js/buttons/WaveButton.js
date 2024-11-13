@@ -16,14 +16,14 @@ class WaveButton extends UITextButton {
             borderHeight: params.waveButton.borderSize / 2,
             borderWidth: params.waveButton.borderSize * 2
         });
+        this.newWave = new EnemyTasks()
     }
 
     // button click will spawn wave no matter what
     // TODO: need to add check or something to only spawn 1 wave at a time
     onClick(){
         if (!applicationState.waveInProgress) {
-            const newWave = new EnemyTasks()
-            newWave.startWave()     
+            this.newWave.startWave()     
         }  
     }
 }

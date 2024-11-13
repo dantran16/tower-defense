@@ -8,7 +8,7 @@ class EnemyTasks {
     constructor() {
         this.spawnInterval = 1000; // Milliseconds between spawns
         this.activeEnemies = [];
-      this.waves = [
+        this.waves = [
             { enemies: [{ type: 'Sushi', quantity: 10 }] }, // Wave 1
             { enemies: [{ type: 'Sushi', quantity: 20 }] }, // Wave 2
             { enemies: [{ type: 'Sushi', quantity: 30 }] }, // Wave 3
