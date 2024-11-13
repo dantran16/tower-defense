@@ -11,6 +11,8 @@ class UpgradeButton extends me.UITextButton {
             backgroundColor: '#00aa0080',
             hoverColor: '#00ff00ff',
             textAlign: 'center',
+            wordWrapWidth: 140,
+            lineHeight: 3,
             size: .5,
             borderHeight: 75,
             borderWidth: 150

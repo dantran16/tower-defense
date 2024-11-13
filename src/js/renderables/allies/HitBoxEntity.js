@@ -11,6 +11,19 @@ class HitBoxEntity extends me.Entity {
         this.body.setCollisionMask(me.collision.types.ENEMY_OBJECT);
         this.body.addShape(new me.Ellipse(this.range/2, this.range/2, this.range, this.range));
         this.parent = parent;
+        this.secondCount = 0;
+        this.ready = true
+    }
+
+    update(dt) {
+        // update is called 60 times per second
+        // Converts ASPD from att/sec to sec/att
+        if ((this.secondCount / 60 >= (1/this.parent.allyASPD)) && (!this.ready)){
+            this.ready = true;
+            console.log("READY!")
+        }
+        this.secondCount++
+        super.update(dt);
     }
 
     draw(renderer) {
@@ -21,8 +34,11 @@ class HitBoxEntity extends me.Entity {
     }
 
     onCollision(response, other) {
-        if (other.body.collisionType === me.collision.types.ENEMY_OBJECT) {
+        if ((other.body.collisionType === me.collision.types.ENEMY_OBJECT) && this.ready) {
             console.log(other.health)
+            console.log("Hold attacks")
+            this.ready = false;
+            this.secondCount = 0;
             other.takeDamage(this.parent.allyATK);
         }
         return false;

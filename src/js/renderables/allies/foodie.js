@@ -18,21 +18,21 @@ class FoodieEntity extends AllyEntity {
     updateAllyStats() {
         // Update ally statistics based on this.tier value
         if (this.tier == 1) {
-            this.allyCost = 100;
+            this.allyCost = 200;
             this.upgradeCost = 150;
             this.allyATK = 30;
             this.allyASPD = 1.75;
             this.allyRange = 1.3;
         }
         else if (this.tier == 2) {
-            this.allyCost = 150;
+            this.allyCost = 400;
             this.upgradeCost = 200;
             this.allyATK = 50;
             this.allyASPD = 2;
             this.allyRange = 1.4
         }
         else if (this.tier == 3) {
-            this.allyCost = 200;
+            this.allyCost = 600;
             this.upgradeCost = 0
             this.allyATK = 80;
             this.allyASPD = 2.5;
