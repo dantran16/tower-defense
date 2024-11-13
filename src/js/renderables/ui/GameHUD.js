@@ -1,5 +1,7 @@
 import * as me from 'melonjs';
 import GoldCoin from '../misc/GoldCoin';
+import PauseButton from '../../buttons/PauseButton';
+import WaveButton from '../../buttons/WaveButton';
 import applicationState from '../../applicationState';
 import { state } from "melonjs";
 
@@ -22,6 +24,9 @@ class GameHUD extends me.UIBaseElement {
         this.level = applicationState.data.level
         this.coin = new GoldCoin(this.width * 21 / 24 + 7, this.height / 12 + 9);
         this.currencyText = applicationState.data.currency    
+
+        this.addChild(new WaveButton(this.width / 0.98, this.height / 15))
+        this.addChild(new PauseButton(this.width / 0.9, this.height / 15))
 
         this.lives = new me.Text(this.width * 22 / 24, this.height / 24, {
             font: "PressStart2P",

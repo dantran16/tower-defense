@@ -6,7 +6,20 @@ class FoodieEntity extends AllyEntity {
 
     constructor(x, y) {
         // call the parent constructor
-        super(x, y, {image: "black-dot", width: 25, height: 25});
+        super(x, y, {
+            image: "foodie", 
+            width: 32, 
+            height: 65,
+
+        });
+        // right idle animation
+        this.renderable.addAnimation("right_sit", [0,1,2,3,4,5]);
+        this.renderable.setCurrentAnimation("right_sit");
+
+        // facing left
+        // this.renderable.addAnimation("left_sit_animation", [6,7,8,9,10,11]);
+        // this.renderable.setCurrentAnimation("left_sit_animation");
+
         this.className = 'Foodie'
         // set default stats of foodie unit
         this.updateAllyStats()

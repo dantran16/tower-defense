@@ -19,6 +19,7 @@ const applicationState = {
     },
     isPaused: false,
     isTowerMenu: false,
+    waveInProgress: false, // determines if wave is in progress
     texture : null,  // a reference to the texture atlas
     enemyTasks: enemyTasks,
 };

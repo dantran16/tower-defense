@@ -6,7 +6,16 @@ class ChildEntity extends AllyEntity {
 
     constructor(x, y) {
         // call the parent constructor
-        super(x, y, {image: "white-dot", width: 25, height: 25});
+        super(x, y, {
+            image: "child", 
+            width: 32, 
+            height: 64
+        });
+        
+        // right idle animation
+        this.renderable.addAnimation("right_sit", [24,25,26,27,28,29]);
+        this.renderable.setCurrentAnimation("right_sit");
+        
         this.className = 'Child'
         // set default stats of child unit
         this.updateAllyStats()
