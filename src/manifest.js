@@ -83,7 +83,25 @@ const DataManifest = [
         name: "sushi",
         type: "image",
         src: "./data/img/enemies/enemy_sushi.png"        
-    }
+    },
+
+    {
+        name: "child",
+        type: "image",
+        src: "./data/img/allies/child.png"
+    },
+
+    {
+        name: "adult",
+        type: "image",
+        src: "./data/img/allies/adult.png"
+    },
+
+    {
+        name: "foodie",
+        type: "image",
+        src: "./data/img/allies/foodie-0.png"
+    },
 
     // {
     //     name: "map_assets",
