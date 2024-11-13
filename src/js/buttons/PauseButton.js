@@ -17,15 +17,9 @@ class PauseButton extends me.UITextButton {
     }
 
     onClick(){
-        if (!applicationState.isPaused) {
-            applicationState.isPaused = true
-            // not sure what this does below
-            this.ancestor.addChild(new PauseButton(this.pos.x, this.pos.y))
-            this.ancestor.removeChild(this)
-        }
-        else {
-            applicationState.isPaused = false
-        }
+        applicationState.isPaused = !applicationState.isPaused
+        this.ancestor.addChild(new PauseButton(this.pos.x, this.pos.y))
+        this.ancestor.removeChild(this)
     }
 }
 
