@@ -16,6 +16,7 @@ const applicationState = {
         level: 1,
         wave: 1,
         enemies: 1,
+        activeEnemies:0,
     },
     isPaused: false,
     isTowerMenu: false,

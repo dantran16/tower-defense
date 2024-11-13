@@ -7,7 +7,6 @@ import applicationState from '../../applicationState.js';
 class EnemyTasks {
     constructor() {
         this.spawnInterval = 1000; // Milliseconds between spawns
-        this.activeEnemies = [];
         this.waves = [
             { enemies: [{ type: 'Sushi', quantity: 10 }] }, // Wave 1
             { enemies: [{ type: 'Sushi', quantity: 20 }] }, // Wave 2
@@ -82,12 +81,12 @@ class EnemyTasks {
             if (enemiesSpawned < enemyConfig.quantity) {
                 this.spawnEnemy(enemyConfig.type);
                 enemiesSpawned++;
-                // applicationState.data.enemies -= 1;
-            } else {
+                applicationState.data.activeEnemies = enemiesSpawned;
+            } else if (applicationState.data.activeEnemies == 0) {
                 // Move to the next enemy type in the wave
                 enemyIndex++;
                 enemiesSpawned = 0; // Reset counter for the new enemy type
-                if (enemyIndex >= wave.enemies.length ) {
+                if (enemyIndex >= wave.enemies.length) { 
                     // All enemy types for this wave have been spawned
                     clearInterval(this.waveInterval);
                     this.currentWave++;
@@ -118,7 +117,7 @@ class EnemyTasks {
         }
 
         me.game.world.addChild(enemy);
-        this.activeEnemies.push(enemy);
+        //this.activeEnemies.push(enemy);
     }
 }
 export default EnemyTasks;

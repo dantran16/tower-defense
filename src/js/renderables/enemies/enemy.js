@@ -117,6 +117,7 @@ class Enemy extends me.Entity {
         if(this.alive) {
             console.log(`${this} enemy is being removed from the game world.`);
             applicationState.data.enemies -= 1;
+            applicationState.data.activeEnemies = applicationState.data.enemies
             me.game.world.removeChild(this);
         }
         this.alive = false
