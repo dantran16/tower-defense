@@ -82,7 +82,6 @@ class EnemyTasks {
             if (enemiesSpawned < enemyConfig.quantity) {
                 this.spawnEnemy(enemyConfig.type);
                 enemiesSpawned++;
-                // applicationState.data.enemies -= 1;
             } else {
                 // Move to the next enemy type in the wave
                 enemyIndex++;
