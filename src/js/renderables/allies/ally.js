@@ -9,7 +9,8 @@ class AllyEntity extends me.Entity {
     constructor(x, y, settings) {
         // call the parent constructor
         super(x, y, settings);
-        
+        this.clickableBounds = new me.Rect(this.pos.x, this.pos.y, this.width, this.width);
+
         // set a "player object" type
         this.body.collisionType = me.collision.types.PLAYER_OBJECT;
         this.body.setCollisionMask(me.collision.types.WORLD_SHAPE);
@@ -54,7 +55,11 @@ class AllyEntity extends me.Entity {
         var world = me.game.world;
         var width = me.game.viewport.width;
         var height = me.game.viewport.height;
-        
+        const clickX = e.gameX - this.pos.x;
+        const clickY = e.gameY - this.pos.y;
+        if (!this.clickableBounds.contains(e.gameX, e.gameY)) {
+            return false
+        }
         if(!applicationState.isTowerMenu){
             applicationState.isTowerMenu = true
             const towerMenu = new TowerMenuContainer(width * 5/6, 0, width / 6, height, this);
@@ -64,12 +69,13 @@ class AllyEntity extends me.Entity {
                 world.removeChild(world.getChildByName('TowerMenu')[0])
                 const towerMenu = new TowerMenuContainer(width * 5/6, 0, width / 6, height, this);
                 world.addChild(towerMenu, 100)
-                return
+                return true
             }
             applicationState.isTowerMenu = false
             const panel = new SideMenuContainer(width * 5/6, 0, width / 6, height);
             world.addChild(panel, 100)
         }
+        return true
     }
 
     upgradeTier() {
