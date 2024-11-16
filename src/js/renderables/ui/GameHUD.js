@@ -55,7 +55,7 @@ class GameHUD extends me.UIBaseElement {
             textAlign: "left",
             textBaseline: "top",
             bold: true,
-            text: `Wave: ${applicationState.data.wave}`
+            text: `Wave:`
         })
 
         this.enemies = new me.Text(this.width / 24, this.height / 12, {

@@ -115,7 +115,7 @@ class Enemy extends me.Entity {
     // Method to handle enemy death
     die() {
         if(this.alive) {
-            console.log(`${this} enemy is being removed from the game world.`);
+            // console.log(`${this} enemy is being removed from the game world.`);
             applicationState.data.enemies -= 1;
             me.game.world.removeChild(this);
         }
@@ -125,7 +125,7 @@ class Enemy extends me.Entity {
     // Method to reward player on enemy death
     rewardPlayer(){
         applicationState.data.currency += this.reward;
-        console.log(`Player rewarded with ${this.reward} coins.`);
+        // console.log(`Player rewarded with ${this.reward} coins.`);
     }
     
     // Method to handle the collision with the Trash Can at end of path

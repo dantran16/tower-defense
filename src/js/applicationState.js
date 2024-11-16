@@ -14,12 +14,11 @@ const applicationState = {
         playerHealth: 10,
         currency: 100,
         level: 1,
-        wave: 1,
+        wave: 0,
         enemies: 1,
     },
     isPaused: false,
     isTowerMenu: false,
-    waveInProgress: false, // determines if wave is in progress
     texture : null,  // a reference to the texture atlas
     enemyTasks: enemyTasks,
 };
