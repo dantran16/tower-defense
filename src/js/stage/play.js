@@ -18,7 +18,7 @@ class PlayScreen extends me.Stage {
         applicationState.data.playerHealth = 10;
         applicationState.data.currency = 100;
         applicationState.data.level = 1;
-        applicationState.data.wave = 1;
+        applicationState.data.wave = 0;
         applicationState.data.enemies = '';
         applicationState.isPaused = false;
         applicationState.isTowerMenu = false;

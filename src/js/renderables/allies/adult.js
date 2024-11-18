@@ -20,7 +20,7 @@ class AdultEntity extends AllyEntity {
         // set default stats of adult unit
         this.updateAllyStats()
         this.value = this.allyCost;
-        this.hitbox = new HitBoxEntity(x, y, {width: this.allyRange, height: this.allyRange}, this);
+        this.hitbox = new HitBoxEntity(x, y+25, {width: this.allyRange, height: this.allyRange}, this);
         me.game.world.addChild(this.hitbox);
     }
 

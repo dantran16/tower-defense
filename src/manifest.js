@@ -20,30 +20,6 @@ const DataManifest = [
     },
 
     {
-        name: "white-dot",
-        type: "image",
-        src: "./data/img/white.png"
-    },
-
-    {
-        name: "gray-dot",
-        type: "image",
-        src: "./data/img/gray.png"
-    },
-
-    {
-        name: "black-dot",
-        type: "image",
-        src: "./data/img/black.png"
-    },
-
-    {
-        name: "red-dot",
-        type: "image",
-        src: "./data/img/red.png"
-    },
-
-    {
         name: "yellow-chair",
         type: "image",
         src: "./data/img/yellow-chair.png"
