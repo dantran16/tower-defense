@@ -71,13 +71,13 @@ class ChairIcon extends me.Sprite {
     createAlly() {
         switch(this.name) {
             case "child":
-                this.ally = new ChildEntity(this.pos.x, this.pos.y)
+                this.ally = new ChildEntity(this.pos.x, this.pos.y-30)
                 break;
             case "adult":
-                this.ally = new AdultEntity(this.pos.x, this.pos.y)
+                this.ally = new AdultEntity(this.pos.x, this.pos.y-25)
                 break;
             case "foodie":
-                this.ally = new FoodieEntity(this.pos.x, this.pos.y)
+                this.ally = new FoodieEntity(this.pos.x, this.pos.y-25)
                 break;
         }
         this.ally.chair = this;

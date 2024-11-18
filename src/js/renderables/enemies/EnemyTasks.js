@@ -59,7 +59,7 @@ class EnemyTasks {
 
 
     startWave() {
-        applicationState.waveInProgress = true;
+        applicationState.data.wave++;
         
         if (this.currentWave >= this.waves.length) {
             console.log("All waves completed!");
@@ -81,8 +81,7 @@ class EnemyTasks {
             if (enemiesSpawned < enemyConfig.quantity) {
                 this.spawnEnemy(enemyConfig.type);
                 enemiesSpawned++;
-                applicationState.data.activeEnemies = enemiesSpawned;
-            } else if (applicationState.data.activeEnemies == 0) {
+            } else {
                 // Move to the next enemy type in the wave
                 enemyIndex++;
                 enemiesSpawned = 0; // Reset counter for the new enemy type
@@ -90,10 +89,6 @@ class EnemyTasks {
                     // All enemy types for this wave have been spawned
                     clearInterval(this.waveInterval);
                     this.currentWave++;
-                    applicationState.data.wave++;
-                    applicationState.waveInProgress = false;
-
-                    //this.startWave(); // Automatically start the next wave
                 }
                 
             if((applicationState.data.wave == 11) || (applicationState.data.wave == 21)) {
