@@ -2,7 +2,6 @@ import * as me from 'melonjs';
 import SideMenuContainer from "../renderables/ui/SideMenuContainer";
 import GameHUD from "../renderables/ui/GameHUD";
 import Map from '../renderables/ui/Map';
-import ConveyorBelt from '../renderables/ui/belt';
 import applicationState from '../applicationState';
 //import { ImageLayer } from '../../../node_modules/melonjs/dist/types/index';
 
@@ -22,7 +21,7 @@ class PlayScreen extends me.Stage {
         applicationState.data.wave = 0;
         applicationState.data.enemies = '';
         applicationState.isPaused = false;
-        applicationState.isTowerMenu = false;
+        applicationState.towerMenu = false;
         applicationState.texture = null;
 
         const game_map = new Map(width / 2.5, height / 1.75);
