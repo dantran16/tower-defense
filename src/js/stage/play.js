@@ -29,6 +29,7 @@ class PlayScreen extends me.Stage {
         const panel = new SideMenuContainer(width * 5/6, 0, width / 6, height);
         const gameHud = new GameHUD(0, 0, width * 5 / 6, height);
 
+        me.audio.playTrack("play_screen")
         me.game.world.addChild(new me.ColorLayer("background", "#202020"));
         me.game.world.addChild(game_map);
         me.game.world.addChild(panel);

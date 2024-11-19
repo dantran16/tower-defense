@@ -28,6 +28,9 @@ class AllyEntity extends me.Entity {
         this.sold = false;
         this.value = 0
         me.input.registerPointerEvent("pointerdown", this, this.onClick.bind(this));
+
+        // play sfx any time we place down a chair
+        me.audio.play("place-chair")
     }
 
     getAllyStats() {

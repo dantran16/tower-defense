@@ -79,6 +79,44 @@ const DataManifest = [
         src: "./data/img/allies/foodie-0.png"
     },
 
+    {
+        name: "star",
+        type: "image",
+        src: "./data/img/star.png"
+    },
+
+    // sounds and SFX
+
+    {
+        name: "play_screen",
+        type: "audio",
+        src: "data/bgm/"
+    },
+
+    {
+        name: "suction",
+        type: "audio",
+        src: "data/sfx/"
+    },
+
+    {
+        name: "place-chair",
+        type: "audio",
+        src: "data/sfx/"
+    },
+
+    {
+        name: "wave-start",
+        type: "audio",
+        src: "data/sfx/"
+    },
+
+    {
+        name: "chomp",
+        type: "audio",
+        src: "data/sfx/"
+    }
+
     // {
     //     name: "map_assets",
     //     type: "tsx",
