@@ -22,7 +22,7 @@ class GameHUD extends me.UIBaseElement {
         this.wave = applicationState.data.wave
         this.enemy = applicationState.data.enemies
         this.level = applicationState.data.level
-        this.coin = new GoldCoin(this.width * 21 / 24 + 7, this.height / 12 + 9);
+        this.coin = new GoldCoin(this.width * 21 / 24 + this.calculateGoinCoinOffset(), this.height / 12 + 9);
         this.currencyText = applicationState.data.currency    
 
         this.addChild(new WaveButton(this.width / 0.98, this.height / 15))
@@ -99,6 +99,10 @@ class GameHUD extends me.UIBaseElement {
         if (this.currencyText !== applicationState.data.currency) {
             this.currencyText = applicationState.data.currency;
             this.currency.setText(`${applicationState.data.currency}`);
+            this.removeChild(this.coin);
+            let offset = this.calculateGoinCoinOffset()
+            this.coin = new GoldCoin(this.width * 21 / 24 + offset, this.height / 12 + 9);
+            this.addChild(this.coin)
             this.isDirty = true;
         }
         if (this.wave !== applicationState.data.wave) {
@@ -125,6 +129,10 @@ class GameHUD extends me.UIBaseElement {
 
         
         return super.update(dt);
+    }
+
+    calculateGoinCoinOffset(){
+        return -10 * (applicationState.data.currency.toString().length - 2) + 15
     }
 };
 export default GameHUD;
