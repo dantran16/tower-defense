@@ -77,13 +77,7 @@ const DataManifest = [
         name: "foodie",
         type: "image",
         src: "./data/img/allies/foodie-0.png"
-    },
-
-    {
-        name: "belt",
-        type: "image",
-        src: "./data/map/path_only.png"
-    },
+    }
 
     // {
     //     name: "map_assets",
