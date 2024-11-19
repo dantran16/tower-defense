@@ -13,8 +13,8 @@ class AdultEntity extends AllyEntity {
             height: 64});
 
         // right idle animation
-        this.renderable.addAnimation("right_sit", [0,1,2,3,4,5]);
-        this.renderable.setCurrentAnimation("right_sit");
+        // this.renderable.addAnimation("right_sit", [0,1,2,3,4,5]);
+        // this.renderable.setCurrentAnimation("right_sit");
 
         this.className = 'Adult'
         // set default stats of adult unit

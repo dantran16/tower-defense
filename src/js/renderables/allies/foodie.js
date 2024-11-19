@@ -13,8 +13,8 @@ class FoodieEntity extends AllyEntity {
 
         });
         // right idle animation
-        this.renderable.addAnimation("right_sit", [0,1,2,3,4,5]);
-        this.renderable.setCurrentAnimation("right_sit");
+        // this.renderable.addAnimation("right_sit", [0,1,2,3,4,5]);
+        // this.renderable.setCurrentAnimation("right_sit");
 
         // facing left
         // this.renderable.addAnimation("left_sit_animation", [6,7,8,9,10,11]);
