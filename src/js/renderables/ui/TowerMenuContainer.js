@@ -21,14 +21,14 @@ class TowerMenuContainer extends me.UIBaseElement {
         // give a name
         this.name = "TowerMenu";
 
-        this.towerText = new me.Text(this.width / 6, this.height / 12, {
+        this.towerText = new me.Text(this.width / 6, this.height / 9, {
             font: "PressStart2P",
             size: 20,
             fillStyle: "white",
             textAlign: "left",
             textBaseline: "top",
             bold: true,
-            text: `${tower !== null ? tower.className : ''}`
+            text: `${tower !== null ? `${tower.className} - Tier ${tower.tier}` : ''}`
         })
 
         this.sellButton = new SellButton(this.width / 6, this.height / 6, tower)

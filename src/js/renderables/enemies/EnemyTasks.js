@@ -8,6 +8,7 @@ class EnemyTasks {
     constructor() {
         this.spawnInterval = 1000; // Milliseconds between spawns
         this.waves = [
+            // Level 1 (Waves 1–10)
             { enemies: [{ type: 'Sushi', quantity: 10 }] }, // Wave 1
             { enemies: [{ type: 'Sushi', quantity: 20 }] }, // Wave 2
             { enemies: [{ type: 'Sushi', quantity: 30 }] }, // Wave 3
@@ -18,8 +19,32 @@ class EnemyTasks {
             { enemies: [{ type: 'Sushi', quantity: 10 }, { type: 'RedVelvet', quantity: 20 }] }, // Wave 8
             { enemies: [{ type: 'Sushi', quantity: 10 }, { type: 'RedVelvet', quantity: 40 }] }, // Wave 9
             { enemies: [{ type: 'Sushi', quantity: 30 }, { type: 'RedVelvet', quantity: 60 }] }, // Wave 10
+        
+            // Level 2 (Waves 11–20)
+            { enemies: [{ type: 'Sushi', quantity: 50 }, { type: 'RedVelvet', quantity: 5 }] }, // Wave 11
+            { enemies: [{ type: 'Sushi', quantity: 40 }, { type: 'RedVelvet', quantity: 10 }] }, // Wave 12
+            { enemies: [{ type: 'Sushi', quantity: 60 }, { type: 'RedVelvet', quantity: 15 }] }, // Wave 13
+            { enemies: [{ type: 'Sushi', quantity: 70 }, { type: 'RedVelvet', quantity: 20 }] }, // Wave 14
+            { enemies: [{ type: 'Sushi', quantity: 80 }, { type: 'RedVelvet', quantity: 25 }] }, // Wave 15
+            { enemies: [{ type: 'Sushi', quantity: 100 }, { type: 'RedVelvet', quantity: 30 }] }, // Wave 16
+            { enemies: [{ type: 'Sushi', quantity: 120 }, { type: 'RedVelvet', quantity: 35 }] }, // Wave 17
+            { enemies: [{ type: 'Sushi', quantity: 140 }, { type: 'RedVelvet', quantity: 40 }] }, // Wave 18
+            { enemies: [{ type: 'Sushi', quantity: 150 }, { type: 'RedVelvet', quantity: 45 }] }, // Wave 19
+            { enemies: [{ type: 'Sushi', quantity: 200 }, { type: 'RedVelvet', quantity: 50 }] }, // Wave 20
+        
+            // Level 3 (Waves 21–30)
+            { enemies: [{ type: 'Sushi', quantity: 100 }, { type: 'RedVelvet', quantity: 25 }, { type: 'Coffee', quantity: 5 }] }, // Wave 21
+            { enemies: [{ type: 'Sushi', quantity: 110 }, { type: 'RedVelvet', quantity: 30 }, { type: 'Coffee', quantity: 10 }] }, // Wave 22
+            { enemies: [{ type: 'Sushi', quantity: 120 }, { type: 'RedVelvet', quantity: 35 }, { type: 'Coffee', quantity: 15 }] }, // Wave 23
+            { enemies: [{ type: 'Sushi', quantity: 130 }, { type: 'RedVelvet', quantity: 40 }, { type: 'Coffee', quantity: 20 }] }, // Wave 24
+            { enemies: [{ type: 'Sushi', quantity: 150 }, { type: 'RedVelvet', quantity: 45 }, { type: 'Coffee', quantity: 25 }] }, // Wave 25
+            { enemies: [{ type: 'Sushi', quantity: 160 }, { type: 'RedVelvet', quantity: 50 }, { type: 'Coffee', quantity: 30 }] }, // Wave 26
+            { enemies: [{ type: 'Sushi', quantity: 170 }, { type: 'RedVelvet', quantity: 55 }, { type: 'Coffee', quantity: 35 }] }, // Wave 27
+            { enemies: [{ type: 'Sushi', quantity: 180 }, { type: 'RedVelvet', quantity: 60 }, { type: 'Coffee', quantity: 40 }] }, // Wave 28
+            { enemies: [{ type: 'Sushi', quantity: 190 }, { type: 'RedVelvet', quantity: 65 }, { type: 'Coffee', quantity: 45 }] }, // Wave 29
+            { enemies: [{ type: 'Sushi', quantity: 200 }, { type: 'RedVelvet', quantity: 70 }, { type: 'Coffee', quantity: 50 }] }, // Wave 30
         ];
-
+        
         //Test Code for waves or its too long to run the whole level.
     // this.waves = [
     // { enemies: [{ type: 'Sushi', quantity: 0 }] },
@@ -91,11 +116,10 @@ class EnemyTasks {
                     clearInterval(this.waveInterval);
                     this.currentWave++;
                 }
-                
-            if((applicationState.data.wave == 11) || (applicationState.data.wave == 21)) {
-                applicationState.data.level++
-            };
             }
+
+
+
         }, this.spawnInterval);
     }
 
