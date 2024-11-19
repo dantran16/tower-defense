@@ -90,7 +90,6 @@ class ChairIcon extends me.Sprite {
     // Removes this icon from the game
 	destroy() {
 		me.input.releasePointerEvent("pointerdown", this);
-        me.game.world.removeChild(this.invisChair);
         super.destroy();
 	}
 

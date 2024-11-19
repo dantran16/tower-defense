@@ -23,6 +23,7 @@ class PlayScreen extends me.Stage {
         applicationState.isPaused = false;
         applicationState.towerMenu = false;
         applicationState.texture = null;
+        applicationState.creation = false;
 
         const game_map = new Map(width / 2.5, height / 1.75);
         const panel = new SideMenuContainer(width * 5/6, 0, width / 6, height);
