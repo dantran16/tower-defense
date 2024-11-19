@@ -2,6 +2,7 @@ import * as me from 'melonjs';
 import SideMenuContainer from "../renderables/ui/SideMenuContainer";
 import GameHUD from "../renderables/ui/GameHUD";
 import Map from '../renderables/ui/Map';
+import ConveyorBelt from '../renderables/ui/belt';
 import applicationState from '../applicationState';
 //import { ImageLayer } from '../../../node_modules/melonjs/dist/types/index';
 
@@ -16,7 +17,7 @@ class PlayScreen extends me.Stage {
 
         // reset application state data on game restart
         applicationState.data.playerHealth = 10;
-        applicationState.data.currency = 100;
+        applicationState.data.currency = 1000;
         applicationState.data.level = 1;
         applicationState.data.wave = 0;
         applicationState.data.enemies = '';
