@@ -3,6 +3,7 @@ import ChildEntity from './child.js';
 import AdultEntity from './adult.js';
 import FoodieEntity from './foodie.js';
 import InvisChair from './InvisChair.js';
+import applicationState from "../../applicationState.js";
 
 class ChairIcon extends me.Sprite {
 
@@ -41,6 +42,7 @@ class ChairIcon extends me.Sprite {
         this.grabOffset = new me.Vector2d(0, 0);
 
         this.invisChair = null;
+        applicationState.creation = true;
 
         // Create event listener
         me.input.registerPointerEvent("pointerdown", this, (e) => this.dragEnd(e));
@@ -69,6 +71,7 @@ class ChairIcon extends me.Sprite {
                 this.isDraggable = false
                 this.body.collisionType = me.collision.types.NONE;
                 this.body.setCollisionMask(me.collision.types.NONE);
+                applicationState.creation = false;
                 setTimeout(this.createAlly(), 2000);
                 return false
             }

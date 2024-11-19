@@ -22,6 +22,7 @@ const applicationState = {
     towerMenu: null,
     texture : null,  // a reference to the texture atlas
     enemyTasks: enemyTasks,
+    creation: false,
 };
 
 export default applicationState;
