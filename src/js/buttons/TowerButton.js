@@ -1,5 +1,4 @@
 import * as me from "melonjs";
-import AllyTasks from "../renderables/allies/AllyTasks";
 import { params } from "../params";
 import applicationState from "../applicationState";
 
