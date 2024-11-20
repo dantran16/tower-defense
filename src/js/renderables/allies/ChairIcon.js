@@ -65,26 +65,30 @@ class ChairIcon extends me.Sprite {
         // Add a check to determine if it is a valid location
 		if (this.dragging && !this.colliding) {
             if (this.pos.x >=14 && this.pos.x <=1000 && this.pos.y >= 122 && this.pos.y <= 700) {
-                if (this.validLocation(this.pos.x+15, this.pos.y)) {
+                let indeces = this.getIndeces(this.pos.x+15, this.pos.y);
+                if (this.validLocation(indeces.x, indeces.y)) {
                     this.dragging = false;
                     this.isDraggable = false
                     applicationState.creation = false;
                     let res = this.interpolateLocation(this.pos.x+15, this.pos.y)
                     this.pos.x = res.xCoor;
                     this.pos.y = res.yCoor;
-                    setTimeout(this.createAlly(res.xCoor, res.yCoor), 2000);
+                    setTimeout(this.createAlly(res.xCoor, res.yCoor, indeces), 2000);
                     return false
                 }
             }
 		}
 	}
 
+    getIndeces(x, y) {
+        let yIndex = Math.floor(x / 32);
+        let xIndex = Math.floor(y / 32)-3;
+        return {x: xIndex-1, y: yIndex-1}
+    }
+
     validLocation(x, y) {
-        let xCoor = Math.floor(x / 32);
-        let yCoor = Math.floor(y / 32)-3;
-        console.log(yCoor-1, xCoor-1)
-        if (applicationState.validMatrix[yCoor-1][xCoor-1] == 0) {
-            applicationState.validMatrix[yCoor-1][xCoor-1] = -1;
+        if (applicationState.validMatrix[x][y] == 0) {
+            applicationState.validMatrix[x][y] = -1;
             return true
         }
         return false
@@ -117,16 +121,16 @@ class ChairIcon extends me.Sprite {
 	}
 
     // Creates a new ally based on tower name
-    createAlly(x, y) {
+    createAlly(x, y, indeces) {
         switch(this.name) {
             case "child":
-                this.ally = new ChildEntity(x, y-30)
+                this.ally = new ChildEntity(x, y-30, indeces)
                 break;
             case "adult":
-                this.ally = new AdultEntity(x, y-25)
+                this.ally = new AdultEntity(x, y-25, indeces)
                 break;
             case "foodie":
-                this.ally = new FoodieEntity(x, y-25)
+                this.ally = new FoodieEntity(x, y-25, indeces)
                 break;
         }
         this.ally.chair = this;
