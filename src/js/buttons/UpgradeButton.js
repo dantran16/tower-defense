@@ -19,6 +19,7 @@ class UpgradeButton extends me.UITextButton {
 
     onClick(){
         this.tower.upgradeTier()
+        return false;
     }
 }
 

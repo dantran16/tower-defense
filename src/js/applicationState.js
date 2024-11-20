@@ -2,6 +2,7 @@
  * hold all game specific data
  */
 import EnemyTasks from "./renderables/enemies/EnemyTasks";
+import validMatrix from "./validMatrix";
 
 const enemyTasks = new EnemyTasks();
 const applicationState = {
@@ -23,6 +24,7 @@ const applicationState = {
     texture : null,  // a reference to the texture atlas
     enemyTasks: enemyTasks,
     creation: false,
+    validMatrix: validMatrix
 };
 
 export default applicationState;

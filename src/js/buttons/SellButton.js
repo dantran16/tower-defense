@@ -20,6 +20,7 @@ class SellButton extends me.UITextButton {
         this.tower.sell()
         applicationState.towerMenu = null
         me.game.world.removeChild(this.ancestor)
+        return false;
     }
 }
 

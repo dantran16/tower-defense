@@ -2,7 +2,6 @@ import * as me from "melonjs";
 import ChildEntity from './child.js';
 import AdultEntity from './adult.js';
 import FoodieEntity from './foodie.js';
-import InvisChair from './InvisChair.js';
 import applicationState from "../../applicationState.js";
 
 class ChairIcon extends me.Sprite {
@@ -30,8 +29,7 @@ class ChairIcon extends me.Sprite {
         this.name = name;
         this.body = new me.Body(this);
         this.body.addShape(new me.Rect(0, 0, settings.framewidth, settings.frameheight));
-        this.body.collisionType = me.collision.types.ACTION_OBJECT;
-        this.body.setCollisionMask(me.collision.types.WORLD_SHAPE);
+        this.body.collisionType = me.collision.types.NONE;
         this.body.ignoreGravity = true;
         this.colliding = false;
         this.collisionXY = null;
@@ -67,16 +65,41 @@ class ChairIcon extends me.Sprite {
         // Add a check to determine if it is a valid location
 		if (this.dragging && !this.colliding) {
             if (this.pos.x >=14 && this.pos.x <=1000 && this.pos.y >= 122 && this.pos.y <= 700) {
-                this.dragging = false;
-                this.isDraggable = false
-                this.body.collisionType = me.collision.types.NONE;
-                this.body.setCollisionMask(me.collision.types.NONE);
-                applicationState.creation = false;
-                setTimeout(this.createAlly(), 2000);
-                return false
+                if (this.validLocation(this.pos.x+15, this.pos.y)) {
+                    this.dragging = false;
+                    this.isDraggable = false
+                    applicationState.creation = false;
+                    let res = this.interpolateLocation(this.pos.x+15, this.pos.y)
+                    this.pos.x = res.xCoor;
+                    this.pos.y = res.yCoor;
+                    setTimeout(this.createAlly(res.xCoor, res.yCoor), 2000);
+                    return false
+                }
             }
 		}
 	}
+
+    validLocation(x, y) {
+        let xCoor = Math.floor(x / 32);
+        let yCoor = Math.floor(y / 32)-3;
+        console.log(yCoor-1, xCoor-1)
+        if (applicationState.validMatrix[yCoor-1][xCoor-1] == 0) {
+            applicationState.validMatrix[yCoor-1][xCoor-1] = -1;
+            return true
+        }
+        return false
+    }
+
+    interpolateLocation(x, y) {
+        let coor =  {
+            xCoor: Math.floor(x / 32) * 32,
+            yCoor: Math.floor(y / 32) * 32
+        }
+        coor.xCoor -= 1
+        coor.yCoor += 9
+        
+        return coor
+    }
 
     onCollision(response, other) {
         console.log("hit")
@@ -94,22 +117,20 @@ class ChairIcon extends me.Sprite {
 	}
 
     // Creates a new ally based on tower name
-    createAlly() {
+    createAlly(x, y) {
         switch(this.name) {
             case "child":
-                this.ally = new ChildEntity(this.pos.x, this.pos.y-30)
+                this.ally = new ChildEntity(x, y-30)
                 break;
             case "adult":
-                this.ally = new AdultEntity(this.pos.x, this.pos.y-25)
+                this.ally = new AdultEntity(x, y-25)
                 break;
             case "foodie":
-                this.ally = new FoodieEntity(this.pos.x, this.pos.y-25)
+                this.ally = new FoodieEntity(x, y-25)
                 break;
         }
-        this.invisChair = new InvisChair(this.pos.x, this.pos.y-50)
         this.ally.chair = this;
         me.game.world.addChild(this.ally);
-        me.game.world.addChild(this.invisChair);
     }
 };
 
