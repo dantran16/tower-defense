@@ -16,7 +16,7 @@ class PlayScreen extends me.Stage {
 
         // reset application state data on game restart
         applicationState.data.playerHealth = 10;
-        applicationState.data.currency = 100;
+        applicationState.data.currency = 1000;
         applicationState.data.level = 1;
         applicationState.data.wave = 0;
         applicationState.data.enemies = '';

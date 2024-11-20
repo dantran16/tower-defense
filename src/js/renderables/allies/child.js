@@ -12,9 +12,9 @@ class ChildEntity extends AllyEntity {
             height: 64
         });
         
-        // right idle animation
-        this.renderable.addAnimation("right_sit", [24,25,26,27,28,29]);
-        this.renderable.setCurrentAnimation("right_sit");
+        // // right idle animation
+        // this.renderable.addAnimation("right_sit", [24,25,26,27,28,29]);
+        // this.renderable.setCurrentAnimation("right_sit");
         
         this.className = 'Child'
         // set default stats of child unit
