@@ -50,6 +50,9 @@ class AllyEntity extends me.Entity {
     }
 
     onClick(e){
+        if (applicationState.creation) {
+            return true
+        }
         var world = me.game.world;
         var width = me.game.viewport.width;
         var height = me.game.viewport.height;
