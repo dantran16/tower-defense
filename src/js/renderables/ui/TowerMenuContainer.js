@@ -1,6 +1,4 @@
 import * as me from 'melonjs';
-import applicationState from '../../applicationState';
-import PauseButton from '../../buttons/PauseButton';
 import SellButton from '../../buttons/SellButton';
 import UpgradeButton from '../../buttons/UpgradeButton';
 
@@ -32,14 +30,12 @@ class TowerMenuContainer extends me.UIBaseElement {
         })
 
         this.towerTier = tower.tier
-
         this.sellButton = new SellButton(this.width / 6, this.height / 6, tower)
         this.upgradeButton = new UpgradeButton(this.width / 6, this.height / 3, tower)
-        
+
         this.addChild(this.towerText)
         this.addChild(this.sellButton)
         this.addChild(this.upgradeButton)
-
     }
 
     update(dt) {
