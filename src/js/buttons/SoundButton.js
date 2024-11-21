@@ -9,12 +9,13 @@ class SoundButton extends me.UITextButton {
             backgroundColor: '#00aa0080',
             hoverColor: '#00ff00ff',
             textAlign: 'center',
-            size: params.pauseButton.size,
-            borderHeight: params.pauseButton.borderSize,
-            borderWidth: params.pauseButton.borderSize * 2
+            size: params.soundButton.size,
+            borderHeight: params.soundButton.borderSize,
+            borderWidth: params.soundButton.borderSize * 2
         });
     }
-
+    
+    // TODO: figure out how to unpause soundtrack
     onClick(){
         me.audio.pauseTrack()
     }

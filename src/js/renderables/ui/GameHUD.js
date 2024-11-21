@@ -28,7 +28,7 @@ class GameHUD extends me.UIBaseElement {
 
         this.addChild(new WaveButton(this.width / 0.98, this.height / 15))
         this.addChild(new PauseButton(this.width / 0.9, this.height / 15))
-        this.addChild(new SoundButton(this.width / 1.1, this.height / 15))
+        this.addChild(new SoundButton(this.width / 0.91, this.height / 10))
 
         this.lives = new me.Text(this.width * 22 / 24, this.height / 24, {
             font: "PressStart2P",
