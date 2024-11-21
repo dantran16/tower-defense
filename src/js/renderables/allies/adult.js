@@ -1,23 +1,23 @@
 import * as me from 'melonjs';
 import AllyEntity from './ally.js';
 import HitBoxEntity from './HitBoxEntity.js';
-import applicationState from '../../applicationState.js';
 
 class AdultEntity extends AllyEntity {
 
-    constructor(x, y) {
+    constructor(x, y, idx, orientation) {
         // call the parent constructor
         super(x, y, {
             image: "adult", 
             width: 32, 
             height: 64});
 
-        // right idle animation
-        // this.renderable.addAnimation("right_sit", [0,1,2,3,4,5]);
-        // this.renderable.setCurrentAnimation("right_sit");
+        this.renderable.addAnimation("right_sit", [0,1,2,3,4,5]);
+        this.renderable.addAnimation("left_sit", [6,7,8,9,10,11]);
 
         this.className = 'Adult'
         // set default stats of adult unit
+        this.indeces = idx
+        this.orientation = orientation
         this.updateAllyStats()
         this.value = this.allyCost;
         this.hitbox = new HitBoxEntity(x, y+25, {width: this.allyRange, height: this.allyRange}, this);
@@ -47,6 +47,23 @@ class AdultEntity extends AllyEntity {
             this.allyASPD = 3;
             this.allyRange = 1.3
         }
+    }
+
+    playAnimation() {
+        if (this.orientation == 2) {
+            this.renderable.setCurrentAnimation("right_sit");            
+        }
+        else if (this.orientation == 3) {
+            this.renderable.setCurrentAnimation("left_sit");         
+        }
+        // else if (this.orientation == 4) {
+        //     this.renderable.setCurrentAnimation("front")          
+        // }
+        // else {
+        //     this.renderable.setCurrentAnimation("back")    
+        // }
+
+        console.log(this.orientation)
     }
 };
 

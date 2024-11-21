@@ -4,7 +4,7 @@ import HitBoxEntity from './HitBoxEntity.js';
 
 class ChildEntity extends AllyEntity {
 
-    constructor(x, y) {
+    constructor(x, y, idx, orientation) {
         // call the parent constructor
         super(x, y, {
             image: "child", 
@@ -12,12 +12,17 @@ class ChildEntity extends AllyEntity {
             height: 64
         });
         
-        // // right idle animation
-        // this.renderable.addAnimation("right_sit", [24,25,26,27,28,29]);
-        // this.renderable.setCurrentAnimation("right_sit");
+        // idle animations
+        this.renderable.addAnimation("right_sit", [24,25,26,27,28,29]);
+        this.renderable.addAnimation("left_sit", [36,37,38,39,40,41]);
+        this.renderable.addAnimation("front", [42,43,44,45,46,47]);
+        this.renderable.addAnimation("back", [30,31,32,33,34,35]);
         
         this.className = 'Child'
         // set default stats of child unit
+        this.indeces = idx
+        this.orientation = orientation
+        console.log(this.orientation)
         this.updateAllyStats()
         this.value = this.allyCost;
         this.hitbox = new HitBoxEntity(x, y+30, {width: this.allyRange, height: this.allyRange}, this);
@@ -46,6 +51,21 @@ class ChildEntity extends AllyEntity {
             this.allyATK = 30;
             this.allyASPD = 3;
             this.allyRange = 1.2
+        }
+    }
+
+    playAnimation() {
+        if (this.orientation == 2) {
+            this.renderable.setCurrentAnimation("right_sit");            
+        }
+        else if (this.orientation == 3) {
+            this.renderable.setCurrentAnimation("left_sit");         
+        }
+        else if (this.orientation == 4) {
+            this.renderable.setCurrentAnimation("front")          
+        }
+        else {
+            this.renderable.setCurrentAnimation("back")    
         }
     }
 };
