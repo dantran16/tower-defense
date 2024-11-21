@@ -2,7 +2,7 @@ import * as me from "melonjs";
 import ChildEntity from './child.js';
 import AdultEntity from './adult.js';
 import FoodieEntity from './foodie.js';
-import InvisChair from './InvisChair.js';
+import applicationState from "../../applicationState.js";
 
 class ChairIcon extends me.Sprite {
 
@@ -29,8 +29,7 @@ class ChairIcon extends me.Sprite {
         this.name = name;
         this.body = new me.Body(this);
         this.body.addShape(new me.Rect(0, 0, settings.framewidth, settings.frameheight));
-        this.body.collisionType = me.collision.types.ACTION_OBJECT;
-        this.body.setCollisionMask(me.collision.types.WORLD_SHAPE);
+        this.body.collisionType = me.collision.types.NONE;
         this.body.ignoreGravity = true;
         this.colliding = false;
         this.collisionXY = null;
@@ -41,6 +40,7 @@ class ChairIcon extends me.Sprite {
         this.grabOffset = new me.Vector2d(0, 0);
 
         this.invisChair = null;
+        applicationState.creation = true;
 
         // Create event listener
         me.input.registerPointerEvent("pointerdown", this, (e) => this.dragEnd(e));
@@ -65,15 +65,45 @@ class ChairIcon extends me.Sprite {
         // Add a check to determine if it is a valid location
 		if (this.dragging && !this.colliding) {
             if (this.pos.x >=14 && this.pos.x <=1000 && this.pos.y >= 122 && this.pos.y <= 700) {
-                this.dragging = false;
-                this.isDraggable = false
-                this.body.collisionType = me.collision.types.NONE;
-                this.body.setCollisionMask(me.collision.types.NONE);
-                setTimeout(this.createAlly(), 2000);
-                return false
+                let indeces = this.getIndeces(this.pos.x+15, this.pos.y);
+                if (this.validLocation(indeces.x, indeces.y)) {
+                    this.dragging = false;
+                    this.isDraggable = false
+                    applicationState.creation = false;
+                    let res = this.interpolateLocation(this.pos.x+15, this.pos.y)
+                    this.pos.x = res.xCoor;
+                    this.pos.y = res.yCoor;
+                    setTimeout(this.createAlly(res.xCoor, res.yCoor, indeces), 2000);
+                    return false
+                }
             }
 		}
 	}
+
+    getIndeces(x, y) {
+        let yIndex = Math.floor(x / 32);
+        let xIndex = Math.floor(y / 32)-3;
+        return {x: xIndex-1, y: yIndex-1}
+    }
+
+    validLocation(x, y) {
+        //valid = applicationState.validMatrix
+        if ((applicationState.validMatrix[x][y] == 0) || (applicationState.validMatrix[x][y] > 1)) {;
+            return true
+        }
+        return false
+    }
+
+    interpolateLocation(x, y) {
+        let coor =  {
+            xCoor: Math.floor(x / 32) * 32,
+            yCoor: Math.floor(y / 32) * 32
+        }
+        coor.xCoor -= 1
+        coor.yCoor += 9
+        
+        return coor
+    }
 
     onCollision(response, other) {
         console.log("hit")
@@ -87,27 +117,30 @@ class ChairIcon extends me.Sprite {
     // Removes this icon from the game
 	destroy() {
 		me.input.releasePointerEvent("pointerdown", this);
-        me.game.world.removeChild(this.invisChair);
         super.destroy();
 	}
 
     // Creates a new ally based on tower name
-    createAlly() {
+    createAlly(x, y, idx) {
+        var orientation = applicationState.validMatrix[idx.x][idx.y];
+
         switch(this.name) {
             case "child":
-                this.ally = new ChildEntity(this.pos.x, this.pos.y-30)
+                this.ally = new ChildEntity(x, y-30, idx, orientation)
                 break;
             case "adult":
-                this.ally = new AdultEntity(this.pos.x, this.pos.y-25)
+                this.ally = new AdultEntity(x, y-25, idx, orientation)
                 break;
             case "foodie":
-                this.ally = new FoodieEntity(this.pos.x, this.pos.y-25)
+                this.ally = new FoodieEntity(x, y-25, idx, orientation)
                 break;
         }
-        this.invisChair = new InvisChair(this.pos.x, this.pos.y-50)
+        // space occupied
+        applicationState.validMatrix[idx.x][idx.y] = -1
+        this.ally.playAnimation()
+
         this.ally.chair = this;
         me.game.world.addChild(this.ally);
-        me.game.world.addChild(this.invisChair);
     }
 };
 
