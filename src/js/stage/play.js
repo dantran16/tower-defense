@@ -3,6 +3,7 @@ import SideMenuContainer from "../renderables/ui/SideMenuContainer";
 import GameHUD from "../renderables/ui/GameHUD";
 import Map from '../renderables/ui/Map';
 import applicationState from '../applicationState';
+import validMatrix from '../validMatrix';
 //import { ImageLayer } from '../../../node_modules/melonjs/dist/types/index';
 
 
@@ -16,7 +17,7 @@ class PlayScreen extends me.Stage {
 
         // reset application state data on game restart
         applicationState.data.playerHealth = 10;
-        applicationState.data.currency = 1000;
+        applicationState.data.currency = 100000;
         applicationState.data.level = 1;
         applicationState.data.wave = 0;
         applicationState.data.enemies = '';
@@ -24,6 +25,8 @@ class PlayScreen extends me.Stage {
         applicationState.isTowerMenu = false;
         applicationState.waveInProgress = false;
         applicationState.texture = null;
+        applicationState.creation = false;
+        applicationState.validMatrix = validMatrix
 
         const game_map = new Map(width / 2.5, height / 1.75);
         const panel = new SideMenuContainer(width * 5/6, 0, width / 6, height);
@@ -34,6 +37,11 @@ class PlayScreen extends me.Stage {
         me.game.world.addChild(game_map);
         me.game.world.addChild(panel);
         me.game.world.addChild(gameHud);
+        
+    }
+
+    onDestroyEvent() {
+        me.audio.stopTrack("play_screen")
     }
 
 };
