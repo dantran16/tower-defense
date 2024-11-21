@@ -28,8 +28,9 @@ class AllyEntity extends me.Entity {
         this.value = 0
         me.input.registerPointerEvent("pointerdown", this, this.onClick.bind(this));
 
-        // play sfx any time we place down a chair
+        // play sound any time we place down a chair
         me.audio.play("place-chair")
+        this.indeces = null;
         me.input.registerPointerEvent("pointerdown", this, (e) => this.onClick(e));
     }
 
@@ -51,9 +52,14 @@ class AllyEntity extends me.Entity {
         me.game.world.removeChild(this.chair);
         me.game.world.removeChild(this);
         applicationState.data.currency += Math.round(this.allyCost / 2)
+        applicationState.validMatrix[this.indeces.x][this.indeces.y] = 0
+        console.log(this.ally)
     }
 
     onClick(e){
+        if (applicationState.creation) {
+            return true
+        }
         var world = me.game.world;
         var width = me.game.viewport.width;
         var height = me.game.viewport.height;
