@@ -1,6 +1,4 @@
 import * as me from 'melonjs';
-import applicationState from '../../applicationState';
-import PauseButton from '../../buttons/PauseButton';
 import SellButton from '../../buttons/SellButton';
 import UpgradeButton from '../../buttons/UpgradeButton';
 
@@ -31,20 +29,33 @@ class TowerMenuContainer extends me.UIBaseElement {
             text: `${tower !== null ? `${tower.className} - Tier ${tower.tier}` : ''}`
         })
 
+        this.towerTier = tower.tier
         this.sellButton = new SellButton(this.width / 6, this.height / 6, tower)
         this.upgradeButton = new UpgradeButton(this.width / 6, this.height / 3, tower)
-        
+
         this.addChild(this.towerText)
         this.addChild(this.sellButton)
         this.addChild(this.upgradeButton)
-
     }
 
     update(dt) {
-        if(!applicationState.isTowerMenu){
-            this.ancestor.removeChild(this)
+        this.isDirty = false
+        if (this.towerTier !== this.tower.tier) {
+            // Update the tower tier description
+            this.towerTier = this.tower.tier;
+            this.towerText.setText(`${this.tower !== null ? `${this.tower.className} - Tier ${this.tower.tier}` : ''}`);
+
+            // Update the button values (Text on buttons cannot be edited once made)
+            this.removeChild(this.sellButton)
+            this.removeChild(this.upgradeButton)
+            this.sellButton = new SellButton(this.width / 6, this.height / 6, this.tower)
+            this.upgradeButton = new UpgradeButton(this.width / 6, this.height / 3, this.tower)
+            this.addChild(this.sellButton)
+            this.addChild(this.upgradeButton)
+
+            this.isDirty = true;
         }
-        return super.update(dt);
+        super.update()
     }
 
 };

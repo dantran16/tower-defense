@@ -5,7 +5,7 @@ import applicationState from '../../applicationState.js';
 
 class AdultEntity extends AllyEntity {
 
-    constructor(x, y) {
+    constructor(x, y, idx) {
         // call the parent constructor
         super(x, y, {
             image: "adult", 
@@ -13,11 +13,12 @@ class AdultEntity extends AllyEntity {
             height: 64});
 
         // right idle animation
-        this.renderable.addAnimation("right_sit", [0,1,2,3,4,5]);
-        this.renderable.setCurrentAnimation("right_sit");
+        // this.renderable.addAnimation("right_sit", [0,1,2,3,4,5]);
+        // this.renderable.setCurrentAnimation("right_sit");
 
         this.className = 'Adult'
         // set default stats of adult unit
+        this.indeces = idx
         this.updateAllyStats()
         this.value = this.allyCost;
         this.hitbox = new HitBoxEntity(x, y+25, {width: this.allyRange, height: this.allyRange}, this);

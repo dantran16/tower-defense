@@ -1,6 +1,7 @@
 import * as me from "melonjs";
-import AllyTasks from "../renderables/allies/AllyTasks";
+import AllyTasks from "../renderables/allies/allytasks";
 import { params } from "../params";
+import applicationState from "../applicationState";
 
 class TowerButton extends me.UIBaseElement {
 
@@ -27,7 +28,9 @@ class TowerButton extends me.UIBaseElement {
 
     // Creates an ally unit on click
     onClick() {
-        this.tasks.createChair((me.game.viewport.width * 5 / 6) + this.pos.x, this.pos.y, this.name);
+        if (!applicationState.creation) {
+            this.tasks.createChair((me.game.viewport.width * 5 / 6) + this.pos.x, this.pos.y, this.name);
+        }
     }
 
     update(dt){

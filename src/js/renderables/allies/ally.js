@@ -9,11 +9,9 @@ class AllyEntity extends me.Entity {
     constructor(x, y, settings) {
         // call the parent constructor
         super(x, y, settings);
-        this.clickableBounds = new me.Rect(this.pos.x, this.pos.y, this.width, this.width);
 
         // set a "player object" type
-        this.body.collisionType = me.collision.types.PLAYER_OBJECT;
-        this.body.setCollisionMask(me.collision.types.WORLD_SHAPE);
+        this.body.collisionType = me.collision.types.NONE;
         this.body.ignoreGravity = true;
         
         // set hitbox
@@ -28,7 +26,8 @@ class AllyEntity extends me.Entity {
         this.allyRange = 0;
         this.sold = false;
         this.value = 0
-        me.input.registerPointerEvent("pointerdown", this, this.onClick.bind(this));
+        this.indeces = null;
+        me.input.registerPointerEvent("pointerdown", this, (e) => this.onClick(e));
     }
 
     getAllyStats() {
@@ -49,33 +48,28 @@ class AllyEntity extends me.Entity {
         me.game.world.removeChild(this.chair);
         me.game.world.removeChild(this);
         applicationState.data.currency += Math.round(this.allyCost / 2)
+        applicationState.validMatrix[this.indeces.x][this.indeces.y] = 0
     }
 
     onClick(e){
+        if (applicationState.creation) {
+            return true
+        }
         var world = me.game.world;
         var width = me.game.viewport.width;
         var height = me.game.viewport.height;
-        const clickX = e.gameX - this.pos.x;
-        const clickY = e.gameY - this.pos.y;
-        if (!this.clickableBounds.contains(e.gameX, e.gameY)) {
-            return false
-        }
-        if(!applicationState.isTowerMenu){
-            applicationState.isTowerMenu = true
-            const towerMenu = new TowerMenuContainer(width * 5/6, 0, width / 6, height, this);
-            world.addChild(towerMenu, 100)
+        if(!applicationState.towerMenu){
+            applicationState.towerMenu = new TowerMenuContainer(width * 5/6, 0, width / 6, height, this);
+            world.addChild(applicationState.towerMenu, 100)
+        } else if (applicationState.towerMenu !== this) {
+            world.removeChild(applicationState.towerMenu)
+            applicationState.towerMenu = new TowerMenuContainer(width * 5/6, 0, width / 6, height, this);
+            world.addChild(applicationState.towerMenu, 100)
         } else {
-            if(world.getChildByName('TowerMenu')[0].tower !== this){
-                world.removeChild(world.getChildByName('TowerMenu')[0])
-                const towerMenu = new TowerMenuContainer(width * 5/6, 0, width / 6, height, this);
-                world.addChild(towerMenu, 100)
-                return true
-            }
-            applicationState.isTowerMenu = false
-            const panel = new SideMenuContainer(width * 5/6, 0, width / 6, height);
-            world.addChild(panel, 100)
+            world.removeChild(applicationState.towerMenu)
+            applicationState.towerMenu = null
         }
-        return true
+        return false
     }
 
     upgradeTier() {
@@ -90,7 +84,7 @@ class AllyEntity extends me.Entity {
 
     updateHitbox(){
         this.ancestor.removeChild(this.hitbox);
-        this.hitbox = new HitBoxEntity(this.pos.x, this.pos.y, {width: this.allyRange, height: this.allyRange}, this);
+        this.hitbox = new HitBoxEntity(this.pos.x, this.pos.y+30, {width: this.allyRange, height: this.allyRange}, this);
         me.game.world.addChild(this.hitbox);
     }
 
