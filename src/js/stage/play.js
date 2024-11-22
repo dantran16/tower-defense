@@ -22,8 +22,7 @@ class PlayScreen extends me.Stage {
         applicationState.data.wave = 0;
         applicationState.data.enemies = '';
         applicationState.isPaused = false;
-        applicationState.isTowerMenu = false;
-        applicationState.waveInProgress = false;
+        applicationState.towerMenu = false;
         applicationState.texture = null;
         applicationState.creation = false;
         applicationState.validMatrix = validMatrix
@@ -38,10 +37,6 @@ class PlayScreen extends me.Stage {
         me.game.world.addChild(panel);
         me.game.world.addChild(gameHud);
         
-    }
-
-    onDestroyEvent() {
-        me.audio.stopTrack("play_screen")
     }
 
 };

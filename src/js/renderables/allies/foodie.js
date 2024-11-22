@@ -4,7 +4,7 @@ import HitBoxEntity from './HitBoxEntity.js';
 
 class FoodieEntity extends AllyEntity {
 
-    constructor(x, y, idx, orientation) {
+    constructor(x, y, idx) {
         // call the parent constructor
         super(x, y, {
             image: "foodie", 
@@ -20,7 +20,6 @@ class FoodieEntity extends AllyEntity {
         this.className = 'Foodie'
         // set default stats of foodie unit
         this.indeces = idx
-        this.orientation = orientation
         this.updateAllyStats()
         this.value = this.allyCost;
         this.hitbox = new HitBoxEntity(x, y+25, {width: this.allyRange, height: this.allyRange}, this);

@@ -4,7 +4,7 @@ import HitBoxEntity from './HitBoxEntity.js';
 
 class ChildEntity extends AllyEntity {
 
-    constructor(x, y, idx, orientation) {
+    constructor(x, y, idx) {
         // call the parent constructor
         super(x, y, {
             image: "child", 
@@ -21,8 +21,6 @@ class ChildEntity extends AllyEntity {
         this.className = 'Child'
         // set default stats of child unit
         this.indeces = idx
-        this.orientation = orientation
-        console.log(this.orientation)
         this.updateAllyStats()
         this.value = this.allyCost;
         this.hitbox = new HitBoxEntity(x, y+30, {width: this.allyRange, height: this.allyRange}, this);

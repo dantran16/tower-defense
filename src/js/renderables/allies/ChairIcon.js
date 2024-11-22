@@ -87,8 +87,8 @@ class ChairIcon extends me.Sprite {
     }
 
     validLocation(x, y) {
-        //valid = applicationState.validMatrix
-        if ((applicationState.validMatrix[x][y] == 0) || (applicationState.validMatrix[x][y] > 1)) {;
+        if (applicationState.validMatrix[x][y] == 0) {
+            applicationState.validMatrix[x][y] = -1;
             return true
         }
         return false
@@ -121,24 +121,18 @@ class ChairIcon extends me.Sprite {
 	}
 
     // Creates a new ally based on tower name
-    createAlly(x, y, idx) {
-        var orientation = applicationState.validMatrix[idx.x][idx.y];
-
+    createAlly(x, y, indeces) {
         switch(this.name) {
             case "child":
-                this.ally = new ChildEntity(x, y-30, idx, orientation)
+                this.ally = new ChildEntity(x, y-30, indeces)
                 break;
             case "adult":
-                this.ally = new AdultEntity(x, y-25, idx, orientation)
+                this.ally = new AdultEntity(x, y-25, indeces)
                 break;
             case "foodie":
-                this.ally = new FoodieEntity(x, y-25, idx, orientation)
+                this.ally = new FoodieEntity(x, y-25, indeces)
                 break;
         }
-        // space occupied
-        applicationState.validMatrix[idx.x][idx.y] = -1
-        this.ally.playAnimation()
-
         this.ally.chair = this;
         me.game.world.addChild(this.ally);
     }
