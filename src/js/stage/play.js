@@ -39,6 +39,10 @@ class PlayScreen extends me.Stage {
         
     }
 
+    onDestroyEvent() {
+        me.audio.stopTrack()
+    }
+
 };
 
 export default PlayScreen;
