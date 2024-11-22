@@ -1,6 +1,4 @@
 import * as me from 'melonjs';
-import TowerMenuContainer from '../ui/TowerMenuContainer';
-import SideMenuContainer from '../ui/SideMenuContainer';
 import applicationState from '../../applicationState';
 import HitBoxEntity from './HitBoxEntity';
 
@@ -27,7 +25,7 @@ class AllyEntity extends me.Entity {
         this.sold = false;
         this.value = 0
         this.indeces = null;
-        me.input.registerPointerEvent("pointerdown", this, (e) => this.onClick(e));
+        this.selected = false;
     }
 
     getAllyStats() {
@@ -51,27 +49,6 @@ class AllyEntity extends me.Entity {
         applicationState.validMatrix[this.indeces.x][this.indeces.y] = 0
     }
 
-    onClick(e){
-        if (applicationState.creation) {
-            return true
-        }
-        var world = me.game.world;
-        var width = me.game.viewport.width;
-        var height = me.game.viewport.height;
-        if(!applicationState.towerMenu){
-            applicationState.towerMenu = new TowerMenuContainer(width * 5/6, 0, width / 6, height, this);
-            world.addChild(applicationState.towerMenu, 100)
-        } else if (applicationState.towerMenu !== this) {
-            world.removeChild(applicationState.towerMenu)
-            applicationState.towerMenu = new TowerMenuContainer(width * 5/6, 0, width / 6, height, this);
-            world.addChild(applicationState.towerMenu, 100)
-        } else {
-            world.removeChild(applicationState.towerMenu)
-            applicationState.towerMenu = null
-        }
-        return false
-    }
-
     upgradeTier() {
         if (this.tier < 3 && applicationState.data.currency >= this.upgradeCost) {
             this.value += this.upgradeCost
@@ -85,7 +62,7 @@ class AllyEntity extends me.Entity {
     updateHitbox(){
         this.ancestor.removeChild(this.hitbox);
         this.hitbox = new HitBoxEntity(this.pos.x, this.pos.y+30, {width: this.allyRange, height: this.allyRange}, this);
-        me.game.world.addChild(this.hitbox);
+        me.game.world.addChild(this.hitbox, 5);
     }
 
     onDestroyEvent() {

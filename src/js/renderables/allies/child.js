@@ -1,6 +1,7 @@
 import * as me from 'melonjs';
 import AllyEntity from './ally.js';
 import HitBoxEntity from './HitBoxEntity.js';
+import TowerBounds from './TowerBounds.js';
 
 class ChildEntity extends AllyEntity {
 
@@ -13,16 +14,22 @@ class ChildEntity extends AllyEntity {
         });
         
         // // right idle animation
-        // this.renderable.addAnimation("right_sit", [24,25,26,27,28,29]);
-        // this.renderable.setCurrentAnimation("right_sit");
+        this.renderable.addAnimation("right_sit", [24,25,26,27,28,29]);
+        this.renderable.setCurrentAnimation("right_sit");
         
         this.className = 'Child'
         // set default stats of child unit
         this.indeces = idx
         this.updateAllyStats()
         this.value = this.allyCost;
+        
+        // Create hitbox
         this.hitbox = new HitBoxEntity(x, y+30, {width: this.allyRange, height: this.allyRange}, this);
-        me.game.world.addChild(this.hitbox);
+        me.game.world.addChild(this.hitbox, 5);
+
+        // Create bounds for onclick method
+        this.bounding = new TowerBounds(x, y, {width: 32, height: 32}, this)
+        me.game.world.addChild(this.bounding)
     }
 
     updateAllyStats() {
