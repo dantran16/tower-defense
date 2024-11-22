@@ -12,18 +12,12 @@ class AllyTasks {
         if (applicationState.data.currency >= towerCost[name]) {
             applicationState.data.currency -= towerCost[name];
             let seat = new ChairIcon(x, y, name);
-            me.game.world.addChild(seat);
+            me.game.world.addChild(seat, 6);
             return true;
         }
         else {
             return false;
         }
-    }
-    
-    destroyAlly() {
-        // me.game.world.removeChild(mainObject);
-        // make sure currency increases using ally class methods
-        return True
     }
 
 }
