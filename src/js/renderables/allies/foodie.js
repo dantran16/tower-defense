@@ -67,26 +67,6 @@ class FoodieEntity extends AllyEntity {
 
         console.log(this.orientation)
     }
-
-    // createSprite() {
-    //     this.spriteImage = me.loader.getImage("foodie")
-    //     this.sprite = new me.Sprite(this.pos.x + 25, this.pos.y - 5, {
-    //         image: this.spriteImage,
-    //         framewidth: 32,
-    //         frameheight:64
-    //     })
-    //     this.sprite.addAnimation("left_sit", [6,7,8,9,10,11]);
-    //     this.sprite.addAnimation("right_sit", [0,1,2,3,4,5]);
-    //     if (this.orientation == 2) {
-    //         this.sprite.setCurrentAnimation("right_sit")
-    //         console.log('testing right')
-    //     }
-    //     else if (this.orientation == 3) {
-    //         this.sprite.setCurrentAnimation("left_sit"); 
-    //         console.log('testing left')
-    //     }
-    //     console.log('testing')
-    // }
 };
 
 export default FoodieEntity;
