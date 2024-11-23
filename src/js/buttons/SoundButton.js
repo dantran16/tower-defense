@@ -1,5 +1,6 @@
 import * as me from "melonjs";
 import { params } from "../params";
+import applicationState from "../applicationState";
 
 class SoundButton extends me.UITextButton {
     constructor(x,y) {
@@ -17,7 +18,14 @@ class SoundButton extends me.UITextButton {
     
     // TODO: figure out how to unpause soundtrack
     onClick(){
-        me.audio.pauseTrack()
+        if (!applicationState.pauseMusic) {
+            me.audio.pauseTrack();
+            applicationState.pauseMusic = true
+        }
+        else {
+            me.audio.resumeTrack()
+            applicationState.pauseMusic = false
+        }
     }
 }
 

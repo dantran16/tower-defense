@@ -20,6 +20,7 @@ const applicationState = {
         activeEnemies:0,
     },
     isPaused: false,
+    pauseMusic: false,
     towerMenu: null,
     texture : null,  // a reference to the texture atlas
     enemyTasks: enemyTasks,
