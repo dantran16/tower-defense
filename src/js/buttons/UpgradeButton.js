@@ -1,7 +1,4 @@
 import * as me from "melonjs";
-import { params } from "../params";
-import applicationState from "../applicationState";
-import SideMenuContainer from "../renderables/ui/SideMenuContainer";
 
 class UpgradeButton extends me.UITextButton {
     constructor(x,y, tower) {
@@ -22,6 +19,7 @@ class UpgradeButton extends me.UITextButton {
 
     onClick(){
         this.tower.upgradeTier()
+        return false;
     }
 }
 
