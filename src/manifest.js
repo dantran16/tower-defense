@@ -78,6 +78,11 @@ const DataManifest = [
         type: "image",
         src: "./data/img/allies/foodie-0.png"
     },
+    {
+        name: "ui-background",
+        type: "image",
+        src: "./data/img/ui/Headless.svg"
+    },
 
     // {
     //     name: "map_assets",

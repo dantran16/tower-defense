@@ -34,7 +34,6 @@ class TowerBounds extends me.Entity {
             applicationState.towerMenu = new TowerMenuContainer(width * 5/6, 0, width / 6, height, this.parent);
             world.addChild(applicationState.towerMenu, 100)
         } else if (applicationState.towerMenu !== this.parent) {
-            applicationState.towerMenu.selected = false
             this.parent.selected = true;
             world.removeChild(applicationState.towerMenu)
             applicationState.towerMenu = new TowerMenuContainer(width * 5/6, 0, width / 6, height, this.parent);
