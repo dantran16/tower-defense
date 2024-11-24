@@ -6,7 +6,7 @@ import applicationState from '../../applicationState.js';
 
 class EnemyTasks {
     constructor() {
-        this.spawnInterval = 1000; // Milliseconds between spawns
+        this.spawnInterval = 100; // Milliseconds between spawns
         this.waves = [
             // Level 1 (Waves 1–10)
             { enemies: [{ type: 'Sushi', quantity: 10 }] }, // Wave 1
@@ -47,7 +47,7 @@ class EnemyTasks {
         
         //Test Code for waves or its too long to run the whole level.
     // this.waves = [
-    // { enemies: [{ type: 'Sushi', quantity: 0 }] },
+    // { enemies: [{ type: 'Coffee', quantity: 100 }] },
     // { enemies: [{ type: 'RedVelvet', quantity: 0 }] },
     // { enemies: [{ type: 'Coffee', quantity: 0 }] },
     // { enemies: [{ type: 'Sushi', quantity: 0 }] },
@@ -76,7 +76,7 @@ class EnemyTasks {
     // { enemies: [{ type: 'Sushi', quantity: 0 }] },
     // { enemies: [{ type: 'RedVelvet', quantity: 0 }] },
     // { enemies: [{ type: 'Coffee', quantity: 0 }] },
-    // { enemies: [{ type: 'RedVelvet', quantity: 10 }] },
+    // { enemies: [{ type: 'RedVelvet', quantity: 0 }] },
     
     //   ];
         this.currentWave = 0;
@@ -135,8 +135,15 @@ class EnemyTasks {
             return;
         }
 
+        if (applicationState.data.playerHealth <= 0) {
+            clearInterval(this.waveInterval);
+        }
+
+        else{
         me.game.world.addChild(enemy);
-        //this.activeEnemies.push(enemy);
+        }
     }
+
+    
 }
 export default EnemyTasks;
