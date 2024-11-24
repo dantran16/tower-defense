@@ -28,7 +28,7 @@ class TowerButton extends me.UIBaseElement {
 
     // Creates an ally unit on click
     onClick() {
-        if (!applicationState.creation) {
+        if (!applicationState.creation && applicationState.towerMenu == null) {
             this.tasks.createChair((me.game.viewport.width * 5 / 6) + this.pos.x, this.pos.y, this.name);
         }
     }
