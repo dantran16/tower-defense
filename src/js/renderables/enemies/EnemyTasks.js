@@ -6,7 +6,7 @@ import applicationState from '../../applicationState.js';
 
 class EnemyTasks {
     constructor() {
-        this.spawnInterval = 100; // Milliseconds between spawns
+        this.spawnInterval = 500; // Milliseconds between spawns
         this.waves = [
             // Level 1 (Waves 1–10)
             { enemies: [{ type: 'Sushi', quantity: 10 }] }, // Wave 1
