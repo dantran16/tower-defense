@@ -3,7 +3,7 @@ import vitePluginFaviconsInject from "vite-plugin-favicons-inject";
 import { viteStaticCopy } from "vite-plugin-static-copy";
 
 export default defineConfig({
-  base: "",
+  base: "/tower-defense/",
   build: {
     assetsDir: "assets",
     emptyOutDir: true,
