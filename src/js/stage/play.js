@@ -22,7 +22,7 @@ class PlayScreen extends me.Stage {
         applicationState.data.wave = 0;
         applicationState.data.enemies = '';
         applicationState.isPaused = false;
-        applicationState.towerMenu = false;
+        applicationState.towerMenu = null;
         applicationState.texture = null;
         applicationState.creation = false;
         applicationState.validMatrix = validMatrix

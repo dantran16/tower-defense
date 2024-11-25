@@ -3,7 +3,7 @@ import SellButton from '../../buttons/SellButton';
 import UpgradeButton from '../../buttons/UpgradeButton';
 
 // a Panel type container
-class TowerMenuContainer extends me.UIBaseElement {
+class TowerMenuContainer extends me.Container {
     constructor(x, y, width, height, tower) {
         // call the constructor
         super(x, y, width, height);
@@ -12,6 +12,7 @@ class TowerMenuContainer extends me.UIBaseElement {
 
         this.name = "TowerMenu";
         this.tower = tower
+        this.floating = true
 
         // [0, 0] as origin
         this.anchorPoint.set(0, 0);
@@ -30,9 +31,10 @@ class TowerMenuContainer extends me.UIBaseElement {
         })
 
         this.towerTier = tower.tier
-        this.sellButton = new SellButton(this.width / 6, this.height / 6, tower)
-        this.upgradeButton = new UpgradeButton(this.width / 6, this.height / 3, tower)
-
+        this.sellButton = new SellButton(this.width / 6 - 15, this.height / 6, tower)
+        this.upgradeButton = new UpgradeButton(this.width / 6 - 15, this.height / 3, tower)
+        this.background = new me.Sprite(this.width / 12 + 75, 365, { image: me.loader.getImage("ui-background") })
+        this.addChild(this.background)
         this.addChild(this.towerText)
         this.addChild(this.sellButton)
         this.addChild(this.upgradeButton)

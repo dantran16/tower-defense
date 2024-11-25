@@ -63,7 +63,7 @@ class AllyEntity extends me.Entity {
     }
 
     updateHitbox(){
-        this.ancestor.removeChild(this.hitbox);
+        me.game.world.removeChild(this.hitbox);
         this.hitbox = new HitBoxEntity(this.pos.x, this.pos.y+30, {width: this.allyRange, height: this.allyRange}, this);
         me.game.world.addChild(this.hitbox, 5);
     }
