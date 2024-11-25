@@ -11,7 +11,7 @@ class SoundButton extends me.UITextButton {
             hoverColor: '#00ff00ff',
             textAlign: 'center',
             size: params.soundButton.size,
-            borderHeight: params.soundButton.borderSize,
+            borderHeight: params.soundButton.borderSize / 1.3,
             borderWidth: params.soundButton.borderSize * 2
         });
     }
