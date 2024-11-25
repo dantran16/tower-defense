@@ -5,7 +5,7 @@ import TowerBounds from './TowerBounds.js';
 
 class FoodieEntity extends AllyEntity {
 
-    constructor(x, y, idx) {
+    constructor(x, y, idx, orientation) {
         // call the parent constructor
         super(x, y, {
             image: "foodie", 
@@ -13,17 +13,17 @@ class FoodieEntity extends AllyEntity {
             height: 64,
 
         });
-        // right idle animation
-        this.renderable.addAnimation("right_sit", [0,1,2,3,4,5]);
-        this.renderable.setCurrentAnimation("right_sit");
-
-        // facing left
-        // this.renderable.addAnimation("left_sit_animation", [6,7,8,9,10,11]);
-        // this.renderable.setCurrentAnimation("left_sit_animation");
+        
+        // // initialize idle animations
+        this.renderable.addAnimation("right_sit", [224,225,226,227,228,229]);
+        this.renderable.addAnimation("left_sit", [230,231,232,233,234,235]);
+        this.renderable.addAnimation("front", [74,75,76,77,78,79]);
+        this.renderable.addAnimation("back", [62,63,64,65,66,67]);
 
         this.className = 'Foodie'
         // set default stats of foodie unit
         this.indeces = idx
+        this.orientation = orientation
         this.updateAllyStats()
         this.value = this.allyCost;
 
@@ -61,22 +61,30 @@ class FoodieEntity extends AllyEntity {
         }
     }
 
+    upgradeTier() {
+        // Increments this.tier value up until 3
+        if (this.tier < 3) {
+            this.tier++
+            this.updateAllyStats()
+            this.hitbox.updateHitbox(this.allyRange)
+        }
+    }
+
+    // tower orientation depenedent on direction matrix values
     playAnimation() {
-        if (this.orientation == 2) {
+        if (this.orientation == 1) {
             this.renderable.setCurrentAnimation("right_sit");            
         }
-        else if (this.orientation == 3) {
+        else if (this.orientation == 2) {
             this.renderable.setCurrentAnimation("left_sit");         
         }
-        // else if (this.orientation == 4) {
-        //     this.renderable.setCurrentAnimation("front")          
-        // }
-        // else {
-        //     this.renderable.setCurrentAnimation("back")    
-        // }
-
-        console.log(this.orientation)
-    }
+        else if (this.orientation == 3) {
+            this.renderable.setCurrentAnimation("front")          
+        }
+        else {
+            this.renderable.setCurrentAnimation("back")    
+        }
+    } 
 };
 
 export default FoodieEntity;

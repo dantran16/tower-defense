@@ -76,7 +76,7 @@ const DataManifest = [
     {
         name: "foodie",
         type: "image",
-        src: "./data/img/allies/foodie-0.png"
+        src: "./data/img/allies/foodie.png"
     },
 
     {
