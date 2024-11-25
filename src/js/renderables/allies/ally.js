@@ -26,6 +26,9 @@ class AllyEntity extends me.Entity {
         this.value = 0
         this.indeces = null;
         this.selected = false;
+        
+        // play sound cue any time an ally is created
+        me.audio.play("place-chair")
     }
 
     getAllyStats() {

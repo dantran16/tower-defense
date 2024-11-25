@@ -50,8 +50,8 @@ class TowerMenuContainer extends me.Container {
             // Update the button values (Text on buttons cannot be edited once made)
             this.removeChild(this.sellButton)
             this.removeChild(this.upgradeButton)
-            this.sellButton = new SellButton(this.width / 6, this.height / 6, this.tower)
-            this.upgradeButton = new UpgradeButton(this.width / 6, this.height / 3, this.tower)
+            this.sellButton = new SellButton(this.width / 6 - 15, this.height / 6, this.tower)
+            this.upgradeButton = new UpgradeButton(this.width / 6 - 15, this.height / 3, this.tower)
             this.addChild(this.sellButton)
             this.addChild(this.upgradeButton)
 

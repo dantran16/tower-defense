@@ -1,4 +1,5 @@
 // responsible for starting the wave
+import * as me from 'melonjs';
 import { UITextButton, state } from "melonjs";
 import { params } from "../params";
 import EnemyTasks from "../renderables/enemies/EnemyTasks";
@@ -28,7 +29,8 @@ class WaveButton extends UITextButton {
         };
 
         if (applicationState.data.enemies == 0) {
-            this.newWave.startWave()     
+            this.newWave.startWave()
+            me.audio.play("wave-start")     
         };
         
     }

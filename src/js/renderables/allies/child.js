@@ -5,7 +5,7 @@ import TowerBounds from './TowerBounds.js';
 
 class ChildEntity extends AllyEntity {
 
-    constructor(x, y, idx) {
+    constructor(x, y, idx, orientation) {
         // call the parent constructor
         super(x, y, {
             image: "child", 
@@ -13,13 +13,18 @@ class ChildEntity extends AllyEntity {
             height: 64
         });
         
-        // // right idle animation
+        // // initialize idle animations
         this.renderable.addAnimation("right_sit", [24,25,26,27,28,29]);
+        this.renderable.addAnimation("left_sit", [36,37,38,39,40,41]);
+        this.renderable.addAnimation("front", [42,43,44,45,46,47]);
+        this.renderable.addAnimation("back", [30,31,32,33,34,35]);
+        // right idle animation
         this.renderable.setCurrentAnimation("right_sit");
         
         this.className = 'Child'
         // set default stats of child unit
         this.indeces = idx
+        this.orientation = orientation
         this.updateAllyStats()
         this.value = this.allyCost;
         
@@ -56,6 +61,32 @@ class ChildEntity extends AllyEntity {
             this.allyRange = 1.2
         }
     }
+
+    upgradeTier() {
+        // Increments this.tier value up until 3
+        if (this.tier < 3) {
+            this.tier++
+            this.updateAllyStats()
+            this.hitbox.updateHitbox(this.allyRange)
+        }
+    }
+
+    // tower orientation depenedent on direction matrix values
+    playAnimation() {
+        if (this.orientation == 1) {
+            this.renderable.setCurrentAnimation("right_sit");            
+        }
+        else if (this.orientation == 2) {
+            this.renderable.setCurrentAnimation("left_sit");         
+        }
+        else if (this.orientation == 3) {
+            this.renderable.setCurrentAnimation("front")          
+        }
+        else {
+            this.renderable.setCurrentAnimation("back")    
+        }
+    } 
+
 };
 
 export default ChildEntity;

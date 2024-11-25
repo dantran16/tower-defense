@@ -3,6 +3,7 @@ import ChildEntity from './child.js';
 import AdultEntity from './adult.js';
 import FoodieEntity from './foodie.js';
 import applicationState from "../../applicationState.js";
+import directionMatrix from "../../directionMatrix.js";
 
 class ChairIcon extends me.Sprite {
 
@@ -122,19 +123,23 @@ class ChairIcon extends me.Sprite {
 
     // Creates a new ally based on tower name
     createAlly(x, y, indeces) {
+        var orientation = directionMatrix[indeces.x][indeces.y]
+        
         switch(this.name) {
             case "child":
-                this.ally = new ChildEntity(x, y-30, indeces)
+                this.ally = new ChildEntity(x, y-30, indeces, orientation)
                 break;
             case "adult":
-                this.ally = new AdultEntity(x, y-25, indeces)
+                this.ally = new AdultEntity(x, y-25, indeces, orientation)
                 break;
             case "foodie":
-                this.ally = new FoodieEntity(x, y-25, indeces)
+                this.ally = new FoodieEntity(x, y-25, indeces, orientation)
                 break;
         }
+        
         this.ally.chair = this;
         me.game.world.addChild(this.ally, 7 + indeces.x);
+        this.ally.playAnimation();
     }
 };
 

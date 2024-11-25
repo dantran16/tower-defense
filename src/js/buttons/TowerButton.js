@@ -46,15 +46,15 @@ class TowerButton extends me.UIBaseElement {
             frameheight: 64
         })
         if(name == 'child'){
-            this.sprite.addAnimation("right_sit", [24,25,26,27,28,29]);
-            this.sprite.setCurrentAnimation("right_sit");
+            this.sprite.addAnimation("front", [42,43,44,45,46,47]);
+            this.sprite.setCurrentAnimation("front");
         } else if(name =='adult'){
-            this.sprite.addAnimation("right_sit", [0,1,2,3,4,5]);
-            this.sprite.setCurrentAnimation("right_sit");
+            this.sprite.addAnimation("front", [74,75,76,77,78,79]);
+            this.sprite.setCurrentAnimation("front");
         } 
         else if(name == 'foodie'){
-            this.sprite.addAnimation("right_sit", [0,1,2,3,4,5]);
-            this.sprite.setCurrentAnimation("right_sit");
+            this.sprite.addAnimation("front", [74,75,76,77,78,79]);
+            this.sprite.setCurrentAnimation("front");
         }
     }
 };

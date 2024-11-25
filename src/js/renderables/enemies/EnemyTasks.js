@@ -106,7 +106,8 @@ class EnemyTasks {
             if (enemiesSpawned < enemyConfig.quantity) {
                 this.spawnEnemy(enemyConfig.type);
                 enemiesSpawned++;
-            } else {
+                applicationState.data.activeEnemies = enemiesSpawned;
+            } else if (applicationState.data.activeEnemies == 0) {
                 // Move to the next enemy type in the wave
                 enemyIndex++;
                 enemiesSpawned = 0; // Reset counter for the new enemy type
