@@ -24,10 +24,10 @@ class TitleScreen extends Stage {
             lineHeight: 4,
             textBaseline : "middle",
             textAlign : "center",
-            text : "Gather enough customers to eat \n the food before you go bankrupt!"
+            text : "Gather enough customers to eat \n the food before you go bankrupt!\n\nDisclaimer: Please turn off hardware acceleration \nto play this game."
         }));
 
-        game.world.addChild(new PlayButton(game.viewport.width / 2 - params.playButton.borderSize, game.viewport.height * 3 / 5));
+        game.world.addChild(new PlayButton(game.viewport.width / 2 - params.playButton.borderSize, game.viewport.height * 4 / 5));
     }
 
     /**

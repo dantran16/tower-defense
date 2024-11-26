@@ -25,6 +25,6 @@ export const params = {
     towerCost: {
         child: 50,
         adult: 100,
-        foodie: 100
+        foodie: 200
     }
 }

@@ -11,40 +11,40 @@ class EnemyTasks {
         this.spawnInterval = 500; // Milliseconds between spawns
         this.waves = [
             // Level 1 (Waves 1–10)
-            { enemies: [{ type: 'Sushi', quantity: 10, lane: 1 }] }, // Wave 1
-            { enemies: [{ type: 'Sushi', quantity: 10, lane: 1 }] }, // Wave 2
-            { enemies: [{ type: 'Sushi', quantity: 10, lane: 1 }, { type: 'RedVelvet', quantity: 1, lane: 1 }] }, // Wave 3
-            { enemies: [{ type: 'Sushi', quantity: 5, lane: 1 }, { type: 'RedVelvet', quantity: 5, lane: 1 }] }, // Wave 4
-            { enemies: [{ type: 'Sushi', quantity: 5, lane: 1 }, { type: 'RedVelvet', quantity: 5, lane: 1 }] }, // Wave 5
-            { enemies: [{ type: 'Sushi', quantity: 5, lane: 1 }, { type: 'RedVelvet', quantity: 5, lane: 1 }] }, // Wave 6
-            { enemies: [{ type: 'Sushi', quantity: 10, lane: 1 }, { type: 'RedVelvet', quantity: 10, lane: 1 }] }, // Wave 7
-            { enemies: [{ type: 'RedVelvet', quantity: 5, lane: 1 }, { type: 'Coffee', quantity: 1, lane: 1 }] }, // Wave 8
-            { enemies: [{ type: 'RedVelvet', quantity: 5, lane: 1 }, { type: 'Coffee', quantity: 5, lane: 1 }] }, // Wave 9
-            { enemies: [{ type: 'RedVelvet', quantity: 10, lane: 1 }, { type: 'Coffee', quantity: 10, lane: 1 }] }, // Wave 10
+            { enemies: [{ type: 'Sushi', quantity: 10}] }, // Wave 1
+            { enemies: [{ type: 'Sushi', quantity: 10}] }, // Wave 2
+            { enemies: [{ type: 'Sushi', quantity: 10}, { type: 'RedVelvet', quantity: 1}] }, // Wave 3
+            { enemies: [{ type: 'Sushi', quantity: 5}, { type: 'RedVelvet', quantity: 5}] }, // Wave 4
+            { enemies: [{ type: 'Sushi', quantity: 5}, { type: 'RedVelvet', quantity: 5}] }, // Wave 5
+            { enemies: [{ type: 'Sushi', quantity: 5}, { type: 'RedVelvet', quantity: 5}] }, // Wave 6
+            { enemies: [{ type: 'Sushi', quantity: 10}, { type: 'RedVelvet', quantity: 10}] }, // Wave 7
+            { enemies: [{ type: 'RedVelvet', quantity: 5}, { type: 'Coffee', quantity: 1}] }, // Wave 8
+            { enemies: [{ type: 'RedVelvet', quantity: 5}, { type: 'Coffee', quantity: 5}] }, // Wave 9
+            { enemies: [{ type: 'RedVelvet', quantity: 10}, { type: 'Coffee', quantity: 10}] }, // Wave 10
         
             // Level 2 (Waves 11–20)
-            { enemies: [{ type: 'RedVelvet', quantity: 10, lane: 1 }] }, // Wave 1
-            { enemies: [{ type: 'RedVelvet', quantity: 10, lane: 1 }] }, // Wave 2
-            { enemies: [{ type: 'RedVelvet', quantity: 10, lane: 1 }, { type: 'Coffee', quantity: 1, lane: 1 }] }, // Wave 3
-            { enemies: [{ type: 'RedVelvet', quantity: 5, lane: 1 }, { type: 'Coffee', quantity: 5, lane: 1 }] }, // Wave 4
-            { enemies: [{ type: 'RedVelvet', quantity: 5, lane: 1 }, { type: 'Coffee', quantity: 5, lane: 1 }] }, // Wave 5
-            { enemies: [{ type: 'RedVelvet', quantity: 5, lane: 1 }, { type: 'Coffee', quantity: 5, lane: 1 }] }, // Wave 6
-            { enemies: [{ type: 'RedVelvet', quantity: 10, lane: 1 }, { type: 'Coffee', quantity: 10, lane: 1 }] }, // Wave 7
-            { enemies: [{ type: 'Coffee', quantity: 5, lane: 1 }, { type: 'Item1', quantity: 1, lane: 1 }] }, // Wave 8
-            { enemies: [{ type: 'Coffee', quantity: 5, lane: 1 }, { type: 'Item1', quantity: 5, lane: 1 }] }, // Wave 9
-            { enemies: [{ type: 'Coffee', quantity: 10, lane: 1 }, { type: 'Item1', quantity: 10, lane: 1 }] }, // Wave 10      
+            { enemies: [{ type: 'RedVelvet', quantity: 10}] }, // Wave 1
+            { enemies: [{ type: 'RedVelvet', quantity: 10}] }, // Wave 2
+            { enemies: [{ type: 'RedVelvet', quantity: 10}, { type: 'Coffee', quantity: 1}] }, // Wave 3
+            { enemies: [{ type: 'RedVelvet', quantity: 5}, { type: 'Coffee', quantity: 5}] }, // Wave 4
+            { enemies: [{ type: 'RedVelvet', quantity: 5 }, { type: 'Coffee', quantity: 5}] }, // Wave 5
+            { enemies: [{ type: 'RedVelvet', quantity: 5}, { type: 'Coffee', quantity: 5}] }, // Wave 6
+            { enemies: [{ type: 'RedVelvet', quantity: 10}, { type: 'Coffee', quantity: 10}] }, // Wave 7
+            { enemies: [{ type: 'Coffee', quantity: 5}, { type: 'Item1', quantity: 1}] }, // Wave 8
+            { enemies: [{ type: 'Coffee', quantity: 5}, { type: 'Item1', quantity: 5}] }, // Wave 9
+            { enemies: [{ type: 'Coffee', quantity: 10}, { type: 'Item1', quantity: 10}] }, // Wave 10      
             
             // Level 3 (Waves 21–30)
-            { enemies: [{ type: 'Coffee', quantity: 10, lane: 1 }] }, // Wave 1
-            { enemies: [{ type: 'Coffee', quantity: 10, lane: 1 }] }, // Wave 2
-            { enemies: [{ type: 'Coffee', quantity: 10, lane: 1 }, { type: 'Item1', quantity: 10, lane: 1 }] }, // Wave 3
-            { enemies: [{ type: 'Coffee', quantity: 5, lane: 1 }, { type: 'Item1', quantity: 5, lane: 1 }] }, // Wave 4
-            { enemies: [{ type: 'Coffee', quantity: 5, lane: 1 }, { type: 'Item1', quantity: 5, lane: 1 }] }, // Wave 5
-            { enemies: [{ type: 'Coffee', quantity: 5, lane: 1 }, { type: 'Item1', quantity: 5, lane: 1 }] }, // Wave 6
-            { enemies: [{ type: 'Coffee', quantity: 10, lane: 1 }, { type: 'Item1', quantity: 10, lane: 1 }] }, // Wave 7
-            { enemies: [{ type: 'Item1', quantity: 5, lane: 1 }, { type: 'Item2', quantity: 1, lane: 1 }] }, // Wave 8
-            { enemies: [{ type: 'Item1', quantity: 5, lane: 1 }, { type: 'Item2', quantity: 5, lane: 1 }] }, // Wave 9
-            { enemies: [{ type: 'Item1', quantity: 10, lane: 1 }, { type: 'Item2', quantity: 10, lane: 1 }] }, // Wave 10     
+            { enemies: [{ type: 'Coffee', quantity: 10}] }, // Wave 1
+            { enemies: [{ type: 'Coffee', quantity: 10}] }, // Wave 2
+            { enemies: [{ type: 'Coffee', quantity: 10}, { type: 'Item1', quantity: 10}] }, // Wave 3
+            { enemies: [{ type: 'Coffee', quantity: 5}, { type: 'Item1', quantity: 5}] }, // Wave 4
+            { enemies: [{ type: 'Coffee', quantity: 5}, { type: 'Item1', quantity: 5}] }, // Wave 5
+            { enemies: [{ type: 'Coffee', quantity: 5}, { type: 'Item1', quantity: 5}] }, // Wave 6
+            { enemies: [{ type: 'Coffee', quantity: 10}, { type: 'Item1', quantity: 10}] }, // Wave 7
+            { enemies: [{ type: 'Item1', quantity: 5}, { type: 'Item2', quantity: 1}] }, // Wave 8
+            { enemies: [{ type: 'Item1', quantity: 5}, { type: 'Item2', quantity: 5}] }, // Wave 9
+            { enemies: [{ type: 'Item1', quantity: 10}, { type: 'Item2', quantity: 10}] }, // Wave 10     
             ]
             this.currentWave = 0;
     }
@@ -69,9 +69,10 @@ class EnemyTasks {
 
         this.waveInterval = setInterval(() => {
             const enemyConfig = wave.enemies[enemyIndex];
+            const lane = Math.floor(Math.random() * 3)
             
             if (enemiesSpawned < enemyConfig.quantity) {
-                this.spawnEnemy(enemyConfig.type, enemyConfig.lane);
+                this.spawnEnemy(enemyConfig.type, lane);
                 enemiesSpawned++;
                 applicationState.data.activeEnemies = enemiesSpawned;
             } else {
@@ -84,7 +85,7 @@ class EnemyTasks {
                     this.currentWave++;
                 }
             }
-
+        
 
 
         }, this.spawnInterval);
