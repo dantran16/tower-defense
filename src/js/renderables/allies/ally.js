@@ -15,6 +15,7 @@ class AllyEntity extends me.Entity {
         // set hitbox
         this.hitbox = null;
         this.chair = null;
+        this.center = 25
 
         // set default stats of ally unit
         this.tier = 1;

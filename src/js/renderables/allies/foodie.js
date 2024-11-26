@@ -26,7 +26,6 @@ class FoodieEntity extends AllyEntity {
         this.orientation = orientation
         this.updateAllyStats()
         this.value = this.allyCost;
-        this.center = 25
 
         // Create hitbox
         this.hitbox = new HitBoxEntity(x, y + this.center, {width: this.allyRange, height: this.allyRange}, this);
@@ -41,24 +40,24 @@ class FoodieEntity extends AllyEntity {
         // Update ally statistics based on this.tier value
         if (this.tier == 1) {
             this.allyCost = 200;
-            this.upgradeCost = 150;
-            this.allyATK = 30;
-            this.allyASPD = 1.75;
-            this.allyRange = 1.3;
+            this.upgradeCost = 300;
+            this.allyATK = 20;
+            this.allyASPD = 1;
+            this.allyRange = 2;
         }
         else if (this.tier == 2) {
-            this.allyCost = 400;
-            this.upgradeCost = 200;
-            this.allyATK = 50;
-            this.allyASPD = 2;
-            this.allyRange = 1.4
+            this.allyCost = 300;
+            this.upgradeCost = 400;
+            this.allyATK = 20;
+            this.allyASPD = 1.5;
+            this.allyRange = 2.5
         }
         else if (this.tier == 3) {
-            this.allyCost = 600;
-            this.upgradeCost = 0
-            this.allyATK = 80;
-            this.allyASPD = 2.5;
-            this.allyRange = 1.5
+            this.allyCost = 400;
+            this.upgradeCost = 0;
+            this.allyATK = 25;
+            this.allyASPD = 2;
+            this.allyRange = 3
         }
     }
 

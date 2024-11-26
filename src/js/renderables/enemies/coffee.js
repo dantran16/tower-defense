@@ -4,9 +4,10 @@ class Coffee extends Enemy{
     constructor(x, y, lane){
         // Properties for Coffee
         super(x, y, {image: "coffee", width: 16, height: 16}, lane);
-        this.health = 100;
-        this.speed = 4;
-        this.reward = 100;
+        this.health = 80;
+        this.speed = 2;
+        this.reward = 50;
+        this.penalty = 35;
         // Set the velocity for movement
         this.body.setMaxVelocity(0, 0); // Movement speed in x and y directions
         this.changeX = -this.speed * 2
@@ -16,4 +17,3 @@ class Coffee extends Enemy{
 }
 
 export default Coffee;
-//TODO Possibly add element/type

@@ -23,24 +23,24 @@ class GameHUD extends me.UIBaseElement {
         this.wave = applicationState.data.wave
         this.enemy = applicationState.data.enemies
         this.level = applicationState.data.level
-        this.coin = new GoldCoin(this.width * 21 / 24 + this.calculateGoinCoinOffset(), this.height / 12 + 9);
+        this.coin = new GoldCoin(this.width * 21 / 24 + this.calculateGoinCoinOffset(), this.height / 24 + 9);
         this.currencyText = applicationState.data.currency    
 
         this.addChild(new WaveButton(this.width / 0.98, this.height / 15))
         this.addChild(new PauseButton(this.width / 0.9, this.height / 15))
         this.addChild(new SoundButton(this.width / 0.91, this.height / 10))
 
-        this.lives = new me.Text(this.width * 22 / 24, this.height / 24, {
+        this.lives = new me.Text(this.width * 22 / 24, this.height / 12, {
             font: "PressStart2P",
             size: 20,
             fillStyle: "white",
             textAlign: "right",
             textBaseline: "top",
             bold: true,
-            text: `Lives: ${applicationState.data.playerHealth}`
+            text: `Today's Losses: -${applicationState.data.playerHealth}`
         })
 
-        this.currency = new me.Text(this.width * 22 / 24, this.height / 12, {
+        this.currency = new me.Text(this.width * 22 / 24, this.height / 24, {
             font: "PressStart2P",
             size: 20,
             fillStyle: "white",
@@ -50,27 +50,17 @@ class GameHUD extends me.UIBaseElement {
             text: `${applicationState.data.currency}`
         })
 
-        this.waves = new me.Text(this.width / 24, this.height / 24, {
+        this.waves = new me.Text(this.width / 24, this.height / 12, {
             font: "PressStart2P",
             size: 20,
             fillStyle: "white",
             textAlign: "left",
             textBaseline: "top",
             bold: true,
-            text: `Wave:`
+            text: `Day 0 - 0 Plates Left`
         })
 
-        this.enemies = new me.Text(this.width / 24, this.height / 12, {
-            font: "PressStart2P",
-            size: 20,
-            fillStyle: "white",
-            textAlign: "left",
-            textBaseline: "top",
-            bold: true,
-            text: `Enemies Left: ${applicationState.data.enemies}`
-        })
-
-        this.levels = new me.Text(this.width / 24, this.height / 8, {
+        this.levels = new me.Text(this.width / 24, this.height / 24, {
             font: "PressStart2P",
             size: 20,
             fillStyle: "white",
@@ -81,7 +71,7 @@ class GameHUD extends me.UIBaseElement {
         })
         this.addChild(this.lives);
         this.addChild(this.waves);
-        this.addChild(this.enemies);
+        // this.addChild(this.enemies);
         this.addChild(this.coin);
         this.addChild(this.currency);
         this.addChild(this.levels);
@@ -89,47 +79,49 @@ class GameHUD extends me.UIBaseElement {
 
     update(dt) {
         this.isDirty = false
+        // Update Losses for the Day
         if (this.life !== applicationState.data.playerHealth) {
             this.life = applicationState.data.playerHealth;
-            this.lives.setText(`Lives: ${applicationState.data.playerHealth}`);
+            this.lives.setText(`Today's Losses: -${applicationState.data.playerHealth}`);
             this.isDirty = true;
-            // Display game over screen if player health reaches 0
-            if (applicationState.data.playerHealth <= 0) {
+        }
+        // Update current earnings
+        if (this.currencyText !== applicationState.data.currency) {
+            if (applicationState.data.currency < 0) {
                 state.change(state.GAMEOVER);
             }
-        }
-        if (this.currencyText !== applicationState.data.currency) {
             this.currencyText = applicationState.data.currency;
             this.currency.setText(`${applicationState.data.currency}`);
             this.removeChild(this.coin);
             let offset = this.calculateGoinCoinOffset()
-            this.coin = new GoldCoin(this.width * 21 / 24 + offset, this.height / 12 + 9);
+            this.coin = new GoldCoin(this.width * 21 / 24 + offset, this.height / 24 + 9);
             this.addChild(this.coin)
             this.isDirty = true;
-        }
-        if (this.wave !== applicationState.data.wave) {
-            this.wave = applicationState.data.wave;
-            this.waves.setText(`Wave: ${applicationState.data.wave}`);
-            this.isDirty = true;
-        }
 
-        if (this.enemy !== applicationState.data.enemies) {
+        }
+        // Check if player is bankrupt
+        if (this.wave !== applicationState.data.wave) {
+            applicationState.data.currency -= applicationState.data.playerHealth
+            applicationState.data.playerHealth = 0
+        }
+        // Update day and existing enemy count
+        if (this.wave !== applicationState.data.wave || this.enemy !== applicationState.data.enemies) {
+            this.wave = applicationState.data.wave;
             this.enemy = applicationState.data.enemies;
-            this.enemies.setText(`Enemies Left: ${applicationState.data.enemies}`);
+            this.waves.setText(`Day ${applicationState.data.wave} - ${applicationState.data.enemies} Plates Left`);
             this.isDirty = true;
-            // Display winning screen if enemy count reaches 0
-            if (applicationState.data.enemies == 0 && applicationState.data.playerHealth > 0 && applicationState.data.level >= 3 && applicationState.data.wave >= 30) {
+
+            if (applicationState.data.enemies == 0 && applicationState.data.currency >= 0 && applicationState.data.level >= 3 && applicationState.data.wave >= 30) {
                 state.change(state.GAME_END)
             }
         }
-
+        // Update level
         if (this.level !== applicationState.data.level) {
             this.level = applicationState.data.level;
             this.levels.setText(`Level: ${applicationState.data.level}`);
             this.isDirty = true;
         }
 
-        
         return super.update(dt);
     }
 

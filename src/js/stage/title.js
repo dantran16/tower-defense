@@ -18,7 +18,16 @@ class TitleScreen extends Stage {
             text : "BeltchTD"
         }));
 
-        game.world.addChild(new PlayButton(game.viewport.width / 2 - params.playButton.borderSize, game.viewport.height / 2));
+        game.world.addChild(new BitmapText(game.viewport.width / 2, game.viewport.height * 2.5 / 5,  {
+            font : "PressStart2P",
+            size : 1.0,
+            lineHeight: 4,
+            textBaseline : "middle",
+            textAlign : "center",
+            text : "Gather enough customers to eat \n the food before you go bankrupt!"
+        }));
+
+        game.world.addChild(new PlayButton(game.viewport.width / 2 - params.playButton.borderSize, game.viewport.height * 3 / 5));
     }
 
     /**

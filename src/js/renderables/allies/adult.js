@@ -24,7 +24,6 @@ class AdultEntity extends AllyEntity {
         this.orientation = orientation;
         this.updateAllyStats()
         this.value = this.allyCost;
-        this.center = 25
 
         // Create hitbox
         this.hitbox = new HitBoxEntity(x, y + this.center, {width: this.allyRange, height: this.allyRange}, this);
@@ -40,22 +39,22 @@ class AdultEntity extends AllyEntity {
         if (this.tier == 1) {
             this.allyCost = 200;
             this.upgradeCost = 300;
-            this.allyATK = 40;
-            this.allyASPD = 2;
+            this.allyATK = 20;
+            this.allyASPD = 1.5;
             this.allyRange = 1.1;
         }
         else if (this.tier == 2) {
             this.allyCost = 300;
             this.upgradeCost = 400;
-            this.allyATK = 80;
-            this.allyASPD = 2.5;
+            this.allyATK = 20;
+            this.allyASPD = 2;
             this.allyRange = 1.2
         }
         else if (this.tier == 3) {
             this.allyCost = 400;
             this.upgradeCost = 0;
-            this.allyATK = 100;
-            this.allyASPD = 3;
+            this.allyATK = 25;
+            this.allyASPD = 2.5;
             this.allyRange = 1.3
         }
     }

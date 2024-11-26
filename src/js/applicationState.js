@@ -12,11 +12,11 @@ const applicationState = {
      */
 
     data : {
-        playerHealth: 10,
-        currency: 1000,
-        level: 1,
+        playerHealth: 0,
+        currency: 0,
+        level: 0,
         wave: 0,
-        enemies: 1,
+        enemies: 0,
         activeEnemies:0,
     },
     isPaused: false,
