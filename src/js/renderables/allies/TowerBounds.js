@@ -23,7 +23,7 @@ class TowerBounds extends me.Entity {
 
 
     onClick(e){
-        if (applicationState.creation) {
+        if (applicationState.creation || applicationState.isPaused) {
             return true
         }
         var world = me.game.world;

@@ -12,11 +12,11 @@ const applicationState = {
      */
 
     data : {
-        playerHealth: 10,
-        currency: 1000,
-        level: 1,
+        playerHealth: 0,
+        currency: 0,
+        level: 0,
         wave: 0,
-        enemies: 1,
+        enemies: 0,
         activeEnemies:0,
     },
     isPaused: false,
@@ -25,7 +25,7 @@ const applicationState = {
     texture : null,  // a reference to the texture atlas
     enemyTasks: enemyTasks,
     creation: false,
-    validMatrix: validMatrix
+    validMatrix: null,
 };
 
 export default applicationState;

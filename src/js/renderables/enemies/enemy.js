@@ -12,6 +12,7 @@ class Enemy extends me.Entity {
         this.health = 0;    // Health of the enemy
         this.speed = 0;     // Movement speed of the enemy
         this.reward = 0;    // Reward for kill enemy
+        this.penalty = 0;   // Penalty for reaching the trash bin
         
         this.body.gravity = 0;     // Remove gravity
         this.alwaysUpdate = false;   // Always update even off-screen
@@ -137,7 +138,7 @@ class Enemy extends me.Entity {
         console.log(`${this._type} collided with the Trash Can and will be removed.`);
 
         // Deduct a life from the player, destroy enemy unit, and reduce number of enemies by 1
-        applicationState.data.playerHealth -= 1;
+        applicationState.data.playerHealth += this.penalty;
         this.die();
     }
 }

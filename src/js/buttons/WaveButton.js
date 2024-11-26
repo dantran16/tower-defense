@@ -23,6 +23,10 @@ class WaveButton extends UITextButton {
     // button click will spawn wave no matter what
     // TODO: need to add check or something to only spawn 1 wave at a time
     onClick(){
+
+        if (applicationState.isPaused) {
+            return true;
+        }
         
         if(applicationState.data.wave == 10 || applicationState.data.wave == 20) {
             applicationState.data.level++
