@@ -1,9 +1,9 @@
 import Enemy from "./enemy";
 
 class Sushi extends Enemy{
-    constructor(x, y){
+    constructor(x, y, lane){
         // Properties for Sushi
-        super(x, y, {image: "sushi", width: 16, height: 16});
+        super(x, y, {image: "sushi", width: 16, height: 16}, lane);
         this.health = 10;
         this.speed = 1;
         this.reward = 10;
