@@ -1,9 +1,9 @@
 import Enemy from "./enemy";
 
 class Coffee extends Enemy{
-    constructor(x, y){
+    constructor(x, y, lane){
         // Properties for Coffee
-        super(x, y, {image: "coffee", width: 16, height: 16});
+        super(x, y, {image: "coffee", width: 16, height: 16}, lane);
         this.health = 100;
         this.speed = 4;
         this.reward = 100;

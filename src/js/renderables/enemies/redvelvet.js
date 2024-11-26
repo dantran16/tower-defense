@@ -1,9 +1,9 @@
 import Enemy from "./enemy";
 
 class RedVelvet extends Enemy{
-    constructor(x, y){
+    constructor(x, y, lane){
         // Properties for Red Velevet
-        super(x, y, {image: "red-velvet", width: 16, height: 16});
+        super(x, y, {image: "red-velvet", width: 16, height: 16}, lane);
         this.health = 50;
         this.speed = 3;
         this.reward = 50;

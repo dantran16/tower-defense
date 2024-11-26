@@ -1,9 +1,10 @@
 import * as me from 'melonjs';
 import applicationState from '../../applicationState';
-import waypoints from './waypoint.js';
+import waypoints1 from './waypoint1.js';
+import waypoints2 from './waypoint2';
 
 class Enemy extends me.Entity {
-    constructor(x, y, settings) {
+    constructor(x, y, settings, lane) {
         // Call parent constructor to initialize the position and settings
         super(x, y, settings);
 
@@ -19,7 +20,9 @@ class Enemy extends me.Entity {
         this.body.addShape(new me.Ellipse(0, 0, 16, 16));               // hitbox assumes the shape of a circle
 
         this.isKinematic = false;
-        this.pathWaypoints = waypoints;
+        if (lane == 1) {this.pathWaypoints = waypoints1;}
+        else {this.pathWaypoints = waypoints2;}
+        
         this.waypointIndex = 0;
         this.changeX = 0
         this.changeY = 0
