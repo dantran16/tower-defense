@@ -6,8 +6,8 @@ class Coffee extends Enemy{
         super(x, y, {image: "coffee", width: 16, height: 16}, lane);
         this.health = 80;
         this.speed = 2;
-        this.reward = 50;
-        this.penalty = 35;
+        this.reward = 10;
+        this.penalty = 20;
         // Set the velocity for movement
         this.body.setMaxVelocity(0, 0); // Movement speed in x and y directions
         this.changeX = -this.speed * 2
