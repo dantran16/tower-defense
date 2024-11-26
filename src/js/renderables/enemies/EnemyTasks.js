@@ -9,40 +9,40 @@ class EnemyTasks {
         this.spawnInterval = 500; // Milliseconds between spawns
         this.waves = [
             // Level 1 (Waves 1–10)
-            { enemies: [{ type: 'Sushi', quantity: 10, lane: 1 }] }, // Wave 1
-            { enemies: [{ type: 'Sushi', quantity: 20, lane: 2 }] }, // Wave 2
-            { enemies: [{ type: 'Sushi', quantity: 30, lane: 1 }] }, // Wave 3
-            { enemies: [{ type: 'Sushi', quantity: 30, lane: 1 }, { type: 'RedVelvet', quantity: 1, lane: 1 }] }, // Wave 4
-            { enemies: [{ type: 'Sushi', quantity: 20, lane: 1 }, { type: 'RedVelvet', quantity: 3, lane: 1 }] }, // Wave 5
-            { enemies: [{ type: 'Sushi', quantity: 50, lane: 1 }, { type: 'RedVelvet', quantity: 10, lane: 1 }] }, // Wave 6
-            { enemies: [{ type: 'Sushi', quantity: 40, lane: 1 }, { type: 'RedVelvet', quantity: 10, lane: 1 }] }, // Wave 7
-            { enemies: [{ type: 'Sushi', quantity: 10, lane: 1 }, { type: 'RedVelvet', quantity: 20, lane: 1 }] }, // Wave 8
-            { enemies: [{ type: 'Sushi', quantity: 10, lane: 1 }, { type: 'RedVelvet', quantity: 40, lane: 1 }] }, // Wave 9
-            { enemies: [{ type: 'Sushi', quantity: 30, lane: 1 }, { type: 'RedVelvet', quantity: 60, lane: 1 }] }, // Wave 10
+            { enemies: [{ type: 'Sushi', quantity: 10}] }, // Wave 1
+            { enemies: [{ type: 'Sushi', quantity: 20}] }, // Wave 2
+            { enemies: [{ type: 'Sushi', quantity: 30}] }, // Wave 3
+            { enemies: [{ type: 'Sushi', quantity: 30}, { type: 'RedVelvet', quantity: 1}] }, // Wave 4
+            { enemies: [{ type: 'Sushi', quantity: 20}, { type: 'RedVelvet', quantity: 3}] }, // Wave 5
+            { enemies: [{ type: 'Sushi', quantity: 50}, { type: 'RedVelvet', quantity: 10}] }, // Wave 6
+            { enemies: [{ type: 'Sushi', quantity: 40}, { type: 'RedVelvet', quantity: 10}] }, // Wave 7
+            { enemies: [{ type: 'Sushi', quantity: 10}, { type: 'RedVelvet', quantity: 20}] }, // Wave 8
+            { enemies: [{ type: 'Sushi', quantity: 10}, { type: 'RedVelvet', quantity: 40}] }, // Wave 9
+            { enemies: [{ type: 'Sushi', quantity: 30}, { type: 'RedVelvet', quantity: 60}] }, // Wave 10
         
             // Level 2 (Waves 11–20)
-            { enemies: [{ type: 'Sushi', quantity: 50, lane: 1 }, { type: 'RedVelvet', quantity: 5, lane: 1 }] }, // Wave 11
-            { enemies: [{ type: 'Sushi', quantity: 40, lane: 1 }, { type: 'RedVelvet', quantity: 10, lane: 1 }] }, // Wave 12
-            { enemies: [{ type: 'Sushi', quantity: 60, lane: 1 }, { type: 'RedVelvet', quantity: 15, lane: 1 }] }, // Wave 13
-            { enemies: [{ type: 'Sushi', quantity: 70, lane: 1 }, { type: 'RedVelvet', quantity: 20, lane: 1 }] }, // Wave 14
-            { enemies: [{ type: 'Sushi', quantity: 80, lane: 1 }, { type: 'RedVelvet', quantity: 25, lane: 1 }] }, // Wave 15
-            { enemies: [{ type: 'Sushi', quantity: 100, lane: 1 }, { type: 'RedVelvet', quantity: 30, lane: 1 }] }, // Wave 16
-            { enemies: [{ type: 'Sushi', quantity: 120, lane: 1 }, { type: 'RedVelvet', quantity: 35, lane: 1 }] }, // Wave 17
-            { enemies: [{ type: 'Sushi', quantity: 140, lane: 1 }, { type: 'RedVelvet', quantity: 40, lane: 1 }] }, // Wave 18
-            { enemies: [{ type: 'Sushi', quantity: 150, lane: 1 }, { type: 'RedVelvet', quantity: 45, lane: 1 }] }, // Wave 19
-            { enemies: [{ type: 'Sushi', quantity: 200, lane: 1 }, { type: 'RedVelvet', quantity: 50, lane: 1 }] }, // Wave 20
+            { enemies: [{ type: 'Sushi', quantity: 50}, { type: 'RedVelvet', quantity: 5}] }, // Wave 11
+            { enemies: [{ type: 'Sushi', quantity: 40}, { type: 'RedVelvet', quantity: 10}] }, // Wave 12
+            { enemies: [{ type: 'Sushi', quantity: 60}, { type: 'RedVelvet', quantity: 15}] }, // Wave 13
+            { enemies: [{ type: 'Sushi', quantity: 70}, { type: 'RedVelvet', quantity: 20}] }, // Wave 14
+            { enemies: [{ type: 'Sushi', quantity: 80}, { type: 'RedVelvet', quantity: 25}] }, // Wave 15
+            { enemies: [{ type: 'Sushi', quantity: 100}, { type: 'RedVelvet', quantity: 30}] }, // Wave 16
+            { enemies: [{ type: 'Sushi', quantity: 120}, { type: 'RedVelvet', quantity: 35}] }, // Wave 17
+            { enemies: [{ type: 'Sushi', quantity: 140}, { type: 'RedVelvet', quantity: 40}] }, // Wave 18
+            { enemies: [{ type: 'Sushi', quantity: 150}, { type: 'RedVelvet', quantity: 45}] }, // Wave 19
+            { enemies: [{ type: 'Sushi', quantity: 200}, { type: 'RedVelvet', quantity: 50}] }, // Wave 20
         
             // Level 3 (Waves 21–30)
-            { enemies: [{ type: 'Sushi', quantity: 100, lane: 1 }, { type: 'RedVelvet', quantity: 25, lane: 1 }, { type: 'Coffee', quantity: 5, lane: 1 }] }, // Wave 21
-            { enemies: [{ type: 'Sushi', quantity: 110, lane: 1 }, { type: 'RedVelvet', quantity: 30, lane: 1 }, { type: 'Coffee', quantity: 10, lane: 1 }] }, // Wave 22
-            { enemies: [{ type: 'Sushi', quantity: 120, lane: 1 }, { type: 'RedVelvet', quantity: 35, lane: 1 }, { type: 'Coffee', quantity: 15, lane: 1 }] }, // Wave 23
-            { enemies: [{ type: 'Sushi', quantity: 130, lane: 1 }, { type: 'RedVelvet', quantity: 40, lane: 1 }, { type: 'Coffee', quantity: 20, lane: 1 }] }, // Wave 24
-            { enemies: [{ type: 'Sushi', quantity: 150, lane: 1 }, { type: 'RedVelvet', quantity: 45, lane: 1 }, { type: 'Coffee', quantity: 25, lane: 1 }] }, // Wave 25
-            { enemies: [{ type: 'Sushi', quantity: 160, lane: 1 }, { type: 'RedVelvet', quantity: 50, lane: 1 }, { type: 'Coffee', quantity: 30, lane: 1 }] }, // Wave 26
-            { enemies: [{ type: 'Sushi', quantity: 170, lane: 1 }, { type: 'RedVelvet', quantity: 55, lane: 1 }, { type: 'Coffee', quantity: 35, lane: 1 }] }, // Wave 27
-            { enemies: [{ type: 'Sushi', quantity: 180, lane: 1 }, { type: 'RedVelvet', quantity: 60, lane: 1 }, { type: 'Coffee', quantity: 40, lane: 1 }] }, // Wave 28
-            { enemies: [{ type: 'Sushi', quantity: 190, lane: 1 }, { type: 'RedVelvet', quantity: 65, lane: 1 }, { type: 'Coffee', quantity: 45, lane: 1 }] }, // Wave 29
-            { enemies: [{ type: 'Sushi', quantity: 200, lane: 1 }, { type: 'RedVelvet', quantity: 70, lane: 1 }, { type: 'Coffee', quantity: 50, lane: 1 }] }, // Wave 30
+            { enemies: [{ type: 'Sushi', quantity: 100}, { type: 'RedVelvet', quantity: 25}, { type: 'Coffee', quantity: 5}] }, // Wave 21
+            { enemies: [{ type: 'Sushi', quantity: 110}, { type: 'RedVelvet', quantity: 30}, { type: 'Coffee', quantity: 10}] }, // Wave 22
+            { enemies: [{ type: 'Sushi', quantity: 120}, { type: 'RedVelvet', quantity: 35}, { type: 'Coffee', quantity: 15}] }, // Wave 23
+            { enemies: [{ type: 'Sushi', quantity: 130}, { type: 'RedVelvet', quantity: 40}, { type: 'Coffee', quantity: 20}] }, // Wave 24
+            { enemies: [{ type: 'Sushi', quantity: 150}, { type: 'RedVelvet', quantity: 45}, { type: 'Coffee', quantity: 25}] }, // Wave 25
+            { enemies: [{ type: 'Sushi', quantity: 160}, { type: 'RedVelvet', quantity: 50}, { type: 'Coffee', quantity: 30}] }, // Wave 26
+            { enemies: [{ type: 'Sushi', quantity: 170}, { type: 'RedVelvet', quantity: 55}, { type: 'Coffee', quantity: 35}] }, // Wave 27
+            { enemies: [{ type: 'Sushi', quantity: 180}, { type: 'RedVelvet', quantity: 60}, { type: 'Coffee', quantity: 40}] }, // Wave 28
+            { enemies: [{ type: 'Sushi', quantity: 190}, { type: 'RedVelvet', quantity: 65}, { type: 'Coffee', quantity: 45}] }, // Wave 29
+            { enemies: [{ type: 'Sushi', quantity: 200}, { type: 'RedVelvet', quantity: 70}, { type: 'Coffee', quantity: 50}] }, // Wave 30
         ];
         
         //Test Code for waves or its too long to run the whole level.
@@ -102,9 +102,10 @@ class EnemyTasks {
 
         this.waveInterval = setInterval(() => {
             const enemyConfig = wave.enemies[enemyIndex];
+            const lane = Math.floor(Math.random() * 3)
             
             if (enemiesSpawned < enemyConfig.quantity) {
-                this.spawnEnemy(enemyConfig.type, enemyConfig.lane);
+                this.spawnEnemy(enemyConfig.type, lane);
                 enemiesSpawned++;
                 applicationState.data.activeEnemies = enemiesSpawned;
             } else {
