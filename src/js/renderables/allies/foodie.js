@@ -61,15 +61,6 @@ class FoodieEntity extends AllyEntity {
         }
     }
 
-    upgradeTier() {
-        // Increments this.tier value up until 3
-        if (this.tier < 3) {
-            this.tier++
-            this.updateAllyStats()
-            this.hitbox.updateHitbox(this.allyRange)
-        }
-    }
-
     // tower orientation depenedent on direction matrix values
     playAnimation() {
         if (this.orientation == 1) {
