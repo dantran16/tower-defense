@@ -15,7 +15,7 @@ class VictoryScreen extends Stage {
             size : 3.0,
             textBaseline : "middle",
             textAlign : "center",
-            text : "Congratulations!"
+            text : "1.5 Michelin Stars"
         }));
 
         game.world.addChild(new BitmapText(game.viewport.width / 2, game.viewport.height * 2.5 / 5,  {
@@ -24,11 +24,11 @@ class VictoryScreen extends Stage {
             lineHeight: 4,
             textBaseline : "middle",
             textAlign : "center",
-            text : "Your dream of having a conveyor belt sushi restaurant \nis a success. The customers had some food poisoning, \nbut they ate everything and your parents are proud of you."
+            text : "Your dream of having a conveyor belt sushi restaurant \nis a success. The customers had some food poisoning, but \nthey ate everything and your parents are proud of you."
         }));
 
 
-        game.world.addChild(new MenuButton(game.viewport.width / 2 - params.playButton.borderSize * 3, game.viewport.height / 1.15));
+        game.world.addChild(new MenuButton(game.viewport.width / 2 - params.playButton.borderSize * 3 / 2, game.viewport.height * 4 / 5));
     }
 }
 
