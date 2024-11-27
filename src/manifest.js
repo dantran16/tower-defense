@@ -74,6 +74,36 @@ const DataManifest = [
     },
 
     {
+        name: "sushi-bite",
+        type: "image",
+        src: "./data/img/enemies/enemy_sushi_bite.png"        
+    },
+
+    {
+        name: "red-velvet-bite",
+        type: "image",
+        src: "./data/img/enemies/enemy_redvelvet_bite.png"        
+    },
+
+    {
+        name: "coffee-bite",
+        type: "image",
+        src: "./data/img/enemies/enemy_coffee_bite.png"        
+    },
+
+    {
+        name: "bread-bite",
+        type: "image",
+        src: "./data/img/enemies/enemy_bread_bite.png"
+    },
+
+    {
+        name: "egg-bite",
+        type: "image",
+        src: "./data/img/enemies/enemy_egg_bite.png"
+    },
+
+    {
         name: "child",
         type: "image",
         src: "./data/img/allies/child.png"

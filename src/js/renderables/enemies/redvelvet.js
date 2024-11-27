@@ -12,6 +12,10 @@ class RedVelvet extends Enemy{
         this.body.setMaxVelocity(0, 0); // Movement speed in x and y directions
         this.changeX = -this.speed * 2
         this.changeY = -this.speed * 2
+        
+        // Allow biting
+        this.fullhp = this.health;
+        this.bite = "red-velvet-bite"
     }
 }
 

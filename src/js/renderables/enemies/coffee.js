@@ -13,6 +13,9 @@ class Coffee extends Enemy{
         this.changeX = -this.speed * 2
         this.changeY = -this.speed * 2
        
+        // Allow biting
+        this.fullhp = this.health;
+        this.bite = "coffee-bite"
     }
 }
 
