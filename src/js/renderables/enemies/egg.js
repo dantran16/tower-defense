@@ -1,11 +1,11 @@
 import Enemy from "./enemy";
 
-class Item1 extends Enemy{
+class Egg extends Enemy{
     constructor(x, y, lane){
         // Properties for Sushi
-        super(x, y, {image: "sushi", width: 16, height: 16}, lane);
-        this.health = 150;
-        this.speed = 1;
+        super(x, y, {image: "egg", width: 16, height: 16}, lane);
+        this.health = 100;
+        this.speed = 1.5;
         this.reward = 20;
         this.penalty = 10;
         // Set the velocity for movement
@@ -15,4 +15,4 @@ class Item1 extends Enemy{
     }
 }
 
-export default Item1;
+export default Egg;

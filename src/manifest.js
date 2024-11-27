@@ -56,6 +56,18 @@ const DataManifest = [
     },
 
     {
+        name: "bread",
+        type: "image",
+        src: "./data/img/enemies/enemy_bread.png"
+    },
+
+    {
+        name: "egg",
+        type: "image",
+        src: "./data/img/enemies/enemy_egg.png"
+    },
+
+    {
         name: "sushi",
         type: "image",
         src: "./data/img/enemies/enemy_sushi.png"        
