@@ -1,5 +1,4 @@
 import { Stage, game, ColorLayer, BitmapText  } from "melonjs";
-import PlayButton from "../buttons/PlayButton";
 import MenuButton from "../buttons/MenuButton";
 import { params } from "../params";
 
