@@ -7,7 +7,7 @@ class Sushi extends Enemy{
         this.health = 15;
         this.speed = 1;
         this.reward = 5;
-        this.penalty = 5;
+        this.penalty = 8;
 
         // Set the velocity for movement
         this.body.setMaxVelocity(0, 0); // Movement speed in x and y directions
