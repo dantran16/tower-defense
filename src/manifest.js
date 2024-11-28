@@ -90,6 +90,12 @@ const DataManifest = [
         src: "./data/img/star.png"
     },
 
+    {
+        name: "trash",
+        type: "image",
+        src: "./data/img/trash.png"
+    },
+
     // sounds and SFX
 
     {
