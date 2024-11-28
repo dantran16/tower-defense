@@ -6,7 +6,7 @@ class HitBoxEntity extends me.Entity {
         // call the parent constructor
         super(x, y, settings);
         this.body.ignoreGravity = true;
-        this.range = settings.width * 50;
+        this.range = (settings.width * 32) + 16;
         this.body.collisionType = me.collision.types.PLAYER_OBJECT;
         this.body.setCollisionMask(me.collision.types.ENEMY_OBJECT);
         this.body.addShape(new me.Ellipse(this.range/2, this.range/2, this.range, this.range));
