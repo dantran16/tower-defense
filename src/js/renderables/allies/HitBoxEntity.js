@@ -12,7 +12,7 @@ class HitBoxEntity extends me.Entity {
         this.body.addShape(new me.Ellipse(this.range/2, this.range/2, this.range, this.range));
         this.parent = parent;
         this.secondCount = 0;
-        this.ready = true
+        this.ready = true;
     }
 
     update(dt) {
@@ -40,6 +40,8 @@ class HitBoxEntity extends me.Entity {
             this.ready = false;
             this.secondCount = 0;
             other.takeDamage(this.parent.allyATK);
+            me.audio.play("chomp", false, null, 0.3)
+            this.parent.attackAnimation();
         }
         return false;
     }
