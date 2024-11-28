@@ -20,7 +20,6 @@ class HitBoxEntity extends me.Entity {
         // Converts ASPD from att/sec to sec/att
         if ((this.secondCount / 60 >= (1/this.parent.allyASPD)) && (!this.ready)){
             this.ready = true;
-            console.log("READY!")
         }
         this.secondCount++
         super.update(dt);
@@ -35,8 +34,6 @@ class HitBoxEntity extends me.Entity {
 
     onCollision(response, other) {
         if ((other.body.collisionType === me.collision.types.ENEMY_OBJECT) && this.ready) {
-            console.log(other.health)
-            console.log("Hold attacks")
             this.ready = false;
             this.secondCount = 0;
             other.takeDamage(this.parent.allyATK);
