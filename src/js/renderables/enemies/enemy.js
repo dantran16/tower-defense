@@ -2,6 +2,7 @@ import * as me from 'melonjs';
 import applicationState from '../../applicationState';
 import waypoints1 from './waypoint1.js';
 import waypoints2 from './waypoint2';
+import AttackEffect from '../misc/AttackEffect'
 
 class Enemy extends me.Entity {
     constructor(x, y, settings, lane) {
@@ -127,6 +128,7 @@ class Enemy extends me.Entity {
             // console.log(`${this} enemy is being removed from the game world.`);
             applicationState.data.enemies -= 1;
             applicationState.data.activeEnemies = applicationState.data.enemies
+            me.game.world.addChild(new AttackEffect(this.pos.x - 25, this.pos.y))
             me.game.world.removeChild(this);
         }
         this.alive = false

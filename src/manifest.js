@@ -138,6 +138,13 @@ const DataManifest = [
         src: "./data/img/trash.png"
     },
 
+    {
+        name: "attack-effect",
+        type: "image",
+        src: "./data/img/attack_effect.png"
+    },
+    
+
     // sounds and SFX
 
     {
