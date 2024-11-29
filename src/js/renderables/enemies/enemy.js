@@ -21,7 +21,7 @@ class Enemy extends me.Entity {
         this.alwaysUpdate = false;   // Always update even off-screen
         this.body.collisionType = me.collision.types.ENEMY_OBJECT;      // Acts as enemy object
         this.body.setCollisionMask(me.collision.types.PLAYER_OBJECT);   // Can only collide with player objects
-        this.body.addShape(new me.Ellipse(-8, -8, 16, 16));               // hitbox assumes the shape of a circle
+        this.body.addShape(new me.Ellipse(8, 8, 16, 16));               // hitbox assumes the shape of a circle
 
         this.isKinematic = false;
         if (lane == 1) {this.pathWaypoints = waypoints1;}
@@ -34,11 +34,6 @@ class Enemy extends me.Entity {
         if (this.pathWaypoints.length > 0) {
             this.pos.set(this.pathWaypoints[0].x, this.pathWaypoints[0].y);
         }
-        me.input.registerPointerEvent("pointermove", this, (e) => this.onClick(e));
-    }
-
-    onClick() {
-        console.log("adsfgh")
     }
 
     // Return enemy stats
@@ -123,6 +118,7 @@ class Enemy extends me.Entity {
         }
         if (this.health <= 0) {
             // console.log(`${this} enemy has been defeated!`);
+            me.game.world.addChild(new AttackEffect(this.pos.x, this.pos.y + 10))
             this.rewardPlayer();
             this.die();
         }
@@ -134,7 +130,6 @@ class Enemy extends me.Entity {
             // console.log(`${this} enemy is being removed from the game world.`);
             applicationState.data.enemies -= 1;
             applicationState.data.activeEnemies = applicationState.data.enemies
-            me.game.world.addChild(new AttackEffect(this.pos.x - 25, this.pos.y))
             me.game.world.removeChild(this);
         }
         this.alive = false

@@ -28,14 +28,8 @@ class ChildEntity extends AllyEntity {
         this.orientation = orientation
         this.updateAllyStats()
         this.value = this.allyCost;
-        
-        // Create hitbox
-        this.hitbox = new HitBoxEntity(x, y + this.center, {width: this.allyRange, height: this.allyRange}, this);
-        me.game.world.addChild(this.hitbox, 5);
 
-        // Create bounds for onclick method
-        this.bounding = new TowerBounds(x, y, {width: 32, height: 32}, this)
-        me.game.world.addChild(this.bounding)
+        this.updateHitbox()
     }
 
     updateAllyStats() {
@@ -45,21 +39,21 @@ class ChildEntity extends AllyEntity {
             this.upgradeCost = 50;
             this.allyATK = 8;
             this.allyASPD = 1.5;
-            this.allyRange = 1.5;
+            this.allyRange = .9;
         }
         else if (this.tier == 2) {
             this.allyCost = 100;
             this.upgradeCost = 50;
             this.allyATK = 15;
             this.allyASPD = 1.5;
-            this.allyRange = 1.5;
+            this.allyRange = .9;
         }
         else if (this.tier == 3) {
             this.allyCost = 150;
             this.upgradeCost = 0;
             this.allyATK = 25;
             this.allyASPD = 1.5;
-            this.allyRange = 1.5
+            this.allyRange = .9
         }
     }
 

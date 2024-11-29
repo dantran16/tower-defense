@@ -1,4 +1,4 @@
-const size = 16;
+const size = 8;
 const block = size * 2;
 
 const waypoints2 = [
@@ -12,11 +12,11 @@ const waypoints2 = [
         "y":554+size+block
        }, 
        {
-        "x":543+size-block,
+        "x":543+size-block*3,
         "y":554+size+block
        }, 
        {
-        "x":543+size-block,
+        "x":543+size-block*3,
         "y":202+size+block
        }, 
        {

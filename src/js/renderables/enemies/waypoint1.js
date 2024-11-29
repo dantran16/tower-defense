@@ -1,4 +1,4 @@
-const size = 16;
+const size = -10;
 
 const waypoints = [
 

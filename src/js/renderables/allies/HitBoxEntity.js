@@ -7,9 +7,11 @@ class HitBoxEntity extends me.Entity {
         super(x, y, settings);
         this.body.ignoreGravity = true;
         this.range = (settings.width * 32) + 16;
+        this.anchorPoint.set(0.5, 0.5);
+        this.body.removeShape(this.body.shapes[0])
         this.body.collisionType = me.collision.types.PLAYER_OBJECT;
         this.body.setCollisionMask(me.collision.types.ENEMY_OBJECT);
-        this.body.addShape(new me.Ellipse(this.range/2, this.range/2, this.range*2, this.range*2));
+        this.body.addShape(new me.Ellipse(0, 0, this.range*2, this.range*2));
         this.parent = parent;
         this.secondCount = 0;
         this.ready = true
@@ -28,7 +30,14 @@ class HitBoxEntity extends me.Entity {
         // Set the fill style color
         renderer.setColor(`rgba(255, 0, 0, 0.3)`);
         // Draw the hitbox area
-        renderer.fillEllipse(this.range, this.range, this.range, this.range);
+
+        if(this.parent.className == 'Child'){
+            renderer.fillEllipse(90, 90, this.range, this.range);
+        } else if(this.parent.className == 'Adult'){
+            renderer.fillEllipse(160, 160, this.range, this.range);
+        } else{
+            renderer.fillEllipse(130, 130, this.range, this.range);
+        }
     }
 
     onCollision(response, other) {
