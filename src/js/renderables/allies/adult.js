@@ -22,7 +22,7 @@ class AdultEntity extends AllyEntity {
         this.renderable.addAnimation("right_attack", [620,621,625,626,627])
         this.renderable.addAnimation("left_attack", [647,648,649,653,654])
         this.renderable.addAnimation("front_attack", [660,661,662,663,664])
-        this.renderable.addAnimation("back_attack", [630,631,632,633,634,635,635,639,640])
+        this.renderable.addAnimation("back_attack", [633,634,635,635,639])
 
         this.className = 'Adult';
         // set default stats of adult unit
