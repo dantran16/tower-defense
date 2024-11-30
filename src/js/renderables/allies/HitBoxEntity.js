@@ -16,7 +16,6 @@ class HitBoxEntity extends me.Entity {
         this.ready = true
         // console.log(x, y)
         // console.log(this.getBounds())
-
     }
 
     update(dt) {
@@ -49,6 +48,8 @@ class HitBoxEntity extends me.Entity {
             this.ready = false;
             this.secondCount = 0;
             other.takeDamage(this.parent.allyATK);
+            me.audio.play("chomp", false, null, 0.3)
+            this.parent.attackAnimation();
         }
         return false;
     }

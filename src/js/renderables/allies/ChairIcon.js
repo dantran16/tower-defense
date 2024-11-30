@@ -139,7 +139,7 @@ class ChairIcon extends me.Sprite {
         
         this.ally.chair = this;
         me.game.world.addChild(this.ally, 7 + indeces.x);
-        this.ally.playAnimation();
+        this.ally.idleAnimation();
     }
 };
 
