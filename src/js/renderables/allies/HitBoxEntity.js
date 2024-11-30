@@ -6,15 +6,14 @@ class HitBoxEntity extends me.Entity {
         // call the parent constructor
         super(x, y, settings);
         this.body.ignoreGravity = true;
-        this.range = settings.width * 50;
+        this.range = (settings.width * 32) + 16;
         this.body.collisionType = me.collision.types.PLAYER_OBJECT;
         this.body.setCollisionMask(me.collision.types.ENEMY_OBJECT);
-        this.body.addShape(new me.Ellipse(this.range/2, this.range/2, this.range, this.range));
+        this.body.addShape(new me.Ellipse(this.range/2, this.range/2, this.range*2, this.range*2));
         this.parent = parent;
         this.secondCount = 0;
         this.ready = true;
     }
-
     update(dt) {
         // update is called 60 times per second
         // Converts ASPD from att/sec to sec/att
@@ -29,7 +28,7 @@ class HitBoxEntity extends me.Entity {
         // Set the fill style color
         renderer.setColor(`rgba(255, 0, 0, 0.3)`);
         // Draw the hitbox area
-        renderer.fillEllipse(0, 0, this.range, this.range);
+        renderer.fillEllipse(this.range, this.range, this.range, this.range);
     }
 
     onCollision(response, other) {

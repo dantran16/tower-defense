@@ -12,7 +12,7 @@ class EnemyTasks {
         this.waves = [
             // Level 1 (Waves 1–10)
             { enemies: [{ type: 'Sushi', quantity: 10}] }, // Wave 1
-            { enemies: [{ type: 'Sushi', quantity: 10}] }, // Wave 2
+            { enemies: [{ type: 'Sushi', quantity: 20}] }, // Wave 2
             { enemies: [{ type: 'Sushi', quantity: 10}, { type: 'RedVelvet', quantity: 1}] }, // Wave 3
             { enemies: [{ type: 'Sushi', quantity: 5}, { type: 'RedVelvet', quantity: 5}] }, // Wave 4
             { enemies: [{ type: 'Sushi', quantity: 5}, { type: 'RedVelvet', quantity: 5}] }, // Wave 5
@@ -23,28 +23,28 @@ class EnemyTasks {
             { enemies: [{ type: 'RedVelvet', quantity: 10}, { type: 'Coffee', quantity: 10}] }, // Wave 10
         
             // Level 2 (Waves 11–20)
-            { enemies: [{ type: 'RedVelvet', quantity: 10}] }, // Wave 11
-            { enemies: [{ type: 'RedVelvet', quantity: 10}] }, // Wave 12
-            { enemies: [{ type: 'RedVelvet', quantity: 10}, { type: 'Coffee', quantity: 1}] }, // Wave 13
-            { enemies: [{ type: 'RedVelvet', quantity: 5}, { type: 'Coffee', quantity: 5}] }, // Wave 14
-            { enemies: [{ type: 'RedVelvet', quantity: 5 }, { type: 'Coffee', quantity: 5}] }, // Wave 15
-            { enemies: [{ type: 'RedVelvet', quantity: 10}, { type: 'Coffee', quantity: 10}] }, // Wave 16
-            { enemies: [{ type: 'Coffee', quantity: 10}, { type: 'Bread', quantity: 1}] }, // Wave 17
-            { enemies: [{ type: 'Coffee', quantity: 5}, { type: 'Bread', quantity: 5}] }, // Wave 18
-            { enemies: [{ type: 'Coffee', quantity: 5}, { type: 'Bread', quantity: 5}] }, // Wave 19
-            { enemies: [{ type: 'Coffee', quantity: 10}, { type: 'Bread', quantity: 10}] }, // Wave 20      
+            { enemies: [{ type: 'Coffee', quantity: 20}] }, // Wave 11
+            { enemies: [{ type: 'Coffee', quantity: 20}, { type: 'RedVelvet', quantity: 10}] }, // Wave 12
+            { enemies: [{ type: 'RedVelvet', quantity: 10}, { type: 'Coffee', quantity: 10}, { type: 'RedVelvet', quantity: 10}] }, // Wave 13
+            { enemies: [{ type: 'RedVelvet', quantity: 10}, { type: 'Coffee', quantity: 10}, { type: 'RedVelvet', quantity: 10}] }, // Wave 14
+            { enemies: [{ type: 'Bread', quantity: 1}, { type: 'Coffee', quantity: 10}] }, // Wave 15
+            { enemies: [{ type: 'Bread', quantity: 5}, { type: 'Coffee', quantity: 10}] }, // Wave 16
+            { enemies: [{ type: 'Bread', quantity: 10}] }, // Wave 17
+            { enemies: [{ type: 'Bread', quantity: 15}] }, // Wave 18
+            { enemies: [{ type: 'Bread', quantity: 15}, { type: 'Coffee', quantity: 10}] }, // Wave 19
+            { enemies: [{ type: 'Bread', quantity: 20}] }, // Wave 20      
             
             // Level 3 (Waves 21–30)
-            { enemies: [{ type: 'Coffee', quantity: 10}] }, // Wave 21
-            { enemies: [{ type: 'Coffee', quantity: 10}] }, // Wave 22
-            { enemies: [{ type: 'Coffee', quantity: 10}, { type: 'Bread', quantity: 1}] }, // Wave 23
-            { enemies: [{ type: 'Coffee', quantity: 5}, { type: 'Bread', quantity: 5}] }, // Wave 24
-            { enemies: [{ type: 'Coffee', quantity: 5}, { type: 'Bread', quantity: 5}] }, // Wave 25
-            { enemies: [{ type: 'Coffee', quantity: 10}, { type: 'Bread', quantity: 10}] }, // Wave 26
-            { enemies: [{ type: 'Bread', quantity: 10}, { type: 'Egg', quantity: 1}] }, // Wave 27
-            { enemies: [{ type: 'Bread', quantity: 5}, { type: 'Egg', quantity: 5}] }, // Wave 28
-            { enemies: [{ type: 'Bread', quantity: 5}, { type: 'Egg', quantity: 5}] }, // Wave 29
-            { enemies: [{ type: 'Bread', quantity: 10}, { type: 'Egg', quantity: 10}] }, // Wave 30     
+            { enemies: [{ type: 'Bread', quantity: 5}, { type: 'Egg', quantity: 3}] }, // Wave 21
+            { enemies: [{ type: 'Bread', quantity: 5}, { type: 'Egg', quantity: 5}] }, // Wave 22
+            { enemies: [{ type: 'Bread', quantity: 10}] }, // Wave 23
+            { enemies: [{ type: 'Bread', quantity: 5}, { type: 'Egg', quantity: 5}, { type: 'Coffee', quantity: 5}] }, // Wave 24
+            { enemies: [{ type: 'Egg', quantity: 20}] }, // Wave 25
+            { enemies: [{ type: 'Egg', quantity: 20}] }, // Wave 26
+            { enemies: [{ type: 'Bread', quantity: 15}, { type: 'Egg', quantity: 5}, { type: 'Coffee', quantity: 15}] }, // Wave 27
+            { enemies: [{ type: 'Bread', quantity: 25}] }, // Wave 28
+            { enemies: [{ type: 'Bread', quantity: 15}, { type: 'Egg', quantity: 15}] }, // Wave 29
+            { enemies: [{ type: 'Bread', quantity: 20}, { type: 'Egg', quantity: 30}] }, // Wave 30     
             ]
             this.currentWave = 0;
     }
@@ -69,7 +69,7 @@ class EnemyTasks {
 
         this.waveInterval = setInterval(() => {
             const enemyConfig = wave.enemies[enemyIndex];
-            const lane = Math.floor(Math.random() * 3)
+            const lane = Math.floor(Math.random() * 2)
             
             if (enemiesSpawned < enemyConfig.quantity) {
                 this.spawnEnemy(enemyConfig.type, lane);

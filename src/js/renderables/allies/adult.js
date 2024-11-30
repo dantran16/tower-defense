@@ -44,24 +44,24 @@ class AdultEntity extends AllyEntity {
         // Update ally statistics based on this.tier value
         if (this.tier == 1) {
             this.allyCost = 150;
-            this.upgradeCost = 100;
+            this.upgradeCost = 150;
             this.allyATK = 20;
             this.allyASPD = 1.5;
-            this.allyRange = 1.1;
+            this.allyRange = 2;
         }
         else if (this.tier == 2) {
-            this.allyCost = 250;
-            this.upgradeCost = 100;
-            this.allyATK = 20;
-            this.allyASPD = 2;
-            this.allyRange = 1.2
+            this.allyCost = 300;
+            this.upgradeCost = 150;
+            this.allyATK = 30;
+            this.allyASPD = 3;
+            this.allyRange = 2
         }
         else if (this.tier == 3) {
-            this.allyCost = 350;
+            this.allyCost = 450;
             this.upgradeCost = 0;
-            this.allyATK = 25;
-            this.allyASPD = 2.5;
-            this.allyRange = 1.3
+            this.allyATK = 50;
+            this.allyASPD = 3;
+            this.allyRange = 2
         }
     }
 

@@ -45,25 +45,25 @@ class FoodieEntity extends AllyEntity {
     updateAllyStats() {
         // Update ally statistics based on this.tier value
         if (this.tier == 1) {
-            this.allyCost = 200;
-            this.upgradeCost = 100;
-            this.allyATK = 20;
-            this.allyASPD = 1;
-            this.allyRange = 2;
+            this.allyCost = 250;
+            this.upgradeCost = 250;
+            this.allyATK = 15;
+            this.allyASPD = 7;
+            this.allyRange = 1.5;
         }
         else if (this.tier == 2) {
-            this.allyCost = 300;
-            this.upgradeCost = 100;
-            this.allyATK = 20;
-            this.allyASPD = 1.5;
-            this.allyRange = 2.5
+            this.allyCost = 500;
+            this.upgradeCost = 250;
+            this.allyATK = 25;
+            this.allyASPD = 10;
+            this.allyRange = 1.5
         }
         else if (this.tier == 3) {
-            this.allyCost = 400;
+            this.allyCost = 750;
             this.upgradeCost = 0;
-            this.allyATK = 25;
-            this.allyASPD = 2;
-            this.allyRange = 3
+            this.allyATK = 40;
+            this.allyASPD = 10;
+            this.allyRange = 1.5
         }
     }
 

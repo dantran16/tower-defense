@@ -12,6 +12,7 @@ class ChildEntity extends AllyEntity {
             width: 32, 
             height: 64
         });
+        this.center = 30
         
         // initialize idle animations
         this.renderable.addAnimation("right", [24,25,26,27,28,29]);
@@ -40,23 +41,23 @@ class ChildEntity extends AllyEntity {
         if (this.tier == 1) {
             this.allyCost = 50;
             this.upgradeCost = 50;
-            this.allyATK = 10;
+            this.allyATK = 8;
             this.allyASPD = 1.5;
-            this.allyRange = 1;
+            this.allyRange = 1.5;
         }
         else if (this.tier == 2) {
             this.allyCost = 100;
             this.upgradeCost = 50;
             this.allyATK = 15;
             this.allyASPD = 1.5;
-            this.allyRange = 1.1;
+            this.allyRange = 1.5;
         }
         else if (this.tier == 3) {
             this.allyCost = 150;
             this.upgradeCost = 0;
-            this.allyATK = 15;
-            this.allyASPD = 2;
-            this.allyRange = 1.2
+            this.allyATK = 25;
+            this.allyASPD = 1.5;
+            this.allyRange = 1.5
         }
     }
 
