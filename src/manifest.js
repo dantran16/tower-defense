@@ -168,7 +168,15 @@ const DataManifest = [
         name: "chomp",
         type: "audio",
         src: "data/sfx/"
-    }
+    },
+    
+    {
+        name: "attack-effect",
+        type: "image",
+        src: "./data/img/attack_effect.png"
+    },
+
+
 
     // {
     //     name: "map_assets",

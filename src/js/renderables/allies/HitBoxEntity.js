@@ -4,16 +4,21 @@ class HitBoxEntity extends me.Entity {
 
     constructor(x, y, settings, parent) {
         // call the parent constructor
-        super(x, y, settings);
+        const radius = (settings.width * 32) + 16
+        super(x-radius, y-radius, settings);
+        this.range = radius;
         this.body.ignoreGravity = true;
-        this.range = (settings.width * 32) + 16;
         this.body.collisionType = me.collision.types.PLAYER_OBJECT;
         this.body.setCollisionMask(me.collision.types.ENEMY_OBJECT);
-        this.body.addShape(new me.Ellipse(this.range/2, this.range/2, this.range*2, this.range*2));
+        this.body.addShape(new me.Ellipse(this.range-2, this.range-2, this.range*2-8, this.range*2-8));
         this.parent = parent;
         this.secondCount = 0;
         this.ready = true
+        // console.log(x, y)
+        // console.log(this.getBounds())
+
     }
+
     update(dt) {
         // update is called 60 times per second
         // Converts ASPD from att/sec to sec/att
@@ -32,7 +37,15 @@ class HitBoxEntity extends me.Entity {
     }
 
     onCollision(response, other) {
+        // console.log("this", this.getBounds())
+        // console.log("sushi", other.getBounds())
+        // console.log(this.getBounds().contains(other.getBounds().x+8, other.getBounds().y+8))
+        if (!this.getBounds().contains(other.getBounds().x, other.getBounds().y)) {
+            return false;
+        }
+
         if ((other.body.collisionType === me.collision.types.ENEMY_OBJECT) && this.ready) {
+            console.log("hit")
             this.ready = false;
             this.secondCount = 0;
             other.takeDamage(this.parent.allyATK);

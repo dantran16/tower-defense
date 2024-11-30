@@ -1,9 +1,15 @@
 import Enemy from "./enemy";
+import * as me from 'melonjs';
 
 class Egg extends Enemy{
     constructor(x, y, lane){
         // Properties for Sushi
-        super(x, y, {image: "egg", width: 16, height: 16}, lane);
+        super(x, y, { width: 16, height: 16}, lane);
+
+        this.renderable = new me.Sprite(0, 0, {
+            anchorPoint: new me.Vector2d(),
+            image: "egg",   // Image source (16x16 in this case)
+        });
         this.health = 200;
         this.speed = 2.5;
         this.reward = 10;
