@@ -8,7 +8,6 @@ class Enemy extends me.Entity {
     constructor(x, y, settings, lane) {
         // Call parent constructor to initialize the position and settings
         super(x, y, settings);
-        this.anchorPoint.set(0.5, 0.5)
 
         // Initialize properties for enemy unit
         this.fullhp = 0;
@@ -21,7 +20,7 @@ class Enemy extends me.Entity {
         this.alwaysUpdate = false;   // Always update even off-screen
         this.body.collisionType = me.collision.types.ENEMY_OBJECT;      // Acts as enemy object
         this.body.setCollisionMask(me.collision.types.PLAYER_OBJECT);   // Can only collide with player objects
-        this.body.addShape(new me.Ellipse(8, 8, 16, 16));               // hitbox assumes the shape of a circle
+        this.body.addShape(new me.Ellipse(4, 4, 8, 8));               // hitbox assumes the shape of a circle
 
         this.isKinematic = false;
         if (lane == 1) {this.pathWaypoints = waypoints1;}
@@ -48,7 +47,10 @@ class Enemy extends me.Entity {
     //Update the enemy's movement each frame
     update(dt) {
         if (this.health <= this.fullhp/2) {
-            this.renderable = new me.Sprite(0, 0, {image: this.bite, width: 16, height: 16})
+            this.renderable = new me.Sprite(0, 0, {
+            anchorPoint: new me.Vector2d(),
+            image: this.bite,   // Image source (16x16 in this case)
+        });
         }
 
         if (this.waypointIndex < this.pathWaypoints.length) {
