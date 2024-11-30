@@ -12,7 +12,7 @@ class Bread extends Enemy{
         });
         this.health = 200;
         this.speed = 1;
-        this.reward = 10;
+        this.reward = 5;
         this.penalty = 15;
         // Set the velocity for movement
         this.body.setMaxVelocity(0, 0); // Movement speed in x and y directions
