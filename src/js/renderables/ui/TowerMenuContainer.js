@@ -30,6 +30,19 @@ class TowerMenuContainer extends me.Container {
             text: `${tower !== null ? `${tower.className} - Tier ${tower.tier}` : ''}`
         })
 
+        this.stats = tower.getAllyStats()
+
+        this.statsText = new me.Text(this.width / 6, this.height / 2, {
+            font: "PressStart2P",
+            size: 20,
+            lineHeight: 3,
+            fillStyle: "white",
+            textAlign: "left",
+            textBaseline: "top",
+            bold: true,
+            text: `${`DMG ${this.stats.allyATK}\nSPD ${this.stats.allyASPD}\nRNGE ${this.stats.allyRange}`}`
+        })
+
         this.towerTier = tower.tier
         this.sellButton = new SellButton(this.width / 6 - 15, this.height / 6, tower)
         this.upgradeButton = new UpgradeButton(this.width / 6 - 15, this.height / 3, tower)
@@ -38,6 +51,7 @@ class TowerMenuContainer extends me.Container {
         this.addChild(this.towerText)
         this.addChild(this.sellButton)
         this.addChild(this.upgradeButton)
+        this.addChild(this.statsText)
     }
 
     update(dt) {
@@ -46,6 +60,8 @@ class TowerMenuContainer extends me.Container {
             // Update the tower tier description
             this.towerTier = this.tower.tier;
             this.towerText.setText(`${this.tower !== null ? `${this.tower.className} - Tier ${this.tower.tier}` : ''}`);
+            this.stats = this.tower.getAllyStats()
+            this.statsText.setText(`${`DMG ${this.stats.allyATK}\nSPD ${this.stats.allyASPD}\nRNGE ${this.stats.allyRange}`}`);
 
             // Update the button values (Text on buttons cannot be edited once made)
             this.removeChild(this.sellButton)
