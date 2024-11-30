@@ -168,6 +168,12 @@ const DataManifest = [
         name: "chomp",
         type: "audio",
         src: "data/sfx/"
+    },
+
+    {
+        name: "trash-can",
+        type: "audio",
+        src: "data/sfx/"
     }
 
     // {

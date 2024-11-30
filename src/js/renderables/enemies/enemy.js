@@ -144,6 +144,7 @@ class Enemy extends me.Entity {
 
         // Deduct a life from the player, destroy enemy unit, and reduce number of enemies by 1
         applicationState.data.playerHealth += this.penalty;
+        me.audio.play("trash-can")
         this.die();
     }
 }
