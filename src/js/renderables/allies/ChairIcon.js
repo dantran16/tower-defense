@@ -74,7 +74,7 @@ class ChairIcon extends me.Sprite {
                     let res = this.interpolateLocation(this.pos.x+15, this.pos.y)
                     this.pos.x = res.xCoor;
                     this.pos.y = res.yCoor;
-                    setTimeout(this.createAlly(res.xCoor - 15, res.yCoor - 60, indeces), 2000);
+                    setTimeout(this.createAlly(res.xCoor, res.yCoor, indeces), 2000);
                     return false
                 }
             }
@@ -127,13 +127,13 @@ class ChairIcon extends me.Sprite {
         
         switch(this.name) {
             case "child":
-                this.ally = new ChildEntity(x, y, indeces, orientation)
+                this.ally = new ChildEntity(x, y-30, indeces, orientation)
                 break;
             case "adult":
-                this.ally = new AdultEntity(x, y, indeces, orientation)
+                this.ally = new AdultEntity(x, y-25, indeces, orientation)
                 break;
             case "foodie":
-                this.ally = new FoodieEntity(x, y, indeces, orientation)
+                this.ally = new FoodieEntity(x, y-25, indeces, orientation)
                 break;
         }
         

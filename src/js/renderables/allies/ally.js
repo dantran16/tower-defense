@@ -1,7 +1,6 @@
 import * as me from 'melonjs';
 import applicationState from '../../applicationState';
 import HitBoxEntity from './HitBoxEntity';
-import TowerBounds from './TowerBounds.js';
 
 class AllyEntity extends me.Entity {
 
@@ -12,7 +11,7 @@ class AllyEntity extends me.Entity {
         // set a "player object" type
         this.body.collisionType = me.collision.types.NONE;
         this.body.ignoreGravity = true;
-        this.anchorPoint.set(0.5,0.5)
+        
         // set hitbox
         this.hitbox = null;
         this.chair = null;
@@ -28,10 +27,6 @@ class AllyEntity extends me.Entity {
         this.value = 0
         this.indeces = null;
         this.selected = false;
-
-        // Create bounds for onclick method
-        this.bounding = new TowerBounds(x + 13, y + 25, {width: 32, height: 32}, this)
-        me.game.world.addChild(this.bounding)
         
         // play sound cue any time an ally is created
         me.audio.play("place-chair")
@@ -70,10 +65,8 @@ class AllyEntity extends me.Entity {
     }
 
     updateHitbox(){
-        if(this.hitbox != null){
-            me.game.world.removeChild(this.hitbox);
-        }
-        this.hitbox = new HitBoxEntity(this.pos.x + this.center/2, this.pos.y + this.center * 2, {width: this.allyRange, height: this.allyRange}, this);
+        me.game.world.removeChild(this.hitbox);
+        this.hitbox = new HitBoxEntity(this.pos.x, this.pos.y + this.center, {width: this.allyRange, height: this.allyRange}, this);
         me.game.world.addChild(this.hitbox, 5);
     }
 

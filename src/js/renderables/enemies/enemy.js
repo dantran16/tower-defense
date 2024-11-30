@@ -2,7 +2,6 @@ import * as me from 'melonjs';
 import applicationState from '../../applicationState';
 import waypoints1 from './waypoint1.js';
 import waypoints2 from './waypoint2';
-import AttackEffect from '../misc/AttackEffect'
 
 class Enemy extends me.Entity {
     constructor(x, y, settings, lane) {
@@ -120,7 +119,6 @@ class Enemy extends me.Entity {
         }
         if (this.health <= 0) {
             // console.log(`${this} enemy has been defeated!`);
-            me.game.world.addChild(new AttackEffect(this.pos.x, this.pos.y + 10))
             this.rewardPlayer();
             this.die();
         }

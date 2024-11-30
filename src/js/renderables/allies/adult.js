@@ -24,7 +24,14 @@ class AdultEntity extends AllyEntity {
         this.orientation = orientation;
         this.updateAllyStats()
         this.value = this.allyCost;
-        this.updateHitbox()
+
+        // Create hitbox
+        this.hitbox = new HitBoxEntity(x, y + this.center, {width: this.allyRange, height: this.allyRange}, this);
+        me.game.world.addChild(this.hitbox, 5);
+        
+        // Create bounds for onclick method
+        this.bounding = new TowerBounds(x, y, {width: 32, height: 32}, this)
+        me.game.world.addChild(this.bounding)
     }
 
     updateAllyStats() {
