@@ -42,21 +42,21 @@ class ChildEntity extends AllyEntity {
             this.allyCost = 50;
             this.upgradeCost = 50;
             this.allyATK = 8;
-            this.allyASPD = 1.5;
+            this.allyASPD = 1.4;
             this.allyRange = 1;
         }
         else if (this.tier == 2) {
             this.allyCost = 100;
             this.upgradeCost = 50;
             this.allyATK = 15;
-            this.allyASPD = 1.5;
+            this.allyASPD = 1.4;
             this.allyRange = 1;
         }
         else if (this.tier == 3) {
             this.allyCost = 150;
             this.upgradeCost = 0;
             this.allyATK = 25;
-            this.allyASPD = 1.5;
+            this.allyASPD = 1.4;
             this.allyRange = 1
         }
     }
