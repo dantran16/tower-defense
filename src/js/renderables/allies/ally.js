@@ -47,6 +47,7 @@ class AllyEntity extends me.Entity {
         if(this.hitbox != null){
             me.game.world.removeChild(this.hitbox)
         }
+        me.game.world.removeChild(this.bounding)
         me.game.world.removeChild(this.chair);
         me.game.world.removeChild(this);
         applicationState.data.currency += Math.round(this.allyCost / 2)

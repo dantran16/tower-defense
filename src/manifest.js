@@ -56,9 +56,51 @@ const DataManifest = [
     },
 
     {
+        name: "bread",
+        type: "image",
+        src: "./data/img/enemies/enemy_bread.png"
+    },
+
+    {
+        name: "egg",
+        type: "image",
+        src: "./data/img/enemies/enemy_egg.png"
+    },
+
+    {
         name: "sushi",
         type: "image",
         src: "./data/img/enemies/enemy_sushi.png"        
+    },
+
+    {
+        name: "sushi-bite",
+        type: "image",
+        src: "./data/img/enemies/enemy_sushi_bite.png"        
+    },
+
+    {
+        name: "red-velvet-bite",
+        type: "image",
+        src: "./data/img/enemies/enemy_redvelvet_bite.png"        
+    },
+
+    {
+        name: "coffee-bite",
+        type: "image",
+        src: "./data/img/enemies/enemy_coffee_bite.png"        
+    },
+
+    {
+        name: "bread-bite",
+        type: "image",
+        src: "./data/img/enemies/enemy_bread_bite.png"
+    },
+
+    {
+        name: "egg-bite",
+        type: "image",
+        src: "./data/img/enemies/enemy_egg_bite.png"
     },
 
     {
@@ -88,6 +130,12 @@ const DataManifest = [
         name: "star",
         type: "image",
         src: "./data/img/star.png"
+    },
+
+    {
+        name: "trash",
+        type: "image",
+        src: "./data/img/trash.png"
     },
 
     // sounds and SFX
@@ -120,7 +168,19 @@ const DataManifest = [
         name: "chomp",
         type: "audio",
         src: "data/sfx/"
+    },
+    {
+        name: "trash-can",
+        type: "audio",
+        src: "data/sfx/"
+    },
+    
+    {
+        name: "attack-effect",
+        type: "image",
+        src: "./data/img/attack_effect.png"
     }
+
 
     // {
     //     name: "map_assets",

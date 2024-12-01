@@ -2,6 +2,7 @@ import * as me from 'melonjs';
 import applicationState from '../../applicationState';
 import waypoints1 from './waypoint1.js';
 import waypoints2 from './waypoint2';
+import AttackEffect from '../misc/AttackEffect'
 
 class Enemy extends me.Entity {
     constructor(x, y, settings, lane) {
@@ -9,6 +10,7 @@ class Enemy extends me.Entity {
         super(x, y, settings);
 
         // Initialize properties for enemy unit
+        this.fullhp = 0;
         this.health = 0;    // Health of the enemy
         this.speed = 0;     // Movement speed of the enemy
         this.reward = 0;    // Reward for kill enemy
@@ -18,7 +20,7 @@ class Enemy extends me.Entity {
         this.alwaysUpdate = false;   // Always update even off-screen
         this.body.collisionType = me.collision.types.ENEMY_OBJECT;      // Acts as enemy object
         this.body.setCollisionMask(me.collision.types.PLAYER_OBJECT);   // Can only collide with player objects
-        this.body.addShape(new me.Ellipse(0, 0, 16, 16));               // hitbox assumes the shape of a circle
+        this.body.addShape(new me.Ellipse(4, 4, 8, 8));               // hitbox assumes the shape of a circle
 
         this.isKinematic = false;
         if (lane == 1) {this.pathWaypoints = waypoints1;}
@@ -44,20 +46,27 @@ class Enemy extends me.Entity {
 
     //Update the enemy's movement each frame
     update(dt) {
+        if (this.health <= this.fullhp/2) {
+            this.renderable = new me.Sprite(0, 0, {
+            anchorPoint: new me.Vector2d(),
+            image: this.bite,   // Image source (16x16 in this case)
+        });
+        }
+
         if (this.waypointIndex < this.pathWaypoints.length) {
             if (!applicationState.isPaused && this.alive) {
                 this.moveToWaypoint();
             }
         } else {
             this.onCollideWithTrashCan();
-            console.log("Enemy reached the end of its path or no waypoints available.");
+            // console.log("Enemy reached the end of its path or no waypoints available.");
         }
     }
 
     moveToWaypoint() { // Default dt for setInterval update
         // Check if current waypoint index is valid
         if (this.waypointIndex >= this.pathWaypoints.length) {
-            console.error(`Invalid waypoint index: ${this.waypointIndex}. Waypoint index is out of bounds.`);
+            // console.error(`Invalid waypoint index: ${this.waypointIndex}. Waypoint index is out of bounds.`);
             this.onCollideWithTrashCan(); // Assume the end of the path
             return;
         }
@@ -67,7 +76,7 @@ class Enemy extends me.Entity {
 
         // Ensure the waypoint exists (guard against undefined)
         if (!waypoint) {
-            console.error(`Waypoint at index ${this.waypointIndex} is undefined.`);
+            // console.error(`Waypoint at index ${this.waypointIndex} is undefined.`);
             return;
         }
 
@@ -111,6 +120,7 @@ class Enemy extends me.Entity {
         }
         if (this.health <= 0) {
             // console.log(`${this} enemy has been defeated!`);
+            me.game.world.addChild(new AttackEffect(this.pos.x, this.pos.y + 10))
             this.rewardPlayer();
             this.die();
         }
@@ -135,10 +145,11 @@ class Enemy extends me.Entity {
     
     // Method to handle the collision with the Trash Can at end of path
     onCollideWithTrashCan() {
-        console.log(`${this._type} collided with the Trash Can and will be removed.`);
+        // console.log(`${this._type} collided with the Trash Can and will be removed.`);
 
         // Deduct a life from the player, destroy enemy unit, and reduce number of enemies by 1
         applicationState.data.playerHealth += this.penalty;
+        me.audio.play("trash-can")
         this.die();
     }
 }

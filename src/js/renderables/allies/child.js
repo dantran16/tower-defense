@@ -12,14 +12,13 @@ class ChildEntity extends AllyEntity {
             width: 32, 
             height: 64
         });
+        this.center = 30
         
-        // // initialize idle animations
-        this.renderable.addAnimation("right_sit", [24,25,26,27,28,29]);
-        this.renderable.addAnimation("left_sit", [36,37,38,39,40,41]);
+        // initialize idle animations
+        this.renderable.addAnimation("right", [24,25,26,27,28,29]);
+        this.renderable.addAnimation("left", [36,37,38,39,40,41]);
         this.renderable.addAnimation("front", [42,43,44,45,46,47]);
         this.renderable.addAnimation("back", [30,31,32,33,34,35]);
-        // right idle animation
-        this.renderable.setCurrentAnimation("right_sit");
         
         this.className = 'Child'
         // set default stats of child unit
@@ -42,33 +41,33 @@ class ChildEntity extends AllyEntity {
         if (this.tier == 1) {
             this.allyCost = 50;
             this.upgradeCost = 50;
-            this.allyATK = 10;
-            this.allyASPD = 1.5;
+            this.allyATK = 8;
+            this.allyASPD = 1.4;
             this.allyRange = 1;
         }
         else if (this.tier == 2) {
             this.allyCost = 100;
             this.upgradeCost = 50;
             this.allyATK = 15;
-            this.allyASPD = 1.5;
-            this.allyRange = 1.1;
+            this.allyASPD = 1.4;
+            this.allyRange = 1;
         }
         else if (this.tier == 3) {
             this.allyCost = 150;
             this.upgradeCost = 0;
-            this.allyATK = 15;
-            this.allyASPD = 2;
-            this.allyRange = 1.2
+            this.allyATK = 25;
+            this.allyASPD = 1.4;
+            this.allyRange = 1
         }
     }
 
     // tower orientation depenedent on direction matrix values
-    playAnimation() {
+    idleAnimation() {
         if (this.orientation == 1) {
-            this.renderable.setCurrentAnimation("right_sit");            
+            this.renderable.setCurrentAnimation("right");            
         }
         else if (this.orientation == 2) {
-            this.renderable.setCurrentAnimation("left_sit");         
+            this.renderable.setCurrentAnimation("left");         
         }
         else if (this.orientation == 3) {
             this.renderable.setCurrentAnimation("front")          
@@ -77,6 +76,21 @@ class ChildEntity extends AllyEntity {
             this.renderable.setCurrentAnimation("back")    
         }
     } 
+
+    attackAnimation() {
+        if (this.orientation == 1) {
+            this.renderable.setCurrentAnimation("right");            
+        }
+        else if (this.orientation == 2) {
+            this.renderable.setCurrentAnimation("left");         
+        }
+        else if (this.orientation == 3) {
+            this.renderable.setCurrentAnimation("front")          
+        }
+        else {
+            this.renderable.setCurrentAnimation("back")    
+        }
+    }
 
 };
 

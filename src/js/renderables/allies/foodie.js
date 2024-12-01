@@ -15,10 +15,16 @@ class FoodieEntity extends AllyEntity {
         });
         
         // // initialize idle animations
-        this.renderable.addAnimation("right_sit", [224,225,226,227,228,229]);
-        this.renderable.addAnimation("left_sit", [230,231,232,233,234,235]);
+        // this.renderable.addAnimation("right", [224,225,226,227,228,229]);
+        // this.renderable.addAnimation("left", [230,231,232,233,234,235]);
+        this.renderable.addAnimation("right", [56,57,58,59,60,61])
+        this.renderable.addAnimation("left", [68,69,70,71,72,73])
         this.renderable.addAnimation("front", [74,75,76,77,78,79]);
         this.renderable.addAnimation("back", [62,63,64,65,66,67]);
+        this.renderable.addAnimation("right_attack", [620,621,625,626,627])
+        this.renderable.addAnimation("left_attack", [647,648,649,653,654])
+        this.renderable.addAnimation("front_attack", [660,661,662,663,664])
+        this.renderable.addAnimation("back_attack", [633,634,635,635,639])
 
         this.className = 'Foodie'
         // set default stats of foodie unit
@@ -39,35 +45,35 @@ class FoodieEntity extends AllyEntity {
     updateAllyStats() {
         // Update ally statistics based on this.tier value
         if (this.tier == 1) {
-            this.allyCost = 200;
-            this.upgradeCost = 100;
-            this.allyATK = 20;
-            this.allyASPD = 1;
-            this.allyRange = 2;
+            this.allyCost = 250;
+            this.upgradeCost = 250;
+            this.allyATK = 10;
+            this.allyASPD = 7;
+            this.allyRange = 1.5;
         }
         else if (this.tier == 2) {
-            this.allyCost = 300;
-            this.upgradeCost = 100;
+            this.allyCost = 500;
+            this.upgradeCost = 250;
             this.allyATK = 20;
-            this.allyASPD = 1.5;
-            this.allyRange = 2.5
+            this.allyASPD = 10;
+            this.allyRange = 1.5
         }
         else if (this.tier == 3) {
-            this.allyCost = 400;
+            this.allyCost = 750;
             this.upgradeCost = 0;
-            this.allyATK = 25;
-            this.allyASPD = 2;
-            this.allyRange = 3
+            this.allyATK = 35;
+            this.allyASPD = 10;
+            this.allyRange = 1.5
         }
     }
 
     // tower orientation depenedent on direction matrix values
-    playAnimation() {
+    idleAnimation() {
         if (this.orientation == 1) {
-            this.renderable.setCurrentAnimation("right_sit");            
+            this.renderable.setCurrentAnimation("right");            
         }
         else if (this.orientation == 2) {
-            this.renderable.setCurrentAnimation("left_sit");         
+            this.renderable.setCurrentAnimation("left");         
         }
         else if (this.orientation == 3) {
             this.renderable.setCurrentAnimation("front")          
@@ -76,6 +82,21 @@ class FoodieEntity extends AllyEntity {
             this.renderable.setCurrentAnimation("back")    
         }
     } 
+
+    attackAnimation() {
+        if (this.orientation == 1) {
+            this.renderable.setCurrentAnimation("right_attack", "right");            
+        }
+        else if (this.orientation == 2) {
+            this.renderable.setCurrentAnimation("left_attack", "left");         
+        }
+        else if (this.orientation == 3) {
+            this.renderable.setCurrentAnimation("front_attack", "front")          
+        }
+        else {
+            this.renderable.setCurrentAnimation("back_attack", "back")    
+        }
+    }
 };
 
 export default FoodieEntity;
